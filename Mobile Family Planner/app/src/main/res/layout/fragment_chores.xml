@@ -6,17 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".ui.chores.ChoresFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/grpAvailable"
+        android:layout_width="184dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorMenu"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/grpAssigned"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnChore_1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingTop="5dp"
+            android:text="Chore 1" />
+
+        <Button
+            android:id="@+id/btnChore_2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 2" />
+
+        <Button
+            android:id="@+id/btnChore_3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 3" />
+
+        <Button
+            android:id="@+id/btnChore_4"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 4" />
+
+        <Button
+            android:id="@+id/btnChore_5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 5" />
+
+        <Button
+            android:id="@+id/btnChore_6"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 6" />
+
+        <Button
+            android:id="@+id/btnChore_7"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 7" />
+
+        <Button
+            android:id="@+id/btnChore_8"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 8" />
+
+        <Button
+            android:id="@+id/btnChore_9"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 9" />
+
+        <Button
+            android:id="@+id/btnChore_10"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Chore 10" />
+
+        <Button
+            android:id="@+id/btnAddChore"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_shape"
+            android:text="New Chore" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grpAssigned"
+        android:layout_width="184dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="203dp"
+        android:background="@color/colorMenu"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/grpAvailable"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

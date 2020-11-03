@@ -19,7 +19,8 @@ public class ChoresFragment extends Fragment {
     private ChoresViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_chores, container, false);
 
-        return null;
+        return root;
     }
 }

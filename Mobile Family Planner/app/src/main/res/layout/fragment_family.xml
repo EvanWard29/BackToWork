@@ -20,7 +20,7 @@
 
         <TableRow
             android:id="@+id/rowHeader"
-            android:background="#0079D6"
+            android:background="@color/colorPrimaryDark"
             android:padding="5dp">
 
             <TextView
@@ -51,7 +51,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -78,7 +78,7 @@
 
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -104,7 +104,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -130,7 +130,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -156,7 +156,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -182,7 +182,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -208,7 +208,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -234,7 +234,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
@@ -260,7 +260,7 @@
         </TableRow>
 
         <TableRow
-            android:background="#DAE8FC"
+            android:background="@color/colorMenu"
             android:padding="5dp">
 
             <TextView
