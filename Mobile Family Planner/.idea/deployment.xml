@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Wamp64" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Wamp64">
+        <serverdata>
+          <mappings>
+            <mapping deploy="FinalYearProject" local="$PROJECT_DIR$" web="/FinalYearProject/public/index.php" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

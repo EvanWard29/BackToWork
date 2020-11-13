@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="272658ab-1cff-4d2a-b3f1-9777184ab716" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/public/header.php" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectId" id="1k9XBY1620kaNHUqp5l4cZXhbZG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../wamp64/www/FinalYearProject" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Copy To Server Folder" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="NOT_FILTER">
+      <method v="2">
+        <option name="FtpUpload" enabled="true">
+          <server_id>ba5e2084-5264-479e-bec4-b1a147d0e6e1</server_id>
+          <server_name>Wamp64</server_name>
+          <group_name />
+          <path>C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\FinalYearProject</path>
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="NOT_FILTER">
+      <method v="2">
+        <option name="FtpUpload" enabled="true">
+          <server_id>ba5e2084-5264-479e-bec4-b1a147d0e6e1</server_id>
+          <server_name>Wamp64</server_name>
+          <group_name />
+          <path>C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\FinalYearProject</path>
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="272658ab-1cff-4d2a-b3f1-9777184ab716" name="Default Changelist" comment="" />
+      <created>1605113646263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605113646263</updated>
+      <workItem from="1605113647743" duration="1060000" />
+      <workItem from="1605115024329" duration="7401000" />
+      <workItem from="1605205102328" duration="3319000" />
+      <workItem from="1605274467304" duration="1482000" />
+      <workItem from="1605276239559" duration="18813000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="432" y="182" key="#Deployment" timestamp="1605277779936">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="182" key="#Deployment/0.0.1680.1010@0.0.1680.1010" timestamp="1605277779936" />
+    <state x="591" y="329" key="#Notifications" timestamp="1605117297219">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="591" y="329" key="#Notifications/0.0.1680.1010@0.0.1680.1010" timestamp="1605117297219" />
+    <state x="432" y="146" key="#Plugins" timestamp="1605283647199">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="146" key="#Plugins/0.0.1680.1010@0.0.1680.1010" timestamp="1605283647199" />
+    <state x="216" y="346" key="#SQL_Dialects" timestamp="1605207467935">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="216" y="346" key="#SQL_Dialects/0.0.1680.1010@0.0.1680.1010" timestamp="1605207467935" />
+    <state x="294" y="160" width="1092" height="752" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605285814346">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="294" y="160" width="1092" height="752" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1605285814346" />
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605290809236">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1605290809236" />
+    <state x="559" y="312" key="FileChooserDialogImpl" timestamp="1605115387578">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="559" y="312" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1605115387578" />
+    <state width="1125" height="272" key="GridCell.Tab.0.bottom" timestamp="1605290877917">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1125" height="272" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1605290877917" />
+    <state width="1125" height="272" key="GridCell.Tab.0.center" timestamp="1605290877917">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1125" height="272" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1605290877917" />
+    <state width="1125" height="272" key="GridCell.Tab.0.left" timestamp="1605290877916">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1125" height="272" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1605290877916" />
+    <state width="1125" height="272" key="GridCell.Tab.0.right" timestamp="1605290877917">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1125" height="272" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1605290877917" />
+    <state x="490" y="228" key="NewPhpClassDialog" timestamp="1605205639333">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="490" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1605205639333" />
+    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1605292015975">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1605292015975" />
+    <state x="669" y="394" width="653" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1605285811539">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="669" y="394" width="653" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1605285811539" />
+  </component>
+</project>

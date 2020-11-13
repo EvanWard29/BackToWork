@@ -1,0 +1,20 @@
+.details{
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.options{
+    font-family: 'Merriweather', serif;
+    padding-right: 30px;
+    margin-bottom: 15px;
+}
+
+.btnMargin{
+    margin-right: 15px;
+}
+
+.delete{
+    color: red;
+    font-size: 10px;
+}

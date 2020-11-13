@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Family Planner</string>
-    <string name="title_family">My Family</string>
-    <string name="title_chores">Chores</string>
-    <string name="title_account">My Account</string>
-    <string name="headerName">Name</string>
-    <string name="headerChores">Chores Completed</string>
-    <string name="headerPoints">Points</string>
-</resources>

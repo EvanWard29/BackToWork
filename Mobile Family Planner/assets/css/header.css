@@ -1,0 +1,43 @@
+.header{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #6399ca;
+    padding: 20px;
+    border: black solid;
+}
+
+.headerLink{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    font-family: 'Merriweather', serif;
+    text-align: left;
+}
+.headerLink:hover{
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 575.98px){
+    .headerLink{
+        text-decoration: none;
+        color: white;
+        font-size: 30px;
+        font-family: 'Merriweather', serif;
+        text-align: center;
+    }
+}
+
+body{
+    background-color: #DAE8FC;
+    position: relative;
+}
+
+.main{
+    text-align: center;
+}
+
+h1, h3{
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
