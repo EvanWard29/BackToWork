@@ -1,4 +1,4 @@
-<?php include "../src/controller/DBConnection.php"?>
+<?php include "../src/controller/DBConnection.php" ?>
 
 <html>
     <head>
