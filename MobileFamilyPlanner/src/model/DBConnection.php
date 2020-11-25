@@ -49,13 +49,35 @@ class DBConnection {
         return $chores;
     }
 
-    public function editChore($chore){
+    public function getAssignedChores($familyID){
+        $sql = "SELECT * FROM assigned_chore WHERE familyID = ?";
 
-        $sql = "call EditChore(:choreID)";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$familyID]);
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $assignedChores = [];
+
+        if($resultSet)
+        {
+            foreach($resultSet as $row)
+            {
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['status']);
+                $assignedChores[] = $assignedChore;
+            }
+        }
+        return $assignedChores;
+    }
+
+    public function editChore($choreID, $choreName, $choreDescription){
+
+        $sql = "call EditChore(:choreID, :choreName, :choreDescription)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':choreID',$choreID, PDO::PARAM_INT);
+        $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
+        $statement->bindParam(':choreDescription',$choreDescription, PDO::PARAM_STR);
 
         $statement->execute();
     }

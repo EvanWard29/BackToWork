@@ -3,14 +3,18 @@
 class AssignedChore
 {
     private $assignedChoreID;
-    private $choreID;
     private $userID;
+    private $choreID;
+    private $familyID;
+    private $status;
 
-    public function __construct($assignedChoreID, $choreID, $userID)
+    public function __construct($assignedChoreID, $userID, $choreID, $familyID, $status)
     {
         $this->assignedChoreID = $assignedChoreID;
-        $this->choreID = $choreID;
         $this->userID = $userID;
+        $this->choreID = $choreID;
+        $this->familyID = $familyID;
+        $this->status = $status;
     }
 
     /** Assigned Chore ID **/
@@ -44,6 +48,28 @@ class AssignedChore
     public function setUserID($userID)
     {
         $this->userID = $userID;
+    }
+
+    /** Family ID **/
+    public function getFamilyID()
+    {
+        return $this->familyID;
+    }
+
+    public function setFamilyID($familyID)
+    {
+        $this->familyID = $familyID;
+    }
+
+    /** Status **/
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
 
