@@ -5,10 +5,10 @@ include_once "AssignedChore.php";
 include_once "Family.php";
 
 class DBConnection {
-    private $db_server = '34.89.45.239:3306';
-    private $dbUser = 'family-planner';
-    private $dbPassword = '2LFngKIzu9o3iP1G';
-    private $dbDatabase = 'FamilyPlanner';
+    private $db_server = '192.168.0.11:9999';
+    private $dbUser = 'erward';
+    private $dbPassword = 'LoL0200!!';
+    private $dbDatabase = 'familyplanner';
     private $dataSourceName;
     private $connection;
 
@@ -92,6 +92,27 @@ class DBConnection {
 
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription', $choreDescription, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
+    public function getNextChoreID(){
+        $sql = "call NewChoreID()";
+
+        $statement = $this->connection->prepare($sql);
+
+        $statement->execute();
+        $choreID = $statement->fetchColumn();
+
+        return $choreID;
+    }
+
+    public function deleteChore($choreID){
+        $sql = "call DeleteChore(:choreID)";
+
+        $statement = $this->connection->prepare($sql);
+
+        $statement->bindParam(':choreID',$choreID, PDO::PARAM_STR);
 
         $statement->execute();
     }

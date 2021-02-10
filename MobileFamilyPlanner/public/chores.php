@@ -37,6 +37,7 @@
         <script src="../assets/js/newChore.js"></script>
         <script src="../assets/js/choreDetails.js"></script>
         <script src="../assets/js/saveChore.js"></script>
+        <script src="../assets/js/deleteChore.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -77,6 +78,9 @@
                                     </div>
                                     <div class="modal-body">
                                         <form>
+                                            <div class="form-group" hidden>
+                                                <label id="editChoreID"></label>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="font-weight-bold" for="editChoreName">Name</label>
                                                 <input class="form-control" type="text" id="editChoreName" readonly/>

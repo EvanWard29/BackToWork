@@ -3,12 +3,13 @@ $(function (){
       let choreName = $("#inpChoreName").val();
       let choreDescription = $("#inpChoreDescription").val();
 
-      $.post("/MobileFamilyPlanner/src/model/addChore.php", {
+      $.post("/MobileFamilyPlanner/src/controller/addChore.php", {
          name: choreName,
          description: choreDescription
       });
 
-      $('#available tr:last').after('<tr><td>' + choreName + '</td></tr>');
-
+      $.post("/MobileFamilyPlanner/src/controller/getNextChoreID.php",function(data){
+         location.reload();
+      })
    });
 });

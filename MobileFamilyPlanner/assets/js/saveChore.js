@@ -1,7 +1,7 @@
 $(function(){
     $('#btnAssignChore').click(function(){
 
-        /*let user = $('#assignChore').val();
+        let user = $('#assignChore').val();
         let familyID = 1;
         let choreID = null;
 
@@ -11,6 +11,6 @@ $(function(){
             user: user,
             family: familyID,
             choreID: choreID
-        });*/
+        });
     });
 });

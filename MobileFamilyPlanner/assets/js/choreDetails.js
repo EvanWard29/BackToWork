@@ -13,11 +13,10 @@ $(function(){
                 data = $.parseJSON(data);
                 for(let i = 0; i < data.length; i++){
                    let id= data[i][0];
-
                    if(choreID == id){
                       let name = data[i][1];
                       let description = data[i][2];
-
+                      $('#editChoreID').html(choreID);
                       $('#editChoreName').val(name);
                       $('#editChoreDescription').val(description);
                       break;
