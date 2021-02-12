@@ -69,6 +69,21 @@ class DBConnection {
         return $assignedChores;
     }
 
+    public function assignChore($chore, $user){
+        $sql = "call AssignChore(:choreID, :user, :familyID)";
+
+        $statement = $this->connection->prepare($sql);
+
+        $choreID = $chore->getChoreID();
+        $familyID = $chore->getFamilyID();
+
+        $statement->bindParam(':choreID',$choreID, PDO::PARAM_INT);
+        $statement->bindParam(':user',$user, PDO::PARAM_STR);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
     public function editChore($choreID, $choreName, $choreDescription){
 
         $sql = "call EditChore(:choreID, :choreName, :choreDescription)";
@@ -134,9 +149,5 @@ class DBConnection {
             }
         }
         return $users;
-    }
-
-    public function assignChore($userID, $choreID){
-
     }
 }
