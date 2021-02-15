@@ -1,4 +1,4 @@
-<?php include_once "../src/model/DBConnection.php"; ?>
+<?php include_once "../src/model/DBConnection.php"; session_start(); $_SESSION['admin'] = true;?>
 
 <html>
     <head>

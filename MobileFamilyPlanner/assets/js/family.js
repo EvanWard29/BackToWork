@@ -20,7 +20,7 @@ $(function(){
        $('#invConfirmPassword').attr('hidden', true);
    });
 
-   $('#btnSaveMember').click(function(){
+   $('#btnSaveMember').click(async function(){
        let firstErr = false;
        let lastErr = false;
        let emailErr = false;
@@ -122,7 +122,142 @@ $(function(){
 
       if(firstErr !== true && lastErr !== true && emailErr !== true && passwordErr !== true){
           //Validation Complete
+          password = password.toString();
+          $.post("/MobileFamilyPlanner/src/controller/newMember.php", {
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              password: password
+          },function(response){
+                $('#inpFirstName').val("");
+                $('#inpLastName').val("");
+                $('#inpEmail').val("");
+                $('#inpPassword').val("");
+                $('#inpConfirmPassword').val("");
+          })
       }
+   });
+
+   $('tr').click(function(){
+       $('#modalViewMember').modal('show');
+
+       $('#memberID').html($(this).find(".names").attr('id').replace( /^\D+/g, ''));
+       $('#inpName').val($(this).find(".names").html());
+       $('#inpChoresCompleted').val($(this).find(".choresCompleted").html());
+       $('#inpPoints').val($(this).find(".points").html().replace(/ /g,''));
+   })
+
+    $('#btnEditMember').click(function(){
+       $('#inpName').attr('readonly', false);
+       $('#inpChoresCompleted').attr('readonly', false);
+       $('#inpPoints').attr('readonly', false);
+
+       $('#btnEditMember').attr('hidden', true);
+       $('#btnSave').attr('hidden', false);
+    });
+
+   $('#btnSave').click(function(){
+      //Do Processing
+       let nameErr = false;
+       let choresCompletedErr = false;
+       let pointsErr = false;
+
+       let name = $('#inpName').val();
+       let choresCompleted = $('#inpChoresCompleted').val();
+       let points = $('#inpPoints').val();
+
+       if(name === ""){
+           //Name is blank
+           $('#invName').attr('hidden', false);
+           $('#inpName').addClass('is-invalid');
+
+           nameErr = true;
+       }else{
+           //Name is NOT blank
+           $('#invName').attr('hidden', true);
+           $('#inpName').removeClass('is-invalid');
+
+           nameErr = false;
+       }
+
+       if(choresCompleted === ""){
+           //Chores Completed is blank
+           $('#invChoresCompleted').attr('hidden', false);
+           $('#inpChoresCompleted').addClass('is-invalid');
+
+           choresCompletedErr = true;
+       }else{
+           //Chores Completed is NOT blank
+           $('#invChoresCompleted').attr('hidden', true);
+           $('#inpChoresCompleted').removeClass('is-invalid');
+
+           choresCompletedErr = false;
+
+           if(isNaN(choresCompleted) === true){
+               //Chores Completed is NOT a number
+               $('#invChoresCompleted').attr('hidden', false);
+               $('#inpChoresCompleted').addClass('is-invalid');
+
+               choresCompletedErr = true;
+           }else{
+               //Chores Completed is a number
+               $('#invChoresCompleted').attr('hidden', true);
+               $('#inpChoresCompleted').removeClass('is-invalid');
+
+               choresCompletedErr = false;
+           }
+       }
+
+       if(points === ""){
+           //Points is blank
+           $('#invPoints').attr('hidden', false);
+           $('#inpPoints').addClass('is-invalid');
+
+           pointsErr = true;
+       }else{
+           //Points is NOT blank
+           $('#invPoints').attr('hidden', true);
+           $('#inpPoints').removeClass('is-invalid');
+
+           pointsErr = false;
+
+           if(isNaN(points) ===true){
+               //Points is NOT a number
+               $('#invPoints').attr('hidden', false);
+               $('#inpPoints').addClass('is-invalid');
+
+               pointsErr = true;
+           }else{
+               //Points is a number
+               $('#invPoints').attr('hidden', true);
+               $('#inpPoints').removeClass('is-invalid');
+
+               pointsErr = false;
+           }
+       }
+
+       if((nameErr !== true) && (choresCompletedErr !== true) && (pointsErr !== true)){
+           //Update Details
+           let userID = $('#memberID').html();
+
+           $.post("/MobileFamilyPlanner/src/controller/updateMember.php",{
+               userID: userID,
+               firstName: name,
+               choresCompleted: choresCompleted,
+               points: points
+           }, function(){
+               location.reload();
+           })
+       }
+   });
+
+   $('#btnCloseMember').click(function(){
+       $('#inpName').attr('readonly', true);
+       $('#inpChoresCompleted').attr('readonly', true);
+       $('#inpPoints').attr('readonly', true);
+
+       $('#btnSave').attr('hidden', true);
+       $('#btnEditMember').attr('hidden', false);
    });
 });
 

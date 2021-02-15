@@ -8,9 +8,10 @@ class User
     private $email;
     private $password;
     private $points;
+    private $choresCompleted;
     private $familyID;
 
-    public function __construct($userID, $firstName, $lastName, $email, $password, $points, $familyID)
+    public function __construct($userID, $firstName, $lastName, $email, $password, $points, $choresCompleted, $familyID)
     {
         $this->userID = $userID;
         $this->firstName = $firstName;
@@ -18,6 +19,7 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->points = $points;
+        $this->choresCompleted = $choresCompleted;
         $this->familyID = $familyID;
     }
 
@@ -85,6 +87,17 @@ class User
     public function setPoints($points)
     {
         $this->points = $points;
+    }
+
+    /** Chores Completed **/
+    public function getChoresCompleted()
+    {
+        return $this->choresCompleted;
+    }
+
+    public function setChoresCompleted($choresCompleted)
+    {
+        $this->choresCompleted = $choresCompleted;
     }
 
     /** Family ID **/

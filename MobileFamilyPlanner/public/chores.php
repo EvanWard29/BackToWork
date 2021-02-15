@@ -89,28 +89,34 @@
                                                 <label class="font-weight-bold" for="editChoreDescription">Description</label>
                                                 <input class="form-control" type="text" id="editChoreDescription" readonly/>
                                             </div>
-                                            <div>
-                                                <label class="font-weight-bold" for="assignChore">Assign To</label>
-                                                <select class="form-control" type="text" id="assignChore">
-                                                    <option selected>Select User</option>
-                                                    <?php
+                                            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                                                <div>
+                                                    <label class="font-weight-bold" for="assignChore">Assign To</label>
+                                                    <select class="form-control" type="text" id="assignChore">
+                                                        <option selected>Select User</option>
+                                                        <?php
                                                         foreach($users as $user){
                                                             ?>
                                                             <option><?php echo $user->getFirstName() ?></option>
-                                                    <?php
+                                                            <?php
                                                         }
-                                                    ?>
+                                                        ?>
 
-                                                </select>
-                                            </div>
+                                                    </select>
+                                                </div>
+                                            <?php
+                                            } ?>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal">Delete Chore</button>
-                                        <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
-                                        <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                        <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal">Assign Chore</button>
+                                        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                                            <button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal">Delete Chore</button>
+                                            <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
+                                            <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
+                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal">Assign Chore</button>
+                                        <?php
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
@@ -163,6 +169,7 @@
                                 ?>
                             </tbody>
                         </table>
+
                         <!-- Modal Assigned Chore -->
                         <div class="modal fade" id="modalAssignedChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -202,7 +209,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button id="btnNewChore" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
+                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+                        ?>
+                        <button id="btnNewChore" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
+                        <?php
+                    } ?>
 
                     <!-- Modal New Chore -->
                     <div class="modal fade" id="modalNewChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
