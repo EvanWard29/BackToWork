@@ -1,5 +1,7 @@
 <?php
     include_once "header.php";
+    //requireLogin();
+
     $db = new DBConnection();
     $data = $db->getAllChores();
     $users = $db->getUsers(1);

@@ -1,4 +1,4 @@
-<?php include_once "../src/model/DBConnection.php"; session_start(); $_SESSION['admin'] = true;?>
+<?php include_once "../src/model/DBConnection.php"; $_SESSION['admin'] = true ?>
 
 <html>
     <head>
@@ -27,9 +27,8 @@
         <link href="../assets/css/family.css" type="text/css" rel="stylesheet">
         <link href="../assets/css/account.css" type="text/css" rel="stylesheet">
         <link href="../assets/css/login.css" type="text/css" rel="stylesheet">
-        <style>
 
-        </style>
+        <script src="../assets/js/logout.js"></script>
     </head>
     <body>
 
@@ -38,6 +37,7 @@
             <li><a href="chores.php">Chores</a></li>
             <li><a href="calendar.php">Calendar</a></li>
             <li><a href="account.php">My Account</a></li>
+            <li><a href="login.php" id="logout">Logout</a></li>
         </ul>
 
         <div class="container-fluid" style="background-color: #DAE8FC;">
@@ -48,3 +48,14 @@
 
     </body>
 </html>
+<?php
+
+function requireLogin(){
+    if(! isset($_SESSION['admin'])){
+        //header("Location: /MobileFamilyPlanner/public/login.php");
+        echo "<script>alert(".$_SESSION['admin'].");</script>";
+    }else{
+        header("Location: /MobileFamilyPlanner/public/login.php");
+    }
+}
+

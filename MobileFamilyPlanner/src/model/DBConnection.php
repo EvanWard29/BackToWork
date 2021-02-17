@@ -187,4 +187,14 @@ class DBConnection {
 
         $statement->execute();
     }
+
+    public function getPassword($email){
+        $sql = "SELECT password, userID FROM user WHERE email = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$email]);
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultSet;
+    }
 }
