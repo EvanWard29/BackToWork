@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                                        <?php if($_COOKIE['accountType'] == 0){?>
                                             <button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal">Delete Chore</button>
                                             <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
                                             <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
@@ -211,7 +211,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+                    <?php if($_COOKIE['accountType'] == 0){
                         ?>
                         <button id="btnNewChore" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
                         <?php

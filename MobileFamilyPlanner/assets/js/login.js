@@ -49,20 +49,28 @@ $(function(){
                    inpLgnEmail: email
                }, function (data) {
                    data = JSON.parse(data)[0];
-                   if (CryptoJS.AES.decrypt(data.password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8).localeCompare(CryptoJS.AES.decrypt(password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8)) !== 0) {
-                       //Passwords do NOT match
+                   try {
+                       if (CryptoJS.AES.decrypt(data.password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8).localeCompare(CryptoJS.AES.decrypt(password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8)) !== 0) {
+                           //Passwords do NOT match
+                           $('#invLogin').attr('hidden', false);
+                           $('#inpLgnEmail').addClass('is-invalid');
+                           $('#inpLgnPassword').addClass('is-invalid');
+
+                           passwordErr = true;
+                       } else {
+                           //Passwords match
+                           $('#invLogin').attr('hidden', true);
+                           $('#inpLgnEmail').removeClass('is-invalid');
+                           $('#inpLgnPassword').removeClass('is-invalid');
+
+                           passwordErr = false;
+                       }
+                   }catch(err){
                        $('#invLogin').attr('hidden', false);
                        $('#inpLgnEmail').addClass('is-invalid');
                        $('#inpLgnPassword').addClass('is-invalid');
 
                        passwordErr = true;
-                   } else {
-                       //Passwords match
-                       $('#invLogin').attr('hidden', true);
-                       $('#inpLgnEmail').removeClass('is-invalid');
-                       $('#inpLgnPassword').removeClass('is-invalid');
-
-                       passwordErr = false;
                    }
                });
            }
@@ -85,9 +93,17 @@ $(function(){
                        let expire = new Date();
                        expire.setTime(today.getTime() + 3600000*24*14);
                        document.cookie = "userID=" + data.userID + ";expires=" + expire.toUTCString();
+                       document.cookie = "familyID=" + data.familyID + ";expires=" + expire.toUTCString();
+                       document.cookie = "accountType=" + data.type + ";expires=" + expire.toUTCString();
+
+                       location.replace('/MobileFamilyPlanner/public/myFamily.php');
                    }else{
                        //User has NOT checked remember me - save short period cookie
                        document.cookie = "userID=" + data.userID;
+                       document.cookie = "familyID=" + data.familyID;
+                       document.cookie = "accountType=" + data.type;
+
+                       location.replace('/MobileFamilyPlanner/public/myFamily.php');
                    }
                }else{
                    //User does NOT agree
@@ -96,8 +112,6 @@ $(function(){
 
 
            });
-
-           //location.replace('/MobileFamilyPlanner/public/myFamily.php');
        }
    }) ;
 });

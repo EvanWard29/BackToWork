@@ -5,17 +5,19 @@ class User
     private $userID;
     private $firstName;
     private $lastName;
+    private $type;
     private $email;
     private $password;
     private $points;
     private $choresCompleted;
     private $familyID;
 
-    public function __construct($userID, $firstName, $lastName, $email, $password, $points, $choresCompleted, $familyID)
+    public function __construct($userID, $firstName, $lastName, $type, $email, $password, $points, $choresCompleted, $familyID)
     {
         $this->userID = $userID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->type = $type;
         $this->email = $email;
         $this->password = $password;
         $this->points = $points;
@@ -54,6 +56,17 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /** Account Type **/
+    public function getAccountType()
+    {
+        return $this->type;
+    }
+
+    public function setAccountType($type)
+    {
+        $this->type = $type;
     }
 
     /** Email **/

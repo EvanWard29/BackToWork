@@ -20,7 +20,7 @@ $(function(){
        $('#invConfirmPassword').attr('hidden', true);
    });
 
-   $('#btnSaveMember').click(async function(){
+   /*$('#btnSaveMember').click(async function(){
        let firstErr = false;
        let lastErr = false;
        let emailErr = false;
@@ -136,7 +136,7 @@ $(function(){
                 $('#inpConfirmPassword').val("");
           })
       }
-   });
+   });*/
 
    $('tr').click(function(){
        $('#modalViewMember').modal('show');
@@ -261,7 +261,7 @@ $(function(){
    });
 });
 
-function validateEmail(email) {
+/*function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-}
+}*/

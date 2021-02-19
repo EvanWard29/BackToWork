@@ -143,7 +143,7 @@ class DBConnection {
 
         if($resultSet){
             foreach($resultSet as $result){
-                $user = new User($result['userID'], $result['firstName'], $result['lastName'],
+                $user = new User($result['userID'], $result['firstName'], $result['lastName'], $result['type'],
                     $result['email'], $result['password'], $result['points'], $result['choresCompleted'], $result['familyID']);
                 $users[] = $user;
             }
@@ -154,18 +154,20 @@ class DBConnection {
     public function addUser($user){
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
+        $type = $user->getAccountType();
         $email = $user->getEmail();
         $password = $user->getPassword();
         $points = $user->getPoints();
         $choresCompleted = $user->getChoresCompleted();
         $familyID = $user->getFamilyID();
 
-        $sql = "call AddUser(:firstName, :lastName, :email, :password, :points, :choresCompleted, :familyID)";
+        $sql = "call AddUser(:firstName, :lastName, :type, :email, :password, :points, :choresCompleted, :familyID)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':firstName',$firstName, PDO::PARAM_STR);
         $statement->bindParam(':lastName',$lastName, PDO::PARAM_STR);
+        $statement->bindParam(':type',$type, PDO::PARAM_INT);
         $statement->bindParam(':email',$email, PDO::PARAM_STR);
         $statement->bindParam(':password',$password, PDO::PARAM_STR);
         $statement->bindParam(':points',$points, PDO::PARAM_INT);
@@ -189,7 +191,7 @@ class DBConnection {
     }
 
     public function getPassword($email){
-        $sql = "SELECT password, userID FROM user WHERE email = ?";
+        $sql = "SELECT password, userID, familyID, type FROM user WHERE email = ?";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([$email]);
