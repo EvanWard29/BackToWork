@@ -69,6 +69,26 @@ class DBConnection {
         return $assignedChores;
     }
 
+    public function getUserChores($userID, $familyID){
+        $sql = "SELECT * FROM assigned_chore WHERE userID = ? AND familyID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$userID, $familyID]);
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $assignedChores = [];
+
+        if($resultSet)
+        {
+            foreach($resultSet as $row)
+            {
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['status']);
+                $assignedChores[] = $assignedChore;
+            }
+        }
+        return $assignedChores;
+    }
+
     public function assignChore($chore, $user){
         $sql = "call AssignChore(:choreID, :user, :familyID)";
 
@@ -198,5 +218,14 @@ class DBConnection {
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultSet;
+    }
+
+    public function completeChore($assignedChoreID){
+        $sql = "call CompleteChore(:userChoreID)";//"DELETE FROM assigned_chore WHERE userChoreID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
     }
 }

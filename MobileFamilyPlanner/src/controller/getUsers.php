@@ -2,7 +2,7 @@
 
 $db = new DBConnection();
 
-$data = $db->getUsers(1);
+$data = $db->getUsers($_POST['familyID']);
 
 $users = [];
 
