@@ -1,4 +1,16 @@
 $(function(){
+    $('#modalEditChore').on('hide.bs.modal', function(){
+        $('#editChoreName').val("").attr('readonly', true);
+        $('#editChoreDescription').val("").attr('readonly', true);
+        $('#assignChore').val("Select User");
+        $('#assignChore').attr('disabled', false);
+
+        $('#btnSaveChore').attr('hidden', true);
+        $('#btnEditChore').css('display', 'block');
+
+        $('#btnDeleteChore').attr('hidden', true);
+    })
+
     let choreID = null;
    $("td").click(function(){
       let suffix = this.id;
@@ -19,6 +31,8 @@ $(function(){
                       $('#editChoreID').html(choreID);
                       $('#editChoreName').val(name);
                       $('#editChoreDescription').val(description);
+
+                      $('#btnEditChore').attr('hidden', false);
                       break;
                    }
                 }
@@ -39,11 +53,6 @@ $(function(){
    });
 
    $('#btnCloseChore').click(function(){
-      $('#editChoreName').val("").attr('readonly', true);
-      $('#editChoreDescription').val("").attr('readonly', true);
-      $('#assignChore').val("Select User");
-      $('#assignChore').attr('disabled', false);
-
       $('#assignedChoreName').val("");
       $('#assignedChoreDescription').val("");
       $('#assignedChoreUser').val("");
@@ -57,6 +66,8 @@ $(function(){
        $('#btnSaveChore').attr('hidden', false);
        $('#assignChore').val("Select User");
        $('#assignChore').attr('disabled', true)
+
+       $('#btnDeleteChore').attr('hidden', false);
    });
 
    $('#btnSaveChore').click(function(){

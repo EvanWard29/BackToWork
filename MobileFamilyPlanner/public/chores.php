@@ -38,7 +38,7 @@
     <head>
         <script src="../assets/js/newChore.js"></script>
         <script src="../assets/js/choreDetails.js"></script>
-        <script src="../assets/js/saveChore.js"></script>
+        <script src="../assets/js/assignChore.js"></script>
         <script src="../assets/js/deleteChore.js"></script>
     </head>
     <body>
@@ -131,7 +131,7 @@
                                                 <label class="font-weight-bold" for="editChoreDescription">Description</label>
                                                 <input class="form-control" type="text" id="editChoreDescription" readonly/>
                                             </div>
-                                            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                                            <?php if($_COOKIE['accountType'] == 0){?>
                                                 <div>
                                                     <label class="font-weight-bold" for="assignChore">Assign To</label>
                                                     <select class="form-control" type="text" id="assignChore">
@@ -153,10 +153,10 @@
                                     <div class="modal-footer">
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <?php if($_COOKIE['accountType'] == 0){?>
-                                            <button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal">Delete Chore</button>
+                                            <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
                                             <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
                                             <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal">Assign Chore</button>
+                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
                                         <?php
                                         } ?>
                                     </div>
@@ -280,9 +280,26 @@
                                                 <input class="form-control" type="text" id="assignedChoreDescription" readonly/>
                                             </div>
                                             <div>
-                                                <label class="font-weight-bold" for="assignedUser">Assigned User</label>
+                                                <label class="font-weight-bold" for="assignedUser" id="lblAssignedUser">Assigned User</label>
                                                 <input class="form-control" type="text" id="assignedChoreUser" readonly/>
                                             </div>
+                                            <?php if($_COOKIE['accountType'] == 0){?>
+                                                <div>
+                                                    <label class="font-weight-bold" for="assignUser" hidden id="lblAssignNewUser">Assign To</label>
+                                                    <select class="form-control" type="text" id="assignUser" hidden>
+                                                        <option selected>Select User</option>
+                                                        <?php
+                                                        foreach($users as $user){
+                                                            ?>
+                                                            <option><?php echo $user->getFirstName() ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                </div>
+                                                <?php
+                                            } ?>
                                             <div>
                                                 <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
                                                 <input class="form-control" type="text" id="assignedChoreStatus" readonly/>
@@ -291,6 +308,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button id="btnComplete" type="button" class="btn btn-primary" data-dismiss="modal" hidden>Mark Complete</button>
+                                        <button id="btnReassign" type="button" class="btn btn-info">Reassign Chore</button>
+                                        <button id="btnSaveReassign" type="button" class="btn btn-info" hidden disabled>Save</button>
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>

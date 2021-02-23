@@ -228,4 +228,15 @@ class DBConnection {
 
         $statement->execute();
     }
+
+    public function reassignChore($assignedChoreID, $user, $familyID){
+        $sql = "call ReassignChore(:userChoreID, :user, :familyID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':user',$user, PDO::PARAM_STR);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
 }

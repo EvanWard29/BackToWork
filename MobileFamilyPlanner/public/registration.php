@@ -39,7 +39,8 @@
                 <label id="familyID" hidden>0</label>
             </form>
             <div class="text-center">
-                <button id="btnRegister" class="btn btn-lrg btn-primary" style="width: 80%" type="submit">Register</button>
+                <button id="btnRegister" class="btn btn-lrg btn-primary" style="width: 80%" type="submit">Register</button><br>
+                <a href="login.php">Back To Login</a>
             </div>
         </div>
     </div>
