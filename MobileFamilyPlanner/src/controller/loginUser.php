@@ -7,4 +7,3 @@ if(isset($_POST['inpLgnEmail'])){
     echo json_encode($result);
 }
 
-//header("Location: /MobileFamilyPlanner/public/myFamily.php");

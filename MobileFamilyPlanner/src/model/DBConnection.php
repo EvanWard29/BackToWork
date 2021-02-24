@@ -42,7 +42,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription']);
+                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points']);
                 $chores[] = $chore;
             }
         }
@@ -104,42 +104,34 @@ class DBConnection {
         $statement->execute();
     }
 
-    public function editChore($choreID, $choreName, $choreDescription){
+    public function editChore($choreID, $choreName, $choreDescription, $chorePoints){
 
-        $sql = "call EditChore(:choreID, :choreName, :choreDescription)";
+        $sql = "call EditChore(:choreID, :choreName, :choreDescription, :points)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':choreID',$choreID, PDO::PARAM_INT);
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription',$choreDescription, PDO::PARAM_STR);
+        $statement->bindParam(':points',$chorePoints, PDO::PARAM_INT);
 
         $statement->execute();
     }
 
     public function addChore($chore){
-        $sql = "call AddChore(:choreName, :choreDescription)";
+        $sql = "call AddChore(:choreName, :choreDescription, :points)";
 
         $choreName = $chore->getChoreName();
         $choreDescription = $chore->getChoreDescription();
+        $chorePoints = $chore->getPoints();
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription', $choreDescription, PDO::PARAM_STR);
+        $statement->bindParam(':points', $chorePoints, PDO::PARAM_INT);
 
         $statement->execute();
-    }
-
-    public function getNextChoreID(){
-        $sql = "call NewChoreID()";
-
-        $statement = $this->connection->prepare($sql);
-
-        $statement->execute();
-        $choreID = $statement->fetchColumn();
-
-        return $choreID;
     }
 
     public function deleteChore($choreID){
@@ -153,7 +145,7 @@ class DBConnection {
     }
 
     public function getUsers($familyID){
-        $sql = "SELECT * FROM user WHERE familyID = ?";
+        $sql = "SELECT * FROM user WHERE familyID = ? ORDER BY points DESC";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([$familyID]);
@@ -236,6 +228,42 @@ class DBConnection {
         $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
         $statement->bindParam(':user',$user, PDO::PARAM_STR);
         $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getUserDetails($userID){
+        $sql = "SELECT firstName, lastName, email, points, choresCompleted FROM user WHERE userID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$userID]);
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $user = null;
+        foreach($results as $detail){
+            $user = new User(null, $detail['firstName'], $detail['lastName'], null,$detail['email'],
+                null, $detail['points'], $detail['choresCompleted'], null);
+        }
+
+        return $user;
+    }
+
+    public function changeEmail($currentEmail, $newEmail){
+        $sql = "call ChangeEmail(:currentEmail, :newEmail)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':currentEmail',$currentEmail, PDO::PARAM_STR);
+        $statement->bindParam(':newEmail',$newEmail, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
+    public function changePassword($email, $password){
+        $sql = "call ChangePassword(:email, :password)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':email',$email, PDO::PARAM_STR);
+        $statement->bindParam(':password',$password, PDO::PARAM_STR);
 
         $statement->execute();
     }

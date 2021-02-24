@@ -5,12 +5,14 @@ class Chore
     private $choreID;
     private $choreName;
     private $choreDescription;
+    private $points;
 
-    public function __construct($choreID, $choreName, $choreDescription)
+    public function __construct($choreID, $choreName, $choreDescription, $points)
     {
         $this->choreID = $choreID;
         $this->choreName = $choreName;
         $this->choreDescription = $choreDescription;
+        $this->points = $points;
     }
 
     /** ChoreID **/
@@ -44,5 +46,16 @@ class Chore
     public function setChoreDescription($choreDescription)
     {
         $this->choreDescription = $choreDescription;
+    }
+
+    /** Points **/
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    public function setPoints($points)
+    {
+        $this->points = $points;
     }
 }

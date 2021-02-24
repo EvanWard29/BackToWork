@@ -12,10 +12,12 @@ foreach($data as $item){
     $choreID = $item->getChoreID();
     $choreName = $item->getChoreName();
     $choreDescription = $item->getChoreDescription();
+    $chorePoints = $item->getPoints();
 
     $chore[] = $choreID;
     $chore[] = $choreName;
     $chore[] = $choreDescription;
+    $chore[] = $chorePoints;
 
     $chores[] = $chore;
 }

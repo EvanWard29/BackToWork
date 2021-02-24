@@ -44,7 +44,7 @@
     <body>
         <div class="container-fluid main">
             <h1>Chores</h1>
-            <div class="container background" style="margin-bottom: 15px">
+            <div class="container background">
                 <div class="row">
                     <?php
                     if($_COOKIE['accountType'] == 0){?>
@@ -108,61 +108,7 @@
                         </div>
                         <?php
                     } ?>
-                        <!-- Modal Edit Chore -->
-                        <div class="modal fade" id="modalEditChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="lblEditChore">Edit Chore</h5>
-                                        <button id="btnCloseChore" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group" hidden>
-                                                <label id="editChoreID"></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="font-weight-bold" for="editChoreName">Name</label>
-                                                <input class="form-control" type="text" id="editChoreName" readonly/>
-                                            </div>
-                                            <div>
-                                                <label class="font-weight-bold" for="editChoreDescription">Description</label>
-                                                <input class="form-control" type="text" id="editChoreDescription" readonly/>
-                                            </div>
-                                            <?php if($_COOKIE['accountType'] == 0){?>
-                                                <div>
-                                                    <label class="font-weight-bold" for="assignChore">Assign To</label>
-                                                    <select class="form-control" type="text" id="assignChore">
-                                                        <option selected>Select User</option>
-                                                        <?php
-                                                        foreach($users as $user){
-                                                            ?>
-                                                            <option><?php echo $user->getFirstName() ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
 
-                                                    </select>
-                                                </div>
-                                            <?php
-                                            } ?>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <?php if($_COOKIE['accountType'] == 0){?>
-                                            <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
-                                            <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
-                                            <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
-                                        <?php
-                                        } ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     <?php
                     if($_COOKIE['accountType'] == 0){?>
                         <div class="col">
@@ -256,100 +202,167 @@
                         </div>
                         <?php
                     } ?>
-
-
-                        <!-- Modal Assigned Chore -->
-                        <div class="modal fade" id="modalAssignedChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="lblAssignedChore">Assigned Chore</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <label id="assignedChoreID" hidden></label>
-                                            <div class="form-group">
-                                                <label class="font-weight-bold" for="assignedChoreName">Name</label>
-                                                <input class="form-control" type="text" id="assignedChoreName" readonly/>
-                                            </div>
-                                            <div>
-                                                <label class="font-weight-bold" for="assignedChoreDescription">Description</label>
-                                                <input class="form-control" type="text" id="assignedChoreDescription" readonly/>
-                                            </div>
-                                            <div>
-                                                <label class="font-weight-bold" for="assignedUser" id="lblAssignedUser">Assigned User</label>
-                                                <input class="form-control" type="text" id="assignedChoreUser" readonly/>
-                                            </div>
-                                            <?php if($_COOKIE['accountType'] == 0){?>
-                                                <div>
-                                                    <label class="font-weight-bold" for="assignUser" hidden id="lblAssignNewUser">Assign To</label>
-                                                    <select class="form-control" type="text" id="assignUser" hidden>
-                                                        <option selected>Select User</option>
-                                                        <?php
-                                                        foreach($users as $user){
-                                                            ?>
-                                                            <option><?php echo $user->getFirstName() ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-
-                                                    </select>
-                                                </div>
-                                                <?php
-                                            } ?>
-                                            <div>
-                                                <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
-                                                <input class="form-control" type="text" id="assignedChoreStatus" readonly/>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="btnComplete" type="button" class="btn btn-primary" data-dismiss="modal" hidden>Mark Complete</button>
-                                        <button id="btnReassign" type="button" class="btn btn-info">Reassign Chore</button>
-                                        <button id="btnSaveReassign" type="button" class="btn btn-info" hidden disabled>Save</button>
-                                        <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                 </div>
-                <div class="row">
-                    <?php if($_COOKIE['accountType'] == 0){
-                        ?>
-                        <button id="btnNewChore" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
-                        <?php
-                    } ?>
+            </div>
+            <?php if($_COOKIE['accountType'] == 0){
+                ?>
+                <button id="btnNewChore" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
+                <?php
+            } ?>
 
-                    <!-- Modal New Chore -->
-                    <div class="modal fade" id="modalNewChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="lblNewChore">New Chore</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+            <!-- Modal Edit Chore -->
+            <div class="modal fade" id="modalEditChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="lblEditChore">Edit Chore</h5>
+                            <button id="btnCloseChore" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group" hidden>
+                                    <label id="editChoreID"></label>
                                 </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label class="font-weight-bold" for="inpChoreName">Name</label>
-                                            <input class="form-control" type="text" id="inpChoreName"/>
-                                        </div>
-                                        <div>
-                                            <label class="font-weight-bold" for="inpChoreDescription">Description</label>
-                                            <input class="form-control" type="text" id="inpChoreDescription"/>
-                                        </div>
-                                    </form>
+                                <div class="form-group">
+                                    <label id="invEditChoreName" class="text-danger" hidden>Chore Name Cannot Be Empty!</label><br>
+                                    <label class="font-weight-bold" for="editChoreName">Name</label>
+                                    <input class="form-control" type="text" id="editChoreName" readonly/>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnAddChore">Add Chore</button>
+                                <div class="form-group">
+                                    <label id="invEditChoreDescription" class="text-danger" hidden>Chore Description Cannot Be Empty!</label><br>
+                                    <label class="font-weight-bold" for="editChoreDescription">Description</label>
+                                    <input class="form-control" type="text" id="editChoreDescription" readonly/>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label id="invEditChorePoints" class="text-danger" hidden>Points Value Cannot Be Empty And Must Be A Number!</label><br>
+                                    <label class="font-weight-bold" for="editChorePoints">Points Value</label>
+                                    <input class="form-control" type="text" id="editChorePoints" readonly/>
+                                </div>
+                                <?php if($_COOKIE['accountType'] == 0){?>
+                                    <div>
+                                        <label class="font-weight-bold" for="assignChore">Assign To</label>
+                                        <select class="form-control" type="text" id="assignChore">
+                                            <option selected>Select User</option>
+                                            <?php
+                                            foreach($users as $user){
+                                                ?>
+                                                <option><?php echo $user->getFirstName() ?></option>
+                                                <?php
+                                            }
+                                            ?>
+
+                                        </select>
+                                    </div>
+                                    <?php
+                                } ?>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <?php if($_COOKIE['accountType'] == 0){?>
+                                <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
+                                <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
+                                <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
+                                <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
+                                <?php
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Assigned Chore -->
+            <div class="modal fade" id="modalAssignedChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="lblAssignedChore">Assigned Chore</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <label id="assignedChoreID" hidden></label>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="assignedChoreName">Name</label>
+                                    <input class="form-control" type="text" id="assignedChoreName" readonly/>
+                                </div>
+                                <div>
+                                    <label class="font-weight-bold" for="assignedChoreDescription">Description</label>
+                                    <input class="form-control" type="text" id="assignedChoreDescription" readonly/>
+                                </div>
+                                <div>
+                                    <label class="font-weight-bold" for="assignedUser" id="lblAssignedUser">Assigned User</label>
+                                    <input class="form-control" type="text" id="assignedChoreUser" readonly/>
+                                </div>
+                                <?php if($_COOKIE['accountType'] == 0){?>
+                                    <div>
+                                        <label class="font-weight-bold" for="assignUser" hidden id="lblAssignNewUser">Assign To</label>
+                                        <select class="form-control" type="text" id="assignUser" hidden>
+                                            <option selected>Select User</option>
+                                            <?php
+                                            foreach($users as $user){
+                                                ?>
+                                                <option><?php echo $user->getFirstName() ?></option>
+                                                <?php
+                                            }
+                                            ?>
+
+                                        </select>
+                                    </div>
+                                    <?php
+                                } ?>
+                                <div>
+                                    <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
+                                    <input class="form-control" type="text" id="assignedChoreStatus" readonly/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnComplete" type="button" class="btn btn-primary" data-dismiss="modal" hidden>Mark Complete</button>
+                            <button id="btnReassign" type="button" class="btn btn-info">Reassign Chore</button>
+                            <button id="btnSaveReassign" type="button" class="btn btn-info" hidden disabled>Save</button>
+                            <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal New Chore -->
+            <div class="modal fade" id="modalNewChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="lblNewChore">New Chore</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label id="invChoreName" class="text-danger" hidden>Chore Name Cannot Be Empty!</label><br>
+                                    <label class="font-weight-bold" for="inpChoreName">Name</label>
+                                    <input class="form-control" type="text" id="inpChoreName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label id="invChoreDescription" class="text-danger" hidden>Chore Description Cannot Be Empty!</label><br>
+                                    <label class="font-weight-bold" for="inpChoreDescription">Description</label>
+                                    <input class="form-control" type="text" id="inpChoreDescription"/>
+                                </div>
+                                <div class="form-group">
+                                    <label id="invChorePoints" class="text-danger" hidden>Points Value Cannot Be Empty And Must Be A Number!</label><br>
+                                    <label class="font-weight-bold" for="inpChorePoints">Points Value</label>
+                                    <input class="form-control" type="text" id="inpChorePoints"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnAddChore">Add Chore</button>
                         </div>
                     </div>
                 </div>
