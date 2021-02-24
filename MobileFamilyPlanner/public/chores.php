@@ -1,14 +1,16 @@
 <?php
     include_once "header.php";
+    //requireLogin();
+
     $db = new DBConnection();
     $data = $db->getAllChores();
-    $users = $db->getUsers(1);
-    $assignedChores = $db->getAssignedChores(1);
+    $users = $db->getUsers($_COOKIE['familyID']);
+    $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
 
     function getAvailableChores(){
         $db = new DBConnection();
         $chores = $db->getAllChores();
-        $assignedChores = $db->getAssignedChores(1);
+        $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
 
         $availableChores = [];
 
@@ -36,7 +38,7 @@
     <head>
         <script src="../assets/js/newChore.js"></script>
         <script src="../assets/js/choreDetails.js"></script>
-        <script src="../assets/js/saveChore.js"></script>
+        <script src="../assets/js/assignChore.js"></script>
         <script src="../assets/js/deleteChore.js"></script>
     </head>
     <body>
@@ -44,14 +46,16 @@
             <h1>Chores</h1>
             <div class="container background" style="margin-bottom: 15px">
                 <div class="row">
-                    <div class="col">
-                        <table id="available" class="table-bordered">
-                            <thead>
+                    <?php
+                    if($_COOKIE['accountType'] == 0){?>
+                        <div class="col">
+                            <table id="available" class="table-bordered">
+                                <thead>
                                 <tr><th>Available Chores</th></tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $availableChores = getAvailableChores();
+                                </thead>
+                                <tbody>
+                                <?php
+                                $availableChores = getAvailableChores();
                                 foreach ($availableChores as $chore){
                                     $choreID = $chore->getChoreID();
                                     ?>
@@ -60,12 +64,50 @@
                                             <?php echo $chore->getChoreName() ?>
                                         </td>
                                     </tr>
-                            <?php
+                                    <?php
                                 }
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php
+                    } ?>
+                    <?php
+                    if($_COOKIE['accountType'] == 1){?>
+                        <div class="col">
+                            <table id="available" class="table-bordered">
+                                <thead>
+                                    <tr><th>My Chores</th></tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    //Get all assigned chores where userID = logged user
+                                    $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['familyID']);
+                                    if($userChores == null){?>
+                                        <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
+                                    <?php
+                                    }
+                                    $chores = $db->getAllChores();
+                                    foreach($userChores as $userChore){
+                                        $choreID = $userChore->getChoreID();
+                                        foreach($chores as $chore){
+                                            if($choreID == $chore->getChoreID()){
+                                                ?>
+                                                <tr><td id='assignedChore<?php echo $userChore->getAssignedChoreID() ?>' class="card card-body" data-toggle="modal" data-target="#modalAssignedChore"><?php echo $chore->getChoreName() ?></td></tr>
+                                                <?php
+                                                break;
+                                            }
+                                        }
+                                        ?>
 
+                                    <?php
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php
+                    } ?>
                         <!-- Modal Edit Chore -->
                         <div class="modal fade" id="modalEditChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -89,7 +131,7 @@
                                                 <label class="font-weight-bold" for="editChoreDescription">Description</label>
                                                 <input class="form-control" type="text" id="editChoreDescription" readonly/>
                                             </div>
-                                            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                                            <?php if($_COOKIE['accountType'] == 0){?>
                                                 <div>
                                                     <label class="font-weight-bold" for="assignChore">Assign To</label>
                                                     <select class="form-control" type="text" id="assignChore">
@@ -110,65 +152,111 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
-                                            <button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal">Delete Chore</button>
+                                        <?php if($_COOKIE['accountType'] == 0){?>
+                                            <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
                                             <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
                                             <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal">Assign Chore</button>
+                                            <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
                                         <?php
                                         } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <table id="assigned" class="table-bordered">
-                            <thead>
-                                <tr><th>Assigned Chores</th></tr>
-                            </thead>
-                            <tbody>
-                                <?php
-
-                                foreach ($assignedChores as $assignedChore){
-                                    $assignedChoreID = $assignedChore->getAssignedChoreID();
-                                    $userID = $assignedChore->getUserID();
-                                    $choreID = $assignedChore->getChoreID();
-
-                                    $chore = null;
-                                    foreach($data as $item){
-                                        if($item->getChoreID() == $choreID){
-                                            $chore = $item;
-                                            break;
-                                        }
-                                    }
-
-                                    $user = null;
-                                    foreach($users as $item){
-                                        if($item->getUserID() == $userID){
-                                            $user = $item;
-                                            break;
-                                        }
-                                    }
-
-                                    if($user != null && $chore != null){
-                                        $choreName = $chore->getChoreName(); //Get Chore Name
-                                        $userName = $user->getFirstName(); //Get User Name
-                                        $userID = $user->getUserID();
+                    <?php
+                    if($_COOKIE['accountType'] == 0){?>
+                        <div class="col">
+                            <table id="assigned" class="table-bordered">
+                                <thead>
+                                    <tr><th>Assigned Chores</th></tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    if($assignedChores == null){
                                         ?>
-                                        <tr>
-                                        <td id='assignedChore<?php echo $assignedChoreID ?>' class="card card-body" data-toggle="modal" data-target="#modalAssignedChore">
-                                            <?php echo "<span>".$choreName."</span><span>Assigned: ". $userName . "</span>"?>
-                                        </td>
-                                    </tr>
-                                        <?php
+                                        <tr><td class="card-body card">No Chores Have Been Assigned!</td></tr>
+                                    <?php
                                     }
-                                    $chore = null;
-                                    $user = null;
+                                    foreach ($assignedChores as $assignedChore){
+                                        $assignedChoreID = $assignedChore->getAssignedChoreID();
+                                        $userID = $assignedChore->getUserID();
+                                        $choreID = $assignedChore->getChoreID();
+
+                                        $chore = null;
+                                        foreach($data as $item){
+                                            if($item->getChoreID() == $choreID){
+                                                $chore = $item;
+                                                break;
+                                            }
+                                        }
+
+                                        $user = null;
+                                        foreach($users as $item){
+                                            if($item->getUserID() == $userID){
+                                                $user = $item;
+                                                break;
+                                            }
+                                        }
+
+                                        if($user != null && $chore != null){
+                                            $choreName = $chore->getChoreName(); //Get Chore Name
+                                            $userName = $user->getFirstName(); //Get User Name
+                                            $userID = $user->getUserID();
+                                            if($userID !== $_COOKIE['userID']){?>
+                                                <tr>
+                                                    <td id='assignedChore<?php echo $assignedChoreID ?>' class="card card-body" data-toggle="modal" data-target="#modalAssignedChore">
+                                                        <?php echo "<span>".$choreName."</span><span>Assigned: ". $userName . "</span>"?>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        }
+                                        $chore = null;
+                                        $user = null;
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php
+                    }
+
+                    if($_COOKIE['accountType'] == 0){?>
+                        <div class="col">
+                            <table id="available" class="table-bordered">
+                                <thead>
+                                <tr><th>My Chores</th></tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                //Get all assigned chores where userID = logged user
+                                $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['familyID']);
+                                if($userChores == null){?>
+                                    <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
+                                <?php
+                                }
+                                $chores = $db->getAllChores();
+                                foreach($userChores as $userChore){
+                                    $choreID = $userChore->getChoreID();
+                                    foreach($chores as $chore){
+                                        if($choreID == $chore->getChoreID()){
+                                            ?>
+                                            <tr><td id='assignedChore<?php echo $userChore->getAssignedChoreID() ?>' class="card card-body" data-toggle="modal" data-target="#modalAssignedChore"><?php echo $chore->getChoreName() ?></td></tr>
+                                            <?php
+                                            break;
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php
                                 }
                                 ?>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php
+                    } ?>
+
 
                         <!-- Modal Assigned Chore -->
                         <div class="modal fade" id="modalAssignedChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -182,6 +270,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form>
+                                            <label id="assignedChoreID" hidden></label>
                                             <div class="form-group">
                                                 <label class="font-weight-bold" for="assignedChoreName">Name</label>
                                                 <input class="form-control" type="text" id="assignedChoreName" readonly/>
@@ -191,9 +280,26 @@
                                                 <input class="form-control" type="text" id="assignedChoreDescription" readonly/>
                                             </div>
                                             <div>
-                                                <label class="font-weight-bold" for="assignedUser">Assigned User</label>
+                                                <label class="font-weight-bold" for="assignedUser" id="lblAssignedUser">Assigned User</label>
                                                 <input class="form-control" type="text" id="assignedChoreUser" readonly/>
                                             </div>
+                                            <?php if($_COOKIE['accountType'] == 0){?>
+                                                <div>
+                                                    <label class="font-weight-bold" for="assignUser" hidden id="lblAssignNewUser">Assign To</label>
+                                                    <select class="form-control" type="text" id="assignUser" hidden>
+                                                        <option selected>Select User</option>
+                                                        <?php
+                                                        foreach($users as $user){
+                                                            ?>
+                                                            <option><?php echo $user->getFirstName() ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                </div>
+                                                <?php
+                                            } ?>
                                             <div>
                                                 <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
                                                 <input class="form-control" type="text" id="assignedChoreStatus" readonly/>
@@ -201,15 +307,17 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
+                                        <button id="btnComplete" type="button" class="btn btn-primary" data-dismiss="modal" hidden>Mark Complete</button>
+                                        <button id="btnReassign" type="button" class="btn btn-info">Reassign Chore</button>
+                                        <button id="btnSaveReassign" type="button" class="btn btn-info" hidden disabled>Save</button>
                                         <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="row">
-                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+                    <?php if($_COOKIE['accountType'] == 0){
                         ?>
                         <button id="btnNewChore" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
                         <?php

@@ -2,7 +2,7 @@
 
 $db = new DBConnection();
 
-$data = $db->getAssignedChores(1);
+$data = $db->getAssignedChores($_POST['familyID']);
 
 $assignedChores = [];
 

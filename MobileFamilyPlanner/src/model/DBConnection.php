@@ -69,6 +69,26 @@ class DBConnection {
         return $assignedChores;
     }
 
+    public function getUserChores($userID, $familyID){
+        $sql = "SELECT * FROM assigned_chore WHERE userID = ? AND familyID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$userID, $familyID]);
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $assignedChores = [];
+
+        if($resultSet)
+        {
+            foreach($resultSet as $row)
+            {
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['status']);
+                $assignedChores[] = $assignedChore;
+            }
+        }
+        return $assignedChores;
+    }
+
     public function assignChore($chore, $user){
         $sql = "call AssignChore(:choreID, :user, :familyID)";
 
@@ -143,7 +163,7 @@ class DBConnection {
 
         if($resultSet){
             foreach($resultSet as $result){
-                $user = new User($result['userID'], $result['firstName'], $result['lastName'],
+                $user = new User($result['userID'], $result['firstName'], $result['lastName'], $result['type'],
                     $result['email'], $result['password'], $result['points'], $result['choresCompleted'], $result['familyID']);
                 $users[] = $user;
             }
@@ -154,18 +174,20 @@ class DBConnection {
     public function addUser($user){
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
+        $type = $user->getAccountType();
         $email = $user->getEmail();
         $password = $user->getPassword();
         $points = $user->getPoints();
         $choresCompleted = $user->getChoresCompleted();
         $familyID = $user->getFamilyID();
 
-        $sql = "call AddUser(:firstName, :lastName, :email, :password, :points, :choresCompleted, :familyID)";
+        $sql = "call AddUser(:firstName, :lastName, :type, :email, :password, :points, :choresCompleted, :familyID)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':firstName',$firstName, PDO::PARAM_STR);
         $statement->bindParam(':lastName',$lastName, PDO::PARAM_STR);
+        $statement->bindParam(':type',$type, PDO::PARAM_INT);
         $statement->bindParam(':email',$email, PDO::PARAM_STR);
         $statement->bindParam(':password',$password, PDO::PARAM_STR);
         $statement->bindParam(':points',$points, PDO::PARAM_INT);
@@ -184,6 +206,36 @@ class DBConnection {
         $statement->bindParam(':firstName',$firstName, PDO::PARAM_STR);
         $statement->bindParam(':choresCompleted',$choresCompleted, PDO::PARAM_INT);
         $statement->bindParam(':points',$points, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getPassword($email){
+        $sql = "SELECT password, userID, familyID, type FROM user WHERE email = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$email]);
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultSet;
+    }
+
+    public function completeChore($assignedChoreID){
+        $sql = "call CompleteChore(:userChoreID)";//"DELETE FROM assigned_chore WHERE userChoreID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function reassignChore($assignedChoreID, $user, $familyID){
+        $sql = "call ReassignChore(:userChoreID, :user, :familyID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':user',$user, PDO::PARAM_STR);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
 
         $statement->execute();
     }

@@ -1,7 +1,10 @@
-<?php include_once "header.php" ?>
+<?php include_once "header.php";
+    //requireLogin();
+?>
 
 <html>
     <head>
+        <script src="../assets/js/registration.js"></script>
         <script src="../assets/js/family.js"></script>
     </head>
     <body>
@@ -15,7 +18,7 @@
                     <tbody>
                     <?php
                         $db = new DBConnection();
-                        $members = $db->getUsers(1); //Get familyID from SESSION
+                        $members = $db->getUsers($_COOKIE['familyID']);
                         foreach($members as $member){
                             $userID = $member->getUserID();
                             $name = $member->getFirstName();
@@ -35,7 +38,7 @@
                 </table>
             </div>
             <?php
-            if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+            if($_COOKIE['accountType'] == 0){?>
                 <button id="btnNewMember" type="button" class="btn btn-primary btn-lg">Add Family Member</button>
             <?php
             }  ?>
@@ -78,10 +81,19 @@
                                 <label class="font-weight-bold" for="inpConfirmPassword">Confirm Password</label>
                                 <input class="form-control" type="password" id="inpConfirmPassword"/>
                             </div>
+                            <div class="form-group">
+                                <label id="invType" class="text-danger" hidden>Please Select An Account Type!</label>
+                                <select class="form-select" aria-label="Default select example" style="width: 100%" id="inpType">
+                                    <option selected>Select Account Type</option>
+                                    <option value="0">Adult</option>
+                                    <option value="1">Child</option>
+                                </select>
+                            </div>
+                            <label id="familyID" hidden></label>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="btnSaveMember" type="button" class="btn btn-primary">Save</button>
+                        <button id="btnRegister" type="button" class="btn btn-primary">Save</button>
                         <button id="btnCloseNewMember" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -119,7 +131,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){?>
+                        <?php if($_COOKIE['accountType'] == 0){?>
                             <button id="btnSave" type="button" class="btn btn-primary" hidden>Save</button>
                             <button id="btnEditMember" type="button" class="btn btn-primary">Edit</button>
                         <?php

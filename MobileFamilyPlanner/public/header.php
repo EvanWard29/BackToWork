@@ -1,4 +1,4 @@
-<?php include_once "../src/model/DBConnection.php"; session_start(); $_SESSION['admin'] = true;?>
+<?php include_once "../src/model/DBConnection.php"; $_SESSION['admin'] = true ?>
 
 <html>
     <head>
@@ -27,24 +27,40 @@
         <link href="../assets/css/family.css" type="text/css" rel="stylesheet">
         <link href="../assets/css/account.css" type="text/css" rel="stylesheet">
         <link href="../assets/css/login.css" type="text/css" rel="stylesheet">
-        <style>
 
-        </style>
+        <script async src="../assets/js/checkLogin.js"></script>
+        <script src="../assets/js/logout.js"></script>
     </head>
     <body>
 
         <ul>
-            <li><a class="active" href="myFamily.php">Family Planner</a></li>
-            <li><a href="chores.php">Chores</a></li>
-            <li><a href="calendar.php">Calendar</a></li>
-            <li><a href="account.php">My Account</a></li>
+            <li><a class="active" href="myFamily.php" id="linkFamily">Family Planner</a></li>
+            <li><a href="chores.php" id="linkChores">Chores</a></li>
+            <li><a href="calendar.php" id="linkCalendar">Calendar</a></li>
+            <li><a href="account.php" id="linkAccount">My Account</a></li>
+            <li><a href="login.php" id="logout">Logout</a></li>
         </ul>
 
         <div class="container-fluid" style="background-color: #DAE8FC;">
             <div class="container-fluid header">
-                <a class="headerLink" href="myFamily.php" disbaled><h1>Family Planner</h1></a>
+                <a class="headerLink" href="myFamily.php" id="linkMain"><h1>Family Planner</h1></a>
             </div>
         </div>
 
     </body>
 </html>
+<script>
+    let page = window.location.pathname;
+
+    if(page === "/MobileFamilyPlanner/public/login.php" || page === "/MobileFamilyPlanner/public/registration.php") {
+        $('#linkFamily').addClass("linkDisabled");
+        $('#linkChores').addClass("linkDisabled");
+        $('#linkCalendar').addClass("linkDisabled");
+        $('#linkAccount').addClass("linkDisabled");
+        $('#logout').attr('hidden', true);
+        $('#linkMain').addClass("linkDisabled");
+
+    }
+</script>
+
+
