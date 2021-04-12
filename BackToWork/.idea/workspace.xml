@@ -20,68 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f908f9c5-12cb-4a36-a501-655df63e9d9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/js/pastRewards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/rewards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/rewards.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/approveRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/declineRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/newReward.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/requestReward.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Reward.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/RewardRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cloud_SQL_Export_2021-02-10 (14_15_42).sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/.idea/MobileFamilyPlanner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Final Year Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/account.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/css/family.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/family.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/accountOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/accountOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/assignChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/assignChore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/checkLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/checkLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/choreDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/choreDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/deleteChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/deleteChore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/family.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/family.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/navBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/newChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/newChore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/assets/js/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/calendar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/chores.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/myFamily.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/myFamily.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/public/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/addChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/addChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/assignChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/assignChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/changeEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/changeEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/changePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/changePassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/completeChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/completeChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/deleteChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/deleteChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/editChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/editChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getAssignedChores.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getAssignedChores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getChoreDescription.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getChoreDescription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getChoreID.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getChoreID.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getChores.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getChores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getLogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getLogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getNextChoreID.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getNextChoreID.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/getUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/getUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/loginUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/loginUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/newMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/newMember.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/reassignChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/reassignChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/controller/updateMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/updateMember.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/model/AssignedChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AssignedChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/model/Chore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Chore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/model/Family.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Family.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MobileFamilyPlanner/src/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/calendar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/calendarBuild.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/calendarEvents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/calendar/addEvent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/calendar/getEvents.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/CalendarEvent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/calendar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Final Year Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Final Year Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/calendar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,13 +62,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/css" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\css" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\model" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\MobileFamilyPlanner\src\controller" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\MobileFamilyPlanner\src\model" />
@@ -171,7 +128,10 @@
       <workItem from="1616765946470" duration="2000" />
       <workItem from="1617018584437" duration="14265000" />
       <workItem from="1617627213812" duration="46000" />
-      <workItem from="1617627273108" duration="6294000" />
+      <workItem from="1617627273108" duration="8807000" />
+      <workItem from="1617711978253" duration="1746000" />
+      <workItem from="1617806392226" duration="7960000" />
+      <workItem from="1618233732151" duration="14383000" />
     </task>
     <servers />
   </component>
@@ -190,6 +150,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="432" y="163" key="#Deployment" timestamp="1616696948596">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -199,22 +162,22 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="294" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1616696951991" />
-    <state x="645" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1617024883204">
+    <state x="645" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1617811671656">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="645" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1010@0.0.1680.1010" timestamp="1617024883204" />
+    <state x="645" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1010@0.0.1680.1010" timestamp="1617811671656" />
     <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1615742087523">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1615742087523" />
-    <state x="496" y="228" key="NewPhpClassDialog" timestamp="1617024809560">
+    <state x="496" y="228" key="NewPhpClassDialog" timestamp="1617811567183">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="496" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1617024809560" />
-    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1617631577771">
+    <state x="496" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1617811567183" />
+    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1618249521975">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1617631577771" />
+    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618249521975" />
     <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1616696950242">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

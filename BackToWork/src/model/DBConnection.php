@@ -5,6 +5,7 @@ include_once "AssignedChore.php";
 include_once "Family.php";
 include_once "Reward.php";
 include_once "RewardRequest.php";
+include_once "CalendarEvent.php";
 
 class DBConnection {
     private $db_server = 'family-planner.celxijdauxzq.eu-west-2.rds.amazonaws.com';
@@ -356,6 +357,38 @@ class DBConnection {
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':rewardName',$rewardName, PDO::PARAM_STR);
         $statement->bindParam(':pointsCost',$pointsCost, PDO::PARAM_INT);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getEvents($familyID){
+        $sql = "SELECT * FROM event WHERE familyID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$familyID]);
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $events = [];
+        foreach($results as $event){
+            $newEvent = new CalendarEvent($event['eventID'], $event['eventName'], $event['eventDescription'],
+                $event['eventType'], $event['eventDate'], $event['familyID'], $event['assignedChoreID']);
+            $events[] = $newEvent;
+        }
+
+        return $events;
+    }
+
+    public function addEvent($eventName, $eventDescription, $eventDate, $familyID){
+        $sql = "call AddEvent(:eventName, :eventDescription, :eventType, :eventDate, :familyID)";
+        $eventType = 'EVENT';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':eventName',$eventName, PDO::PARAM_STR);
+        $statement->bindParam(':eventDescription',$eventDescription, PDO::PARAM_STR);
+        $statement->bindParam(':eventType',$eventType, PDO::PARAM_STR);
+        $statement->bindParam(':eventDate',$eventDate, PDO::PARAM_STR);
         $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
 
         $statement->execute();

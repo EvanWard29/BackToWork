@@ -1,7 +1,8 @@
 <?php include_once "../src/model/DBConnection.php"; $_SESSION['admin'] = true ?>
 
-<html>
+<html lang="en">
     <head>
+        <title>Back To Work</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Jquery -->
