@@ -65,7 +65,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['status']);
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['deadline'], $row['status']);
                 $assignedChores[] = $assignedChore;
             }
         }
@@ -85,7 +85,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['status']);
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['deadline'], $row['status']);
                 $assignedChores[] = $assignedChore;
             }
         }
@@ -93,16 +93,18 @@ class DBConnection {
     }
 
     public function assignChore($chore, $user){
-        $sql = "call AssignChore(:choreID, :user, :familyID)";
+        $sql = "call AssignChore(:choreID, :user, :familyID, :deadline)";
 
         $statement = $this->connection->prepare($sql);
 
         $choreID = $chore->getChoreID();
         $familyID = $chore->getFamilyID();
+        $deadline = $chore->getDeadline();
 
         $statement->bindParam(':choreID',$choreID, PDO::PARAM_INT);
         $statement->bindParam(':user',$user, PDO::PARAM_STR);
         $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':deadline',$deadline, PDO::PARAM_STR);
 
         $statement->execute();
     }
@@ -392,5 +394,17 @@ class DBConnection {
         $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
 
         $statement->execute();
+    }
+
+    public function getUserChore($familyID, $assignedChoreID){
+        $sql = "call GetUserChore(:familyID, :assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
     }
 }

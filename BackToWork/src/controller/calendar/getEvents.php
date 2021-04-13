@@ -18,14 +18,6 @@ if(isset($_POST['familyID'])){
         $familyID = $item->getFamilyID();
         $assignedChoreID = $item->getAssignedChoreID();
 
-        /*$event[] = $eventID;
-        $event[] = $eventName;
-        $event[] = $eventDescription;
-        $event[] = $eventType;
-        $event[] = $eventDate;
-        $event[] = $familyID;
-        $event[] = $assignedChoreID;*/
-
         $events[] = array(
             "eventID" => $eventID,
             "eventName" => $eventName,

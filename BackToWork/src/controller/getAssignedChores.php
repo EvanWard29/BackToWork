@@ -12,11 +12,13 @@ foreach($data as $item){
     $assignedChoreID = $item->getAssignedChoreID();
     $userID = $item->getUserID();
     $choreID = $item->getChoreID();
+    $deadline = $item->getDeadline();
     $status = $item->getStatus();
 
     $assignedChore[] = $assignedChoreID;
     $assignedChore[] = $userID;
     $assignedChore[] = $choreID;
+    $assignedChore[] = $deadline;
     $assignedChore[] = $status;
 
     $assignedChores[] = $assignedChore;

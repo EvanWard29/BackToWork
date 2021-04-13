@@ -13,6 +13,8 @@ $(function(){
         $('#btnSaveChore').attr('hidden', true);
         $('#btnEditChore').css('display', 'block');
 
+        $('#choreDeadline').val(new Date().toString()).attr('disabled', false);
+
         $('#btnDeleteChore').attr('hidden', true);
     })
 
@@ -76,6 +78,7 @@ $(function(){
        $('#btnSaveChore').attr('hidden', false);
 
        $('#assignChore').val("Select User").attr('disabled', true);
+       $('#choreDeadline').attr('disabled', true);
 
        $('#btnDeleteChore').attr('hidden', false);
    });
@@ -139,6 +142,7 @@ $(function(){
            }
        }
 
+
        if(nameErr !== true && descriptionErr !== true && pointsErr !== true) {
            if (choreID != null) {
                $.post("/BackToWork/src/controller/editChore.php",
@@ -186,7 +190,8 @@ function getAssignedChores(chores, assignedChoreID){
                        $('#assignedChoreID').html(assignedChoreID);
                       $('#assignedChoreName').val(chores[j][1]);
                       $('#assignedChoreDescription').val(chores[j][2]);
-                      $('#assignedChoreStatus').val(assignedChores[i][3]);
+                      $('#assignedChoreDeadline').val(assignedChores[i][3])
+                      $('#assignedChoreStatus').val(assignedChores[i][4]);
 
                       getUser(assignedChores[i][1]);
                       break;

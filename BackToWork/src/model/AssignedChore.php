@@ -6,14 +6,16 @@ class AssignedChore
     private $userID;
     private $choreID;
     private $familyID;
+    private $deadline;
     private $status;
 
-    public function __construct($assignedChoreID, $userID, $choreID, $familyID, $status)
+    public function __construct($assignedChoreID, $userID, $choreID, $familyID, $deadline, $status)
     {
         $this->assignedChoreID = $assignedChoreID;
         $this->userID = $userID;
         $this->choreID = $choreID;
         $this->familyID = $familyID;
+        $this->deadline = $deadline;
         $this->status = $status;
     }
 
@@ -61,6 +63,17 @@ class AssignedChore
         $this->familyID = $familyID;
     }
 
+    /** Deadline **/
+    public function getDeadline()
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline($deadline)
+    {
+        $this->deadline = $deadline;
+    }
+
     /** Status **/
     public function getStatus()
     {
@@ -71,6 +84,4 @@ class AssignedChore
     {
         $this->status = $status;
     }
-
-
 }

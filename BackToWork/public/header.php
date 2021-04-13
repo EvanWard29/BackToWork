@@ -35,12 +35,12 @@
     <body>
 
         <ul>
-            <li><a class="active" href="myFamily.php" id="linkFamily">Back To Work</a></li>
-            <li><a href="chores.php" id="linkChores">Chores</a></li>
-            <li><a href="calendar.php" id="linkCalendar">Calendar</a></li>
-            <li><a href="rewards.php" id="linkRewards">Rewards</a></li>
-            <li><a href="account.php" id="linkAccount">My Account</a></li>
-            <li><a href="login.php" id="logout">Logout</a></li>
+            <li id><a class="active" href="myFamily.php" id="linkFamily">Back To Work</a></li>
+            <li id><a href="chores.php" id="linkChores">Chores</a></li>
+            <li id><a href="calendar.php" id="linkCalendar">Calendar</a></li>
+            <li id><a href="rewards.php" id="linkRewards">Rewards</a></li>
+            <li id><a href="account.php" id="linkAccount">My Account</a></li>
+            <li id><a href="login.php" id="logout">Logout</a></li>
         </ul>
 
         <div class="container-fluid" style="background-color: #DAE8FC;">

@@ -255,6 +255,11 @@
 
                                         </select>
                                     </div>
+                                    <div>
+                                        <label id="invDeadline" class="text-danger" hidden>Please Select A Deadline!</label><br>
+                                        <label class="font-weight-bold" for="choreDeadline">Deadline</label>
+                                        <input id="choreDeadline" class="form-control" type="datetime-local"/>
+                                    </div>
                                     <?php
                                 } ?>
                             </form>
@@ -265,7 +270,7 @@
                                 <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
                                 <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
                                 <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
+                                <button id="btnAssignChore" type="button" class="btn btn-primary" disabled>Assign Chore</button>
                                 <?php
                             } ?>
                         </div>
@@ -315,6 +320,10 @@
                                     </div>
                                     <?php
                                 } ?>
+                                <div>
+                                    <label class="font-weight-bold" for="assignedChoreDeadline">Deadline</label>
+                                    <input class="form-control" id="assignedChoreDeadline" type="text" readonly>
+                                </div>
                                 <div>
                                     <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
                                     <input class="form-control" type="text" id="assignedChoreStatus" readonly/>

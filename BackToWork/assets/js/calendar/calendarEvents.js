@@ -8,7 +8,7 @@ $(async function(){
         events = JSON.parse(response);
     })
 
-    $('li').click(function(){
+    $('li').click(async function(){
        if($(this).attr('id') !== ""){
            //User has clicked on a date
 
@@ -20,10 +20,22 @@ $(async function(){
                    if(events[i].eventType === "CHORE"){
                        let choreName = events[i].eventName;
                        let choreDescription = events[i].eventDescription;
-                       let assignedTo = "ME";
+
+                       let deadline = events[i].eventDate.split(' ')[1];
+
+                       let assignedChoreID = events[i].assignedChoreID;
+                       let assignedTo = null;
+
+                       await $.post("/BackToWork/src/controller/calendar/getUserChore.php",{
+                           familyID: getCookie('familyID'),
+                           assignedChoreID: assignedChoreID
+                       }, function(response){
+                            assignedTo = response;
+                       });
+
 
                        //Add CHORE to chores table
-                       $('#chores').append("<tr><td>"+ choreName +"</td><td>"+ choreDescription +"</td><td>"+ assignedTo +"</td></tr>");
+                       $('#chores').append("<tr><td>"+ choreName +"</td><td>"+ choreDescription +"</td><td>"+ deadline +"</td><td>"+ assignedTo +"</td></tr>");
                    }else{
                        let eventName = events[i].eventName;
                        let eventDescription = events[i].eventDescription;

@@ -1,9 +1,9 @@
 <?php
-include '../src/model/calendar.php';
+include '../src/model/Calendar.php';
 include_once 'header.php';
 
 $db = new DBConnection();
-$calendar = new calendar();
+$calendar = new Calendar();
 
 //Build Calendar
 echo $calendar->show();
@@ -12,135 +12,10 @@ $events = $db->getEvents($_COOKIE['familyID']);
 
 ?>
 
-
 <html>
 <head>
-    <!-- Style Calendar -->
-    <!--<link href="../assets/css/calendar.css" type="text/css" rel="stylesheet" />-->
-    <script src="../assets/js/calendarEvents.js"></script>
-    <style>
-        /*******************************Calendar Top Navigation*********************************/
-        div#calendar{
-            margin:0px auto;
-            padding:0px;
-            width: 602px;
-            font-family:Helvetica, "Times New Roman", Times, serif;
-        }
-
-        div#calendar div.box{
-            position:relative;
-            top:0px;
-            left:0px;
-            width:100%;
-            height:40px;
-            background-color:   #787878 ;
-        }
-
-        div#calendar div.calendarHeader{
-            line-height:40px;
-            vertical-align:middle;
-            position:absolute;
-            left:11px;
-            top:0px;
-            width:582px;
-            height:40px;
-            text-align:center;
-        }
-
-        div#calendar div.calendarHeader a.prev,div#calendar div.calendarHeader a.next{
-            position:absolute;
-            top:0px;
-            height: 17px;
-            display:block;
-            cursor:pointer;
-            text-decoration:none;
-            color:#FFF;
-        }
-
-        div#calendar div.calendarHeader span.title{
-            color:#FFF;
-            font-size:18px;
-        }
-
-
-        div#calendar div.calendarHeader a.prev{
-            left:0px;
-        }
-
-        div#calendar div.calendarHeader a.next{
-            right:0px;
-        }
-
-
-
-
-        /*******************************Calendar Content Cells*********************************/
-        div#calendar div.box-content{
-            border:1px solid #787878 ;
-            border-top:none;
-        }
-
-
-
-        div#calendar ul.label{
-            float:left;
-            margin: 0px;
-            padding: 0px;
-            margin-top:5px;
-            margin-left: 5px;
-        }
-
-        div#calendar ul.label li{
-            margin:0px;
-            padding:0px;
-            margin-right:5px;
-            float:left;
-            list-style-type:none;
-            width:80px;
-            height:40px;
-            line-height:40px;
-            vertical-align:middle;
-            text-align:center;
-            color:#000;
-            font-size: 15px;
-            background-color: transparent;
-        }
-
-
-        div#calendar ul.dates{
-            float:left;
-            margin: 0px;
-            padding: 0px;
-            margin-left: 5px;
-            margin-bottom: 5px;
-        }
-
-        /** overall width = width+padding-right**/
-        div#calendar ul.dates li{
-            margin:0px;
-            padding:0px;
-            margin-right:5px;
-            margin-top: 5px;
-            line-height:80px;
-            vertical-align:middle;
-            float:left;
-            list-style-type:none;
-            width:80px;
-            height:80px;
-            font-size:25px;
-            background-color: #DDD;
-            color:#000;
-            text-align:center;
-        }
-
-        :focus{
-            outline:none;
-        }
-
-        div.clear{
-            clear:both;
-        }
-    </style>
+    <link href="../assets/css/calendar.css" type="text/css" rel="stylesheet" />
+    <script src="../assets/js/calendar/calendarEvents.js"></script>
 </head>
     <body>
 
@@ -171,7 +46,7 @@ $events = $db->getEvents($_COOKIE['familyID']);
                         <label id="noChores" hidden>No Chores Added</label>
                         <table id="chores" class="table-bordered">
                             <thead>
-                                <tr><th>Chore</th><th>Description</th><th>Assigned To</th></tr>
+                                <tr><th>Chore</th><th>Description</th><th>Deadline</th><th>Assigned To</th></tr>
                             </thead>
                             <tbody id="choresData">
 
