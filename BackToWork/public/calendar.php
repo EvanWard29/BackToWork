@@ -5,9 +5,6 @@ include_once 'header.php';
 $db = new DBConnection();
 $calendar = new Calendar();
 
-//Build Calendar
-echo $calendar->show();
-
 $events = $db->getEvents($_COOKIE['familyID']);
 
 ?>
@@ -18,6 +15,10 @@ $events = $db->getEvents($_COOKIE['familyID']);
     <script src="../assets/js/calendar/calendarEvents.js"></script>
 </head>
     <body>
+    <div class="container-fluid main">
+        <h1>Group Calendar</h1>
+        <?php echo $calendar->show(); ?>
+    </div>
 
     <!-- Modal Calendar Event -->
     <div class="modal fade" id="modalCalendarEvent" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

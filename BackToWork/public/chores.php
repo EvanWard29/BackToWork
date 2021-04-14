@@ -40,6 +40,7 @@
         <script src="../assets/js/choreDetails.js"></script>
         <script src="../assets/js/assignChore.js"></script>
         <script src="../assets/js/deleteChore.js"></script>
+        <script src="../assets/js/chores/completeChore.js"></script>
     </head>
     <body>
         <div class="container-fluid main">

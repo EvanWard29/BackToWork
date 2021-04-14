@@ -45,7 +45,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points']);
+                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points'], $row['penalty']);
                 $chores[] = $chore;
             }
         }
@@ -406,5 +406,46 @@ class DBConnection {
         $statement->execute();
 
         return $statement->fetchColumn();
+    }
+
+    public function getPenalty($assignedChoreID){
+        $sql = "call GetPenalty(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function getUserPoints($assignedChoreID){
+        $sql = "call GetUserPoints(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function updatePoints($assignedChoreID, $points){
+        $sql = "call UpdatePoints(:assignedChoreID, :points)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':points',$points, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function incompleteChore($assignedChoreID){
+        $sql = "call IncompleteChore(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
     }
 }

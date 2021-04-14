@@ -6,13 +6,15 @@ class Chore
     private $choreName;
     private $choreDescription;
     private $points;
+    private $penalty;
 
-    public function __construct($choreID, $choreName, $choreDescription, $points)
+    public function __construct($choreID, $choreName, $choreDescription, $points, $penalty)
     {
         $this->choreID = $choreID;
         $this->choreName = $choreName;
         $this->choreDescription = $choreDescription;
         $this->points = $points;
+        $this->penalty = $penalty;
     }
 
     /** ChoreID **/
@@ -57,5 +59,16 @@ class Chore
     public function setPoints($points)
     {
         $this->points = $points;
+    }
+
+    /** Penalty **/
+    public function getPenalty()
+    {
+        return $this->penalty;
+    }
+
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
     }
 }

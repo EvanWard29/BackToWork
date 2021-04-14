@@ -166,15 +166,6 @@ $(function(){
            }
        }
    });
-
-   $('#btnComplete').click(function(){
-       //Remove from assigned_chore table
-       let assignedChoreID = $('#assignedChoreID').html(); //Get assignedChoreID
-
-       $.post("/BackToWork/src/controller/completeChore.php", {assignedChoreID: assignedChoreID}, function(response){
-           location.reload();
-       });
-   });
 });
 
 function getAssignedChores(chores, assignedChoreID){
