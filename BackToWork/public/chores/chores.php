@@ -1,15 +1,14 @@
 <?php
-    include_once "header.php";
-    //requireLogin();
+    include_once "../header.php";
 
     $db = new DBConnection();
-    $data = $db->getAllChores();
+    $data = $db->getAllChores($_COOKIE['familyID']);
     $users = $db->getUsers($_COOKIE['familyID']);
     $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
 
     function getAvailableChores(){
         $db = new DBConnection();
-        $chores = $db->getAllChores();
+        $chores = $db->getAllChores($_COOKIE['familyID']);
         $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
 
         $availableChores = [];
@@ -36,10 +35,12 @@
 ?>
 <html>
     <head>
-        <script src="../assets/js/newChore.js"></script>
-        <script src="../assets/js/choreDetails.js"></script>
-        <script src="../assets/js/assignChore.js"></script>
-        <script src="../assets/js/deleteChore.js"></script>
+        <script src="../../assets/js/chores/newChore.js"></script>
+        <script src="../../assets/js/choreDetails.js"></script>
+        <script src="../../assets/js/chores/saveChoreDetails.js"></script>
+        <script src="../../assets/js/assignChore.js"></script>
+        <script src="../../assets/js/deleteChore.js"></script>
+        <script src="../../assets/js/chores/completeChore.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -56,15 +57,20 @@
                                 <tbody>
                                 <?php
                                 $availableChores = getAvailableChores();
-                                foreach ($availableChores as $chore){
-                                    $choreID = $chore->getChoreID();
-                                    ?>
-                                    <tr>
-                                        <td id="chore<?php echo $choreID ?>" class="card card-body" data-toggle="modal" data-target="#modalEditChore">
-                                            <?php echo $chore->getChoreName() ?>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                if($availableChores != null){
+                                    foreach ($availableChores as $chore){
+                                        $choreID = $chore->getChoreID();
+                                        ?>
+                                        <tr>
+                                            <td id="chore<?php echo $choreID ?>" class="card card-body" data-toggle="modal" data-target="#modalEditChore">
+                                                <?php echo $chore->getChoreName() ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }else{?>
+                                    <tr><td class="card-body card">There Are No Chores Available!</td></tr>
+                                <?php
                                 }
                                 ?>
                                 </tbody>
@@ -181,7 +187,7 @@
                                     <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
                                 <?php
                                 }
-                                $chores = $db->getAllChores();
+                                $chores = $db->getAllChores($_COOKIE['familyID']);
                                 foreach($userChores as $userChore){
                                     $choreID = $userChore->getChoreID();
                                     foreach($chores as $chore){
@@ -255,19 +261,24 @@
 
                                         </select>
                                     </div>
+                                    <div>
+                                        <label id="invDeadline" class="text-danger" hidden>Please Select A Deadline!</label><br>
+                                        <label class="font-weight-bold" for="choreDeadline">Deadline</label>
+                                        <input id="choreDeadline" class="form-control" type="datetime-local"/>
+                                    </div>
                                     <?php
                                 } ?>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <?php if($_COOKIE['accountType'] == 0){?>
                                 <!--<button id="btnDeleteChore" type="button" class="btn btn-danger" data-dismiss="modal" hidden>Delete Chore</button>-->
                                 <button id="btnEditChore" type="button" class="btn btn-info">Edit</button>
                                 <button id="btnSaveChore" type="button" class="btn btn-info" hidden>Save</button>
-                                <button id="btnAssignChore" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Assign Chore</button>
+                                <button id="btnAssignChore" type="button" class="btn btn-primary" disabled>Assign Chore</button>
                                 <?php
                             } ?>
+                            <button id="btnCloseChore" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -316,6 +327,10 @@
                                     <?php
                                 } ?>
                                 <div>
+                                    <label class="font-weight-bold" for="assignedChoreDeadline">Deadline</label>
+                                    <input class="form-control" id="assignedChoreDeadline" type="text" readonly>
+                                </div>
+                                <div>
                                     <label class="font-weight-bold" for="assignedChoreStatus">Status</label>
                                     <input class="form-control" type="text" id="assignedChoreStatus" readonly/>
                                 </div>
@@ -330,7 +345,7 @@
                             }
                             ?>
                             <button id="btnSaveReassign" type="button" class="btn btn-info" hidden disabled>Save</button>
-                            <button id="btnCloseChore" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="btnCloseChore" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -349,12 +364,12 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label id="invChoreName" class="text-danger" hidden>Chore Name Cannot Be Empty!</label><br>
+                                    <label id="invChoreName" class="text-danger" hidden>Chore Name Cannot Be Empty And Longer Than 45 Characters!</label><br>
                                     <label class="font-weight-bold" for="inpChoreName">Name</label>
                                     <input class="form-control" type="text" id="inpChoreName"/>
                                 </div>
                                 <div class="form-group">
-                                    <label id="invChoreDescription" class="text-danger" hidden>Chore Description Cannot Be Empty!</label><br>
+                                    <label id="invChoreDescription" class="text-danger" hidden>Chore Description Cannot Be Empty And Longer Than 150 Characters!</label><br>
                                     <label class="font-weight-bold" for="inpChoreDescription">Description</label>
                                     <input class="form-control" type="text" id="inpChoreDescription"/>
                                 </div>
@@ -363,11 +378,16 @@
                                     <label class="font-weight-bold" for="inpChorePoints">Points Value</label>
                                     <input class="form-control" type="text" id="inpChorePoints"/>
                                 </div>
+                                <div class="form-group">
+                                    <label id="invChorePenalty" class="text-danger" hidden>Penalty Value Cannot Be Empty And Must Be A Number!</label><br>
+                                    <label class="font-weight-bold" for="inpChorePenalty">Penalty Value</label>
+                                    <input class="form-control" type="text" id="inpChorePenalty"/>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="btnAddChore">Add Chore</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

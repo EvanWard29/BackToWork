@@ -1,0 +1,48 @@
+.calendarHeader{
+    background-color: #6399ca;
+    border: black solid;
+    padding: 15px;
+    width: 100%;
+}
+
+.label{
+    background-color: lightgrey;
+}
+
+.date{
+    text-align: center;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.prev{
+    text-align: left;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.next{
+    text-align: right;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.day{
+    width: 100%;
+}
+
+.calendarBorder{
+    border: black solid;
+    border-top: none;
+}
+
+:focus{
+    outline:none;
+}
+
+div.clear{
+    clear:both;
+}

@@ -1,4 +1,37 @@
+let chores = null;
+let users = null;
+let assignedChores = null;
+let choreID = null;
+
 $(function(){
+    //Get group's chores from server
+    $.post("/BackToWork/src/controller/chores/getChores.php",{
+            familyID: getCookie('familyID')
+        }, function(data){
+            data = $.parseJSON(data);
+            chores = data;
+        }
+    );
+
+    //Get group's Users from server
+    $.post("/BackToWork/src/controller/chores/getUsers.php",{
+            familyID: getCookie('familyID')
+        }, function(data){
+            data = $.parseJSON(data);
+            users = data;
+        }
+    );
+
+    //Get group's Assigned Chores from server
+    $.post("/BackToWork/src/controller/chores/getAssignedChores.php",{
+            familyID: getCookie('familyID')
+        }, function(data){
+            data = $.parseJSON(data);
+            assignedChores = data;
+        }
+    );
+
+    //Tidy modal when closed
     $('#modalEditChore').on('hide.bs.modal', function(){
         $('#editChoreName').val("").attr('readonly', true).removeClass('is-invalid');
         $('#editChoreDescription').val("").attr('readonly', true).removeClass('is-invalid');
@@ -13,226 +46,108 @@ $(function(){
         $('#btnSaveChore').attr('hidden', true);
         $('#btnEditChore').css('display', 'block');
 
+        $('#choreDeadline').val(new Date().toString()).attr('disabled', false);
+
         $('#btnDeleteChore').attr('hidden', true);
     })
 
-    let choreID = null;
-   $("td").click(function(){
-      let suffix = this.id;
-      choreID = suffix.replace(/[^0-9]/g,'');
-      let type = suffix.replace(/\d+/g, '')
+    //User has selected an assigned or unassigned chore to view the details of
+    $("td").click(function(){
+        //Get ID and type of selected item
+        let suffix = this.id;
+        choreID = suffix.replace(/[^0-9]/g,'');
+        let type = suffix.replace(/\d+/g, '')
 
-      if(type === "chore"){
-         let choreID = suffix.replace(/[^0-9]/g,'');
+        //If item selected is an unassigned chore
+        if(type === "chore"){
+            let choreID = suffix.replace(/[^0-9]/g,'');
+            getChoreDetails(choreID);
+        } //Else if selected item is an assigned chore
+        else if(type === "assignedChore"){
+            let assignedChoreID = suffix.replace(/[^0-9]/g,'');
+            getAssignedChores(assignedChoreID);
+        }
 
-         $.post("/BackToWork/src/controller/getChores.php",
-             function(data){
-                data = $.parseJSON(data);
-                for(let i = 0; i < data.length; i++){
-                   let id= data[i][0];
-                   if(choreID == id){
-                      let name = data[i][1];
-                      let description = data[i][2];
-                      let points = data[i][3];
+    });
 
-                      $('#editChoreID').html(choreID);
-                      $('#editChoreName').val(name);
-                      $('#editChoreDescription').val(description);
-                      $('#editChorePoints').val(points);
+    //Tidy up modal when closed
+    $('#btnCloseChore').click(function(){
+        $('#assignedChoreName').val("");
+        $('#assignedChoreDescription').val("");
+        $('#assignedChoreUser').val("");
+        $('#assignedChoreStatus').val("");
+    });
 
-                      $('#btnEditChore').attr('hidden', false);
-                      break;
-                   }
-                }
-             }
-         );
-      }
-      else if(type === "assignedChore"){
-         let assignedChoreID = suffix.replace(/[^0-9]/g,'');
+    //Switch to Edit Chore mode
+    $('#btnEditChore').click(function(){
+        $('#editChoreName').attr('readonly', false);
+        $('#editChoreDescription').attr('readonly', false);
+        $('#editChorePoints').attr('readonly', false);
 
-         $.post("/BackToWork/src/controller/getChores.php",
-             function(data){
-                data = $.parseJSON(data);
-                getAssignedChores(data, assignedChoreID);
-             }
-         );
-      }
+        $('#btnEditChore').hide();
+        $('#btnSaveChore').attr('hidden', false);
 
-   });
+        $('#assignChore').val("Select User").attr('disabled', true);
+        $('#choreDeadline').attr('disabled', true);
 
-   $('#btnCloseChore').click(function(){
-      $('#assignedChoreName').val("");
-      $('#assignedChoreDescription').val("");
-      $('#assignedChoreUser').val("");
-      $('#assignedChoreStatus').val("");
-   });
-
-   $('#btnEditChore').click(function(){
-       $('#editChoreName').attr('readonly', false);
-       $('#editChoreDescription').attr('readonly', false);
-       $('#editChorePoints').attr('readonly', false);
-
-       $('#btnEditChore').hide();
-       $('#btnSaveChore').attr('hidden', false);
-
-       $('#assignChore').val("Select User").attr('disabled', true);
-
-       $('#btnDeleteChore').attr('hidden', false);
-   });
-
-   $('#btnSaveChore').click(function(){
-       let nameErr = false;
-       let descriptionErr = false;
-       let pointsErr = false;
-
-       let choreName = $('#editChoreName').val();
-       let choreDescription = $('#editChoreDescription').val();
-       let chorePoints = $('#editChorePoints').val();
-
-       if(choreName === ""){
-           //Chore Name is blank
-           nameErr = true;
-
-           $('#editChoreName').addClass('is-invalid');
-           $('#invEditChoreName').attr('hidden', false);
-       }else{
-           //Chore Name is NOT blank
-           nameErr = false;
-           $('#editChoreName').removeClass('is-invalid');
-           $('#invEditChoreName').attr('hidden', true);
-       }
-
-       if(choreDescription === ""){
-           //Chore Description is blank
-           descriptionErr = true;
-
-           $('#editChoreDescription').addClass('is-invalid');
-           $('#invEditChoreDescription').attr('hidden', false);
-       }else{
-           //Chore Description is NOT blank
-           descriptionErr = false;
-
-           $('#editChoreDescription').removeClass('is-invalid');
-           $('#invEditChoreDescription').attr('hidden', true);
-       }
-
-       if(chorePoints === ""){
-           //Chore Points is blank
-           pointsErr = true;
-
-           $('#editChorePoints').addClass('is-invalid');
-           $('#invEditChorePoints').attr('hidden', false);
-       }else{
-           //Chore Points is NOT blank
-
-           if(isNaN(chorePoints) === true){
-               //Chore Points is NOT a valid number
-               pointsErr = true;
-
-               $('#editChorePoints').addClass('is-invalid');
-               $('#invEditChorePoints').attr('hidden', false);
-           }else{
-               pointsErr = false;
-
-               $('#editChorePoints').removeClass('is-invalid');
-               $('#invEditChorePoints').attr('hidden', true);
-           }
-       }
-
-       if(nameErr !== true && descriptionErr !== true && pointsErr !== true) {
-           if (choreID != null) {
-               $.post("/BackToWork/src/controller/editChore.php",
-                   {
-                       id: choreID,
-                       name: choreName,
-                       description: choreDescription,
-                       points: chorePoints
-                   },
-                   function (data, status) {
-                        location.reload();
-                   }
-               );
-
-               $('#btnEditChore').show();
-               $('#btnSaveChore').attr('hidden', true);
-
-               $('#editChoreName').attr('readonly', true);
-               $('#editChoreDescription').attr('readonly', true);
-               $('#assignChore').attr('disabled', false);
-           }
-       }
-   });
-
-   $('#btnComplete').click(function(){
-       //Remove from assigned_chore table
-       let assignedChoreID = $('#assignedChoreID').html(); //Get assignedChoreID
-
-       $.post("/BackToWork/src/controller/completeChore.php", {assignedChoreID: assignedChoreID}, function(response){
-           location.reload();
-       });
-   });
+        $('#btnDeleteChore').attr('hidden', false);
+    });
 });
 
-function getAssignedChores(chores, assignedChoreID){
-   $.post("/BackToWork/src/controller/getAssignedChores.php",{familyID: getCookie('familyID')},
-       function(data){
-          data = $.parseJSON(data);
-          let assignedChores = data;
+function getChoreDetails(choreID){
+    //Go through the group's chore and present the details of selected chore
+    for(let i = 0; i < chores.length; i++){
+        let id = chores[i].choreID;
+        if(choreID === id){
+            let name = chores[i].choreName;
+            let description = chores[i].choreDescription;
+            let points = chores[i].chorePoints;
 
-          for(let i = 0; i < assignedChores.length; i++){
-             if(assignedChoreID === assignedChores[i][0]){
-                for(let j = 0; j < chores.length; j++){
-                   if(chores[j][0] === assignedChores[i][2]){
-                       $('#assignedChoreID').html(assignedChoreID);
-                      $('#assignedChoreName').val(chores[j][1]);
-                      $('#assignedChoreDescription').val(chores[j][2]);
-                      $('#assignedChoreStatus').val(assignedChores[i][3]);
+            $('#editChoreID').html(choreID);
+            $('#editChoreName').val(name);
+            $('#editChoreDescription').val(description);
+            $('#editChorePoints').val(points);
 
-                      getUser(assignedChores[i][1]);
-                      break;
-                   }
+            $('#btnEditChore').attr('hidden', false);
+            break;
+        }
+    }
+}
+
+function getAssignedChores(assignedChoreID){
+    //Go through the group's assigned chores and present selected assigned chore's details
+    for(let i = 0; i < assignedChores.length; i++){
+        if(assignedChoreID === assignedChores[i].assignedChoreID){
+            for(let j = 0; j < chores.length; j++){
+                if(chores[j].choreID === assignedChores[i].choreID){
+                    $('#assignedChoreID').html(assignedChoreID);
+                    $('#assignedChoreName').val(chores[j].choreName);
+                    $('#assignedChoreDescription').val(chores[j].choreDescription);
+                    $('#assignedChoreDeadline').val(assignedChores[i].deadline)
+                    $('#assignedChoreStatus').val(assignedChores[i].status);
+
+                    //Function to get the name of the assigned user
+                    getUser(assignedChores[i].userID);
+                    break;
                 }
-                break;
-             }
-          }
-       }
-   );
+            }
+            break;
+        }
+    }
 }
 
 function getUser(userID){
-   $.post("/BackToWork/src/controller/getUsers.php",{familyID: getCookie('familyID')},
-       function(data){
-          data = $.parseJSON(data);
-          let users = data;
+    //Go through group's users and present assigned user's name
+    for(let i = 0; i < users.length; i++){
+        if(userID === users[i].userID){
+            $('#assignedChoreUser').val(users[i].userName);
 
-          for(let i = 0; i < users.length; i++){
-             if(userID === users[i][0]){
-               $('#assignedChoreUser').val(users[i][1]);
-
-                 if($('#assignedChoreStatus').val() !== "COMPLETE"){
-                     $('#btnComplete').attr('hidden', false);
-                 }else{
-                     $('#btnComplete').attr('hidden', true);
-                 }
-                break;
-             }
-          }
-       }
-   );
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            if($('#assignedChoreStatus').val() !== "COMPLETE"){
+                $('#btnComplete').attr('hidden', false);
+            }else{
+                $('#btnComplete').attr('hidden', true);
+            }
+            break;
         }
     }
-    return "";
 }

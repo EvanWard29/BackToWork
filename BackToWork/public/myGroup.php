@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <script src="../assets/js/registration.js"></script>
+        <script src="../assets/js/registration/registration.js"></script>
         <script src="../assets/js/family.js"></script>
     </head>
     <body>
@@ -57,12 +57,12 @@
                     <div class="modal-body">
                         <form id="frmNewMember">
                             <div class="form-group">
-                                <label class="text-danger" id="invFirstName" hidden>First Name Cannot Be Empty!</label><br>
+                                <label class="text-danger" id="invFirstName" hidden>First Name Cannot Be Empty And Longer Than 45 Characters!</label><br>
                                 <label class="font-weight-bold" for="inpFirstName">First Name</label>
                                 <input class="form-control" type="text" id="inpFirstName"/>
                             </div>
                             <div class="form-group">
-                                <label class="text-danger" id="invLastName" hidden>Last Name Cannot Be Empty!</label><br>
+                                <label class="text-danger" id="invLastName" hidden>Last Name Cannot Be Empty And Longer Than 45 Characters!</label><br>
                                 <label class="font-weight-bold" for="inpLastName">Last Name</label>
                                 <input class="form-control" type="text" id="inpLastName"/>
                             </div>

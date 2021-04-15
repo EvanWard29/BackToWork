@@ -1,9 +1,9 @@
 <?php
-    include_once "header.php";
+    include_once "../header.php";
 ?>
 <html>
     <head>
-        <script src="../assets/js/login.js"></script>
+        <script src="../../assets/js/login/login.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -32,7 +32,7 @@
                     <div class="text-center">
                         <button id="btnLogin" class="btn btn-lrg btn-primary" style="width: 80%">Login</button>
                     </div>
-                    <p>Need an Account?<a href="registration.php"> Register Here</a></p>
+                    <p>Need an Account?<br><a href="../registration/registration.php">Register For an Admin Account Here!</a></p>
                 </div>
             </div>
         </div>

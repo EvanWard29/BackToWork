@@ -1,4 +1,4 @@
-<?php include_once '../model/DBConnection.php';
+<?php include_once '../../model/DBConnection.php';
 
 $db = new DBConnection();
 

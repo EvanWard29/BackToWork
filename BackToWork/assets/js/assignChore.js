@@ -5,10 +5,9 @@ $(function(){
         $('#lblAssignedUser').attr('hidden', false);
 
         $('#lblAssignNewUser').attr('hidden', true);
-        $('#assignUser').attr('hidden', true);
         $('#btnSaveReassign').attr('hidden', true);
 
-        $('#assignUser').val("Select User");
+        $('#assignUser').val("Select User").attr('hidden', true);
     });
 
     $('#assignChore').on('change', function(){
@@ -23,14 +22,23 @@ $(function(){
         let user = $('#assignChore').val();
         let familyID = getCookie('familyID');
         let choreID = $('#editChoreID').html();
+        let deadline = $('#choreDeadline').val();
 
-        $.post("/BackToWork/src/controller/assignChore.php",{
-            user: user,
-            familyID: familyID,
-            choreID: choreID
-        },function(response){
-            location.reload();
-        });
+        if(deadline === ""){
+            //Deadline not selected
+            $('#invDeadline').attr('hidden', false);
+        }else{
+            $('#invDeadline').attr('hidden', true);
+
+            $.post("/BackToWork/src/controller/assignChore.php",{
+                user: user,
+                familyID: familyID,
+                choreID: choreID,
+                deadline: deadline.replace('T', ' ')
+            },function(response){
+                location.reload();
+            });
+        }
     });
 
     $('#btnReassign').click(function(){

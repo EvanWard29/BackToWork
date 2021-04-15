@@ -1,0 +1,88 @@
+/*******************************Calendar Top Navigation*********************************/
+.calendarHeader{
+    background-color: #6399ca;
+    border: black solid;
+    padding: 15px;
+}
+
+.date{
+    text-align: center;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.prev{
+    text-align: left;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.next{
+    text-align: right;
+    color:#FFF;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.day{
+    width: 100%;
+}
+
+.calendarBorder{
+    border: black solid;
+    border-top: none;
+}
+
+/*******************************Calendar Content Cells*********************************/
+
+/*div#calendar ul.label{
+    float:left;
+    margin: 0px;
+    padding: 0px;
+    margin-top:5px;
+    margin-left: 5px;
+}*/
+
+/*div#calendar ul.label li{
+    margin:0px;
+    padding:0px;
+    margin-right:5px;
+    float:left;
+    list-style-type:none;
+    width:80px;
+    height:40px;
+    line-height:40px;
+    vertical-align:middle;
+    text-align:center;
+    color:#000;
+    font-size: 15px;
+    background-color: transparent;
+}*/
+
+/** overall width = width+padding-right**/
+div#calendar ul.dates li{
+    margin:0px;
+    padding:0px;
+    margin-right:5px;
+    margin-top: 5px;
+    line-height:80px;
+    vertical-align:middle;
+    float:left;
+    list-style-type:none;
+    width:80px;
+    height:80px;
+    font-size:25px;
+    background-color: #DDD;
+    color:#000;
+    text-align:center;
+}
+
+:focus{
+    outline:none;
+}
+
+div.clear{
+    clear:both;
+}

@@ -15,6 +15,7 @@ $(function(){
        let email = $('#inpLgnEmail').val();
        let password = CryptoJS.AES.encrypt($('#inpLgnPassword').val(), "CHEESEBURGER");
 
+       //Perform validation techniques on user inputs
        if(email === ""){
            //Email is Blank
            emailErr = true;
@@ -36,6 +37,7 @@ $(function(){
            }
        }
 
+       //Check passwords match stored password in DB
        if(CryptoJS.AES.decrypt(password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8) === ""){
            //Email is blank
            passwordErr = true;
@@ -92,20 +94,20 @@ $(function(){
                        let today = new Date();
                        let expire = new Date();
                        expire.setTime(today.getTime() + 3600000*24*14);
-                       document.cookie = "userID=" + data.userID + ";expires=" + expire.toUTCString();
-                       document.cookie = "familyID=" + data.familyID + ";expires=" + expire.toUTCString();
-                       document.cookie = "accountType=" + data.type + ";expires=" + expire.toUTCString();
-                       document.cookie = "points=" + data.points + ";expires=" + expire.toUTCString();
+                       document.cookie = "userID=" + data.userID + "; path=/; expires=" + expire.toUTCString();
+                       document.cookie = "familyID=" + data.familyID + "; path=/; expires=" + expire.toUTCString();
+                       document.cookie = "accountType=" + data.type + "; path=/; expires=" + expire.toUTCString();
+                       document.cookie = "points=" + data.points + "; path=/; expires=" + expire.toUTCString();
 
-                       location.replace('/BackToWork/public/myFamily.php');
+                       location.replace('/BackToWork/public/myGroup.php');
                    }else{
                        //User has NOT checked remember me - save short period cookie
-                       document.cookie = "userID=" + data.userID;
-                       document.cookie = "familyID=" + data.familyID;
-                       document.cookie = "accountType=" + data.type;
-                       document.cookie = "points=" + data.points;
+                       document.cookie = "userID=" + data.userID + ";path=/";
+                       document.cookie = "familyID=" + data.familyID + ";path=/";
+                       document.cookie = "accountType=" + data.type + ";path=/";
+                       document.cookie = "points=" + data.points + ";path=/";
 
-                       location.replace('/BackToWork/public/myFamily.php');
+                       location.replace('/BackToWork/public/myGroup.php');
                    }
                }else{
                    //User does NOT agree
