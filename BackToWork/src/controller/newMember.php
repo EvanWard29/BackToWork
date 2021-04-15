@@ -14,6 +14,4 @@ if((isset($_POST['firstName'])) && (isset($_POST['lastName'])) && (isset($_POST[
     $user = new User(null, $firstName, $lastName, $type, $email, $password, 0, 0, $familyID); //Get familyID from SESSION
 
     $db->addUser($user);
-    echo("HELLO???");
 }
-echo("HELLO!!!");

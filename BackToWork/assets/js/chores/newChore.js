@@ -1,4 +1,5 @@
 $(function (){
+   //Tidy up modal when closed
    $('#modalNewChore').on('hide.bs.modal', function(){
       $("#inpChoreName").val("");
       $("#inpChoreDescription").val("");
@@ -14,15 +15,19 @@ $(function (){
       $('#invChorePoints').attr('hidden', true);
    });
 
+   //Function for adding new chore to DB
    $("#btnAddChore").click(function(){
       let nameErr = false;
       let descriptionErr = false;
       let pointsErr = false;
+      let penaltyErr = false;
 
       let choreName = $("#inpChoreName").val();
       let choreDescription = $("#inpChoreDescription").val();
       let chorePoints = $("#inpChorePoints").val();
+      let chorePenalty = $("#inpChorePenalty").val();
 
+      //Perform validation techniques on user inputs
       if(choreName === ""){
          //Chore Name is empty
          nameErr = true;
@@ -31,10 +36,18 @@ $(function (){
          $('#invChoreName').attr('hidden', false);
       }else{
          //Chore Name is NOT empty
-         nameErr = false;
+         if(choreName.length > 45){
+            //Chore Name is too long
+            nameErr = true;
 
-         $('#inpChoreName').removeClass('is-invalid');
-         $('#invChoreName').attr('hidden', true);
+            $('#inpChoreName').addClass('is-invalid');
+            $('#invChoreName').attr('hidden', false);
+         }else{
+            nameErr = false;
+
+            $('#inpChoreName').removeClass('is-invalid');
+            $('#invChoreName').attr('hidden', true);
+         }
       }
 
       if(choreDescription === ""){
@@ -45,10 +58,41 @@ $(function (){
          $('#invChoreDescription').attr('hidden', false);
       }else{
          //Chore Description is NOT empty
-         descriptionErr = false;
+         if(choreDescription.length > 150){
+            //Chore Description is too long
+            descriptionErr = true;
 
-         $('#inpChoreDescription').removeClass('is-invalid');
-         $('#invChoreDescription').attr('hidden', true);
+            $('#inpChoreDescription').addClass('is-invalid');
+            $('#invChoreDescription').attr('hidden', false);
+         }else{
+            descriptionErr = false;
+
+            $('#inpChoreDescription').removeClass('is-invalid');
+            $('#invChoreDescription').attr('hidden', true);
+         }
+      }
+
+      if(chorePenalty === ""){
+         //Chore Penalty is empty
+         penaltyErr = true;
+
+         $('#inpChorePenalty').addClass('is-invalid');
+         $('#invChorePenalty').attr('hidden', false);
+      }else{
+         //Chore Penalty is NOT empty
+
+         if(isNaN(chorePenalty) === true){
+            //Chore Penalty is NOT a valid number
+            penaltyErr = true;
+
+            $('#inpChorePenalty').addClass('is-invalid');
+            $('#invChorePenalty').attr('hidden', false);
+         }else{
+            penaltyErr = false;
+
+            $('#inpChorePenalty').removeClass('is-invalid');
+            $('#invChorePenalty').attr('hidden', true);
+         }
       }
 
       if(chorePoints === ""){
@@ -74,11 +118,14 @@ $(function (){
          }
       }
 
-      if(nameErr !== true && descriptionErr !== true && pointsErr !== true) {
-         $.post("/MobileFamilyPlanner/src/controller/addChore.php", {
+      //If there are no errors, POST data to server to be processed
+      if(nameErr !== true && descriptionErr !== true && penaltyErr !== true && pointsErr !== true) {
+         $.post("/BackToWork/src/controller/addChore.php", {
             name: choreName,
             description: choreDescription,
-            points: parseInt(chorePoints)
+            points: parseInt(chorePoints),
+            penalty: parseInt(chorePenalty),
+            familyID: getCookie('familyID')
          }, function(response){
             location.reload();
          });

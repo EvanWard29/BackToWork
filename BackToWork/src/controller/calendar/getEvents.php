@@ -8,8 +8,6 @@ if(isset($_POST['familyID'])){
     $events = [];
 
     foreach($data as $item){
-        //$event = [];
-
         $eventID = $item->getEventID();
         $eventName = $item->getEventName();
         $eventDescription = $item->getEventDescription();

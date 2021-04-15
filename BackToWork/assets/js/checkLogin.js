@@ -1,25 +1,9 @@
 $(function(){
     let page = window.location.pathname;
-    if(page !== "/BackToWork/public/login.php" && page !== "/BackToWork/public/registration.php") {
+    if(page !== "/BackToWork/public/login/login.php" && page !== "/BackToWork/public/registration/registration.php") {
         let userID = getCookie('userID');
         if (userID === "") {
-            location.replace('/BackToWork/public/login.php');
+            location.replace('/BackToWork/public/login/login.php');
         }
     }
 });
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}

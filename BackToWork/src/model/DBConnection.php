@@ -32,11 +32,11 @@ class DBConnection {
         }
     }
 
-    public function getAllChores(){
-        $sql = "SELECT * FROM chore";
+    public function getAllChores($familyID){
+        $sql = "SELECT * FROM chore WHERE familyID = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $statement->execute([$familyID]);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $chores = [];
@@ -45,7 +45,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points'], $row['penalty']);
+                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points'], $row['penalty'], $row['familyID']);
                 $chores[] = $chore;
             }
         }
@@ -124,17 +124,21 @@ class DBConnection {
     }
 
     public function addChore($chore){
-        $sql = "call AddChore(:choreName, :choreDescription, :points)";
+        $sql = "call AddChore(:choreName, :choreDescription, :points, :penalty, :familyID)";
 
         $choreName = $chore->getChoreName();
         $choreDescription = $chore->getChoreDescription();
         $chorePoints = $chore->getPoints();
+        $chorePenalty = $chore->getPenalty();
+        $familyID = $chore->getFamilyID();
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription', $choreDescription, PDO::PARAM_STR);
         $statement->bindParam(':points', $chorePoints, PDO::PARAM_INT);
+        $statement->bindParam(':penalty', $chorePenalty, PDO::PARAM_INT);
+        $statement->bindParam(':familyID', $familyID, PDO::PARAM_INT);
 
         $statement->execute();
     }
@@ -217,11 +221,12 @@ class DBConnection {
         return $resultSet;
     }
 
-    public function completeChore($assignedChoreID){
-        $sql = "call CompleteChore(:userChoreID)";//"DELETE FROM assigned_chore WHERE userChoreID = ?";
+    public function completeChore($assignedChoreID, $familyID){
+        $sql = "call CompleteChore(:userChoreID, :familyID)";
 
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
 
         $statement->execute();
     }
@@ -440,12 +445,22 @@ class DBConnection {
         $statement->execute();
     }
 
-    public function incompleteChore($assignedChoreID){
-        $sql = "call IncompleteChore(:assignedChoreID)";
+    public function incompleteChore($assignedChoreID, $familyID){
+        $sql = "call IncompleteChore(:assignedChoreID, :familyID)";
 
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
 
         $statement->execute();
+    }
+
+    public function checkEmail($email){
+        $sql = "SELECT email FROM user WHERE email = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$email]);
+
+        return $statement->fetchColumn();
     }
 }
