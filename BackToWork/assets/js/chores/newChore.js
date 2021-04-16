@@ -120,12 +120,12 @@ $(function (){
 
       //If there are no errors, POST data to server to be processed
       if(nameErr !== true && descriptionErr !== true && penaltyErr !== true && pointsErr !== true) {
-         $.post("/BackToWork/src/controller/addChore.php", {
+         $.post("/BackToWork/src/controller/chores/addChore.php", {
             name: choreName,
             description: choreDescription,
             points: parseInt(chorePoints),
             penalty: parseInt(chorePenalty),
-            familyID: getCookie('familyID')
+            groupID: getCookie('groupID')
          }, function(response){
             location.reload();
          });

@@ -25,28 +25,28 @@
         <!-- Custom CSS Files -->
         <link href="/BackToWork/assets/css/navbar.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/header.css" type="text/css" rel="stylesheet">
-        <link href="/BackToWork/assets/css/family.css" type="text/css" rel="stylesheet">
+        <link href="/BackToWork/assets/css/myGroup.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/account.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/login.css" type="text/css" rel="stylesheet">
 
         <script src="/BackToWork/assets/js/getCookie.js"></script>
-        <script async src="/BackToWork/assets/js/checkLogin.js"></script>
-        <script src="/BackToWork/assets/js/logout.js"></script>
+        <script async src="/BackToWork/assets/js/account/checkLogin.js"></script>
+        <script src="/BackToWork/assets/js/account/logout.js"></script>
     </head>
     <body>
 
         <ul>
-            <li id><a class="active" href="/BackToWork/public/myGroup.php" id="linkFamily">Back To Work</a></li>
+            <li id><a class="active" href="/BackToWork/public/group/myGroup.php" id="linkFamily">Back To Work</a></li>
             <li id><a href="/BackToWork/public/chores/chores.php" id="linkChores">Chores</a></li>
-            <li id><a href="/BackToWork/public/calendar.php" id="linkCalendar">Calendar</a></li>
-            <li id><a href="/BackToWork/public/rewards.php" id="linkRewards">Rewards</a></li>
-            <li id><a href="/BackToWork/public/account.php" id="linkAccount">My Account</a></li>
-            <li id><a href="/BackToWork/public/login/login.php" id="logout">Logout</a></li>
+            <li id><a href="/BackToWork/public/calendar/calendar.php" id="linkCalendar">Calendar</a></li>
+            <li id><a href="/BackToWork/public/rewards/rewards.php" id="linkRewards">Rewards</a></li>
+            <li id><a href="/BackToWork/public/account/account.php" id="linkAccount">My Account</a></li>
+            <li id><a href="/BackToWork/public/account/login/login.php" id="logout">Logout</a></li>
         </ul>
 
         <div class="container-fluid" style="background-color: #DAE8FC;">
             <div class="container-fluid header">
-                <a class="headerLink" href="/BackToWork/public/myGroup.php" id="linkMain"><h1>Back To Work</h1></a>
+                <a class="headerLink" href="/BackToWork/public/group/myGroup.php" id="linkMain"><h1>Back To Work</h1></a>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
 <script>
     let page = window.location.pathname;
 
-    if(page === "/BackToWork/public/login/login.php" || page === "/BackToWork/public/registration/registration.php") {
+    if(page === "/BackToWork/public/account/login/login.php" || page === "/BackToWork/public/account/registration/registration.php") {
         $('#linkFamily').addClass("linkDisabled");
         $('#linkChores').addClass("linkDisabled");
         $('#linkCalendar').addClass("linkDisabled");

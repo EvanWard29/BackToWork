@@ -62,12 +62,13 @@ $(function(){
         //If there are no errors, POST chore details to server to be saved to DB
         if(nameErr !== true && descriptionErr !== true && pointsErr !== true) {
             if (choreID != null) {
-                $.post("/BackToWork/src/controller/editChore.php",
+                $.post("/BackToWork/src/controller/chores/editChore.php",
                     {
                         id: choreID,
                         name: choreName,
                         description: choreDescription,
-                        points: chorePoints
+                        points: chorePoints,
+                        groupID: getCookie('groupID')
                     },
                     function (data, status) {
                         location.reload();

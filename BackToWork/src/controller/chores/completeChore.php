@@ -2,6 +2,6 @@
 
 $db = new DBConnection();
 
-if(isset($_POST['assignedChoreID'])){
-    $db->completeChore($_POST['assignedChoreID']);
+if(isset($_POST['assignedChoreID']) && isset($_POST['groupID'])){
+    $db->completeChore($_POST['assignedChoreID'], $_POST['groupID']);
 }

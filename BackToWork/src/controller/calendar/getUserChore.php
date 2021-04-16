@@ -1,7 +1,7 @@
 <?php include_once "../../model/DBConnection.php";
 
-if(isset($_POST['familyID']) && isset($_POST['assignedChoreID'])){
+if(isset($_POST['groupID']) && isset($_POST['assignedChoreID'])){
     $db = new DBConnection();
 
-    echo $db->getUserChore($_POST['familyID'], $_POST['assignedChoreID']);
+    echo $db->getUserChore($_POST['groupID'], $_POST['assignedChoreID']);
 }

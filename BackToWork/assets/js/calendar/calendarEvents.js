@@ -3,7 +3,7 @@ $(async function(){
 
     //Get All Calendar Events
     await $.post("/BackToWork/src/controller/calendar/getEvents.php", {
-        familyID: getCookie('familyID')
+        groupID: getCookie('groupID')
     }, function(response){
         events = JSON.parse(response);
     })
@@ -27,7 +27,7 @@ $(async function(){
                        let assignedTo = null;
 
                        await $.post("/BackToWork/src/controller/calendar/getUserChore.php",{
-                           familyID: getCookie('familyID'),
+                           groupID: getCookie('groupID'),
                            assignedChoreID: assignedChoreID
                        }, function(response){
                             assignedTo = response;
@@ -157,26 +157,10 @@ $(async function(){
                 name: eventName,
                 description: eventDescription,
                 date: $('#lblEventDate').html(),
-                familyID: getCookie('familyID')
+                groupID: getCookie('groupID')
             }, function(response){
                 location.reload();
             });
         }
     });
 });
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}

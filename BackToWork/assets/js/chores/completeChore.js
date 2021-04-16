@@ -1,20 +1,28 @@
 $(function(){
-    $('#btnComplete').click(function(){
+    $('#btnComplete').click(async function(){
         //Remove from assigned_chore table
         let assignedChoreID = $('#assignedChoreID').html(); //Get assignedChoreID
         let deadline = $('#assignedChoreDeadline').val();
-
-        let date = deadline.split(' ')[0];
-        let time = deadline.split(' ')[1];
 
         let currentDate = new Date();
 
         let formatDeadline = new Date(deadline);
 
         if(formatDeadline > currentDate){
+            let userPoints = getCookie('points');
+
+            $.post("/BackToWork/src/controller/chores/getChoreValue.php", {
+                assignedChoreID: assignedChoreID
+            }, function(response){
+                userPoints = parseInt(userPoints) + parseInt(response);
+
+                document.cookie = "points=" + userPoints + ";path=/";
+            });
+
             //Before Deadline - No Penalty
             $.post("/BackToWork/src/controller/chores/completeChore.php", {
-                assignedChoreID: assignedChoreID
+                assignedChoreID: assignedChoreID,
+                groupID: getCookie('groupID')
             }, function(response){
                 location.reload();
             });
@@ -44,7 +52,8 @@ $(function(){
                     points: newPoints
                 }, function(response){
                     $.post("/BackToWork/src/controller/chores/incompleteChore.php", {
-                        assignedChoreID: assignedChoreID
+                        assignedChoreID: assignedChoreID,
+                        groupID: getCookie('groupID')
                     }, function(response){
                         location.reload();
                     });
@@ -55,19 +64,3 @@ $(function(){
 
     });
 });
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}

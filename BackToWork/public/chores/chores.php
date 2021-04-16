@@ -2,14 +2,14 @@
     include_once "../header.php";
 
     $db = new DBConnection();
-    $data = $db->getAllChores($_COOKIE['familyID']);
-    $users = $db->getUsers($_COOKIE['familyID']);
-    $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
+    $data = $db->getAllChores($_COOKIE['groupID']);
+    $users = $db->getUsers($_COOKIE['groupID']);
+    $assignedChores = $db->getAssignedChores($_COOKIE['groupID']);
 
     function getAvailableChores(){
         $db = new DBConnection();
-        $chores = $db->getAllChores($_COOKIE['familyID']);
-        $assignedChores = $db->getAssignedChores($_COOKIE['familyID']);
+        $chores = $db->getAllChores($_COOKIE['groupID']);
+        $assignedChores = $db->getAssignedChores($_COOKIE['groupID']);
 
         $availableChores = [];
 
@@ -36,10 +36,10 @@
 <html>
     <head>
         <script src="../../assets/js/chores/newChore.js"></script>
-        <script src="../../assets/js/choreDetails.js"></script>
+        <script src="../../assets/js/chores/choreDetails.js"></script>
         <script src="../../assets/js/chores/saveChoreDetails.js"></script>
-        <script src="../../assets/js/assignChore.js"></script>
-        <script src="../../assets/js/deleteChore.js"></script>
+        <script src="../../assets/js/chores/assignChore.js"></script>
+        <script src="../../assets/js/chores/deleteChore.js"></script>
         <script src="../../assets/js/chores/completeChore.js"></script>
     </head>
     <body>
@@ -88,7 +88,7 @@
                                 <tbody>
                                 <?php
                                     //Get all assigned chores where userID = logged user
-                                    $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['familyID']);
+                                    $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['groupID']);
                                     if($userChores == null){?>
                                         <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
                                     <?php
@@ -182,12 +182,12 @@
                                 <tbody>
                                 <?php
                                 //Get all assigned chores where userID = logged user
-                                $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['familyID']);
+                                $userChores = $db->getUserChores($_COOKIE['userID'], $_COOKIE['groupID']);
                                 if($userChores == null){?>
                                     <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
                                 <?php
                                 }
-                                $chores = $db->getAllChores($_COOKIE['familyID']);
+                                $chores = $db->getAllChores($_COOKIE['groupID']);
                                 foreach($userChores as $userChore){
                                     $choreID = $userChore->getChoreID();
                                     foreach($chores as $chore){
