@@ -27,6 +27,12 @@ $(function(){
        $('#inpName').val($(this).find(".names").html());
        $('#inpChoresCompleted').val($(this).find(".choresCompleted").html());
        $('#inpPoints').val($(this).find(".points").html().replace(/ /g,''));
+
+       if($('#memberID').html() === getCookie('userID')){
+           $('#btnDeleteMember').attr('hidden', true);
+       }else{
+           $('#btnDeleteMember').attr('hidden', false);
+       }
    })
 
     $('#btnEditMember').click(function(){

@@ -9,6 +9,7 @@ $users = $db->getUsers($_COOKIE['groupID']);
 <html lang="en">
     <head>
         <script src="../../assets/js/rewards/rewards.js"></script>
+        <link type="text/css" rel="stylesheet" href="../../assets/css/rewards.css">
     </head>
     <body>
         <div class="container-fluid main">
@@ -38,24 +39,24 @@ $users = $db->getUsers($_COOKIE['groupID']);
                 <?php
                 }
                 ?>
-                <div class="container">
-                    <strong><label>My Points: <span id="myPoints"></span></label></strong><br>
-                    <label for="selectedReward"><strong>Selected Reward:</strong></label>
-                    <label for="selectedReward" class="text-danger" style="font-size: 15px" id="rewardErr" hidden>You Do Not Have Enough Points For That! Select A Different Reward.</label>
-                    <input id="selectedReward" class="form-control" type="text" placeholder="Select A Reward" readonly/>
+            </div>
+            <div class="container containerBackground" id="containerRewardSelect">
+                <h3>My Points: <span id="myPoints"></span></h3><br>
+                <label for="selectedReward"><strong>Selected Reward:</strong></label>
+                <label for="selectedReward" class="text-danger" style="font-size: 15px" id="rewardErr" hidden>You Do Not Have Enough Points For That! Select A Different Reward.</label>
+                <input id="selectedReward" class="form-control" type="text" placeholder="Select A Reward" readonly/>
 
-                    <label id="selectedRewardID" hidden></label>
-                    <label id="selectedRewardPoints" hidden></label>
+                <label id="selectedRewardID" hidden></label>
+                <label id="selectedRewardPoints" hidden></label>
 
-                    <button type="button" class="btn btn-primary btn-block btnTop" id="btnRedeemReward" disabled>Redeem</button>
+                <button type="button" class="btn btn-primary btn-block btnTop" id="btnRedeemReward" disabled>Redeem</button>
+                <?php
+                if($_COOKIE['accountType'] == 0){?>
+                    <button class="btn btn-block btnTop btn-primary" id="btnRewardRequests">Reward Requests</button>
+                    <button class="btn btn-block btnTop btn-primary" id="btnNewReward">New Reward</button>
                     <?php
-                    if($_COOKIE['accountType'] == 0){?>
-                        <button class="btn btn-block btnTop btn-primary" id="btnRewardRequests">Reward Requests</button>
-                        <button class="btn btn-block btnTop btn-primary" id="btnNewReward">New Reward</button>
-                    <?php
-                    }
-                    ?>
-                </div>
+                }
+                ?>
             </div>
         </div>
 

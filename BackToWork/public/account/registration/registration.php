@@ -7,7 +7,7 @@
 <div class="container-fluid main">
     <h1>Registration</h1>
     <div class="container">
-        <div class="container background text-center" id="registrationForm">
+        <div class="container containerBackground text-center" id="registrationForm">
             <form class="form-signin">
                 <div class="form-group">
                     <label for="inpFirstName" id="invFirstName" class="text-danger" hidden>First Name Cannot Be Empty And Longer Than 45 Characters!</label>
@@ -16,6 +16,10 @@
                 <div class="form-group">
                     <label for="inpLastName" id="invLastName" class="text-danger" hidden>Last Name Cannot Be Empty And Longer Than 45 Characters!</label>
                     <input class="form-control inpPadding" type="text" placeholder="Last Name" id="inpLastName">
+                </div>
+                <div class="form-group">
+                    <label for="inpGroupName" id="invGroupName" class="text-danger" hidden>Group Name Cannot Be Empty And Longer Than 45 Characters!</label>
+                    <input class="form-control inpPadding" type="text" placeholder="Group Name" id="inpGroupName">
                 </div>
                 <div class="form-group">
                     <label for="inpEmail" id="invEmail" class="text-danger" hidden>Email Cannot Be Empty, Container More Than 45 Characters And Must Contain '@'</label>

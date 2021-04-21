@@ -9,7 +9,7 @@ class Calendar {
     }
 
     /********************* PROPERTY ********************/
-    private $dayLabels = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
+    private $dayLabels = array("Mon","Tues","Wed","Thur","Fri","Sat","Sun");
 
     private $currentYear=0;
 
@@ -64,7 +64,7 @@ class Calendar {
                 $this->_createNavi().
             '</div>'.
             '<div class="calendarBorder">'.
-            '<ul class="list-group list-group-horizontal text-center">'.
+            '<ul class="list-group list-group-horizontal text-center" id="calendarLabels">'.
                 $this->_createLabels().
             '</ul>';
         $content.='<div class="clear"></div>';
@@ -175,7 +175,7 @@ class Calendar {
 
         foreach($this->dayLabels as $index=>$label){
 
-            $content.='<li id class="list-group-item day label">'.$label.'</li>';
+            $content.='<li id="" class="list-group-item day label">'.$label.'</li>';
 
         }
 

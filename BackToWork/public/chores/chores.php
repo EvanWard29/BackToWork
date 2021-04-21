@@ -41,6 +41,8 @@
         <script src="../../assets/js/chores/assignChore.js"></script>
         <script src="../../assets/js/chores/deleteChore.js"></script>
         <script src="../../assets/js/chores/completeChore.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="../../assets/css/chores.css">
     </head>
     <body>
         <div class="container-fluid main">
@@ -93,7 +95,7 @@
                                         <tr><td class="card-body card">You Have No Chores To Complete!</td></tr>
                                     <?php
                                     }
-                                    $chores = $db->getAllChores();
+                                    $chores = $db->getAllChores($_COOKIE['groupID']);
                                     foreach($userChores as $userChore){
                                         $choreID = $userChore->getChoreID();
                                         foreach($chores as $chore){
@@ -175,7 +177,7 @@
 
                     if($_COOKIE['accountType'] == 0){?>
                         <div class="col">
-                            <table id="available" class="table-bordered">
+                            <table id="available" class="table-bordered smallChores">
                                 <thead>
                                 <tr><th>My Chores</th></tr>
                                 </thead>
@@ -209,12 +211,14 @@
                         <?php
                     } ?>
                 </div>
-                <?php if($_COOKIE['accountType'] == 0){
-                    ?>
-                    <button id="btnNewChore" class="btn btn-primary btn-lg btn-block btnTop" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
-                    <?php
-                } ?>
             </div>
+            <?php if($_COOKIE['accountType'] == 0){
+                ?>
+                    <div class="container newChoreArea">
+                        <button id="btnNewChore" class="btn btn-primary btn-block btnTop" data-toggle="modal" data-target="#modalNewChore">New Chore</button>
+                    </div>
+                <?php
+            } ?>
 
             <!-- Modal Edit Chore -->
             <div class="modal fade" id="modalEditChore" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

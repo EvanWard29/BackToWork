@@ -4,6 +4,7 @@
     <head>
         <script src="../../assets/js/account/registration/registration.js"></script>
         <script src="../../assets/js/group/myGroup.js"></script>
+        <script src="../../assets/js/group/deleteMember.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -34,12 +35,14 @@
                     ?>
                     </tbody>
                 </table>
-                <?php
-                if($_COOKIE['accountType'] == 0){?>
-                    <button id="btnNewMember" type="button" class="btn btn-primary btn-lg btn-block btnTop">Add Family Member</button>
-                    <?php
-                }  ?>
             </div>
+            <?php
+            if($_COOKIE['accountType'] == 0){?>
+                <div class="container">
+                    <button id="btnNewMember" type="button" class="btn btn-primary btn-block btnTop">Register New Group Member</button>
+                </div>
+                <?php
+            }  ?>
         </div>
 
         <!-- Modal Add Member -->
@@ -65,7 +68,8 @@
                                 <input class="form-control" type="text" id="inpLastName"/>
                             </div>
                             <div class="form-group">
-                                <label class="text-danger" id="invEmail" hidden>Email Cannot Be Empty And Must Contain '@'</label><br>
+                                <label class="text-danger" id="invEmail" hidden>Email Cannot Be Empty And Must Contain '@'</label>
+                                <label for="inpEmail" id="invEmailExists" class="text-danger" hidden>Email Already Exists! Please Login Or Use An Alternative Email.</label><br>
                                 <label class="font-weight-bold" for="inpEmail">Email</label>
                                 <input class="form-control" type="email" id="inpEmail"/>
                             </div>
@@ -127,14 +131,36 @@
                                 <input class="form-control" type="text" id="inpPoints" readonly/>
                             </div>
                         </form>
+                        <?php if($_COOKIE['accountType'] == 0){ ?>
+                            <div class="stickRight">
+                                <a class="text-danger btn" id="btnDeleteMember">Delete Account</a>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
-                    <div class="modal-footer">
+                    <div id="viewMemberFooter" class="modal-footer">
                         <?php if($_COOKIE['accountType'] == 0){?>
                             <button id="btnSave" type="button" class="btn btn-primary" hidden>Save</button>
                             <button id="btnEditMember" type="button" class="btn btn-primary">Edit</button>
                         <?php
                         } ?>
                         <button id="btnCloseMember" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Confirm Delete -->
+        <div class="modal fade" id="modalConfirmDelete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-center">Are You Sure You Wish To Delete <span class="font-weight-bold" id="deleteName"></span>Account?</p>
+                        <div id="options" class="text-center">
+                            <button type="button" class="btn btn-primary" id="btnConfirmDelete">Confirm</button>
+                            <button type="button" class="btn btn-danger" id="btnCancelDelete" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>

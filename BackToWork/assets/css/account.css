@@ -18,3 +18,11 @@
     color: red;
     font-size: 10px;
 }
+
+.btnMargin-Left{
+    margin-left: 10px;
+}
+
+.btnMargin-Right{
+    margin-right: 10px;
+}

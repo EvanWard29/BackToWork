@@ -2,17 +2,17 @@ $(function(){
     $('#btnRegister').click(async function(){
         let firstErr = false;
         let lastErr = false;
+        let groupErr = false;
         let emailErr = false;
         let passwordErr = false;
         let typeErr = false;
 
         let firstName = $('#inpFirstName').val();
         let lastName = $('#inpLastName').val();
+        let groupName = $('#inpGroupName').val();
         let email = $('#inpEmail').val();
 
         let password = CryptoJS.AES.encrypt($('#inpPassword').val(), "CHEESEBURGER");
-        //let decrypt = CryptoJS.AES.decrypt(password, "Secret Passphrase");
-        //console.log(decrypt.toString(CryptoJS.enc.Utf8));
         let confirm = CryptoJS.AES.encrypt($('#inpConfirmPassword').val(), "CHEESEBURGER");
 
         let type = $('#inpType').val();
@@ -61,6 +61,30 @@ $(function(){
             }
         }
 
+        if(location.pathname !== "/BackToWork/public/group/myGroup.php"){
+            if(groupName === ""){
+                //Group Name empty
+                $('#invGroupName').attr('hidden', false);
+                $('#inpGroupName').addClass('is-invalid');
+
+                groupErr = true;
+            }else{
+                //Group Name not empty
+                if(groupName.length > 45){
+                    //Group name too long
+                    $('#invGroupName').attr('hidden', false);
+                    $('#inpGroupName').addClass('is-invalid');
+
+                    groupErr = true;
+                }else{
+                    $('#invGroupName').attr('hidden', true);
+                    $('#inpGroupName').removeClass('is-invalid');
+
+                    groupErr = false;
+                }
+            }
+        }
+
         if(email === ""){
             //Email Field Empty
             $('#inpEmail').addClass("is-invalid");
@@ -92,10 +116,12 @@ $(function(){
                             //Email exists
                             emailErr = true;
                             $('#invEmailExists').attr('hidden', false);
+                            $('#inpEmail').addClass('is-invalid');
                         }else{
                             //Email doesn't exist
                             emailErr = false;
                             $('#invEmailExists').attr('hidden', true);
+                            $('#inpEmail').removeClass('is-invalid');
                         }
                     });
                 }
@@ -106,6 +132,7 @@ $(function(){
             //Password Field Empty
             $('#inpPassword').addClass("is-invalid");
             $('#invPassword').attr('hidden', false);
+            $('#inpConfirmPassword').addClass('is-invalid');
 
             passwordErr = true;
         }else{
@@ -161,11 +188,13 @@ $(function(){
             typeErr = false;
         }
 
-        if(firstErr !== true && lastErr !== true && emailErr !== true && passwordErr !== true && typeErr !== true){
+        if(firstErr !== true && lastErr !== true && groupErr !== true && emailErr !== true && passwordErr !== true && typeErr !== true){
             let groupID = getCookie('groupID');
 
             if(groupID === ""){
                 groupID = 0;
+            }else{
+                groupName = 'null';
             }
 
             //Validation Complete
@@ -173,6 +202,7 @@ $(function(){
             $.post("/BackToWork/src/controller/account/registration/newMember.php", {
                 firstName: firstName,
                 lastName: lastName,
+                groupName: groupName,
                 type: type,
                 email: email,
                 password: password,
@@ -181,6 +211,7 @@ $(function(){
                 $('#modalNewMember').modal('hide');
                 $('#inpFirstName').val("");
                 $('#inpLastName').val("");
+                $('#inpGroupName').val("");
                 $('#inpEmail').val("");
                 $('#inpPassword').val("");
                 $('#inpConfirmPassword').val("");
@@ -193,6 +224,10 @@ $(function(){
                 }
             })
         }
+    });
+
+    $('#modalNewMember').on('hide.bs.modal', function(){
+        $('#invType').attr('hidden', true);
     });
 });
 

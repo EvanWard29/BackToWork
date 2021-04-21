@@ -174,7 +174,7 @@ class DBConnection {
         return $users;
     }
 
-    public function addUser($user){
+    public function addUser($user, $groupName){
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
         $type = $user->getAccountType();
@@ -184,12 +184,13 @@ class DBConnection {
         $choresCompleted = $user->getChoresCompleted();
         $groupID = $user->getgroupID();
 
-        $sql = "call AddUser(:firstName, :lastName, :type, :email, :password, :points, :choresCompleted, :groupID)";
+        $sql = "call AddUser(:firstName, :lastName, :groupName, :type, :email, :password, :points, :choresCompleted, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':firstName',$firstName, PDO::PARAM_STR);
         $statement->bindParam(':lastName',$lastName, PDO::PARAM_STR);
+        $statement->bindParam(':groupName', $groupName, PDO::PARAM_STR);
         $statement->bindParam(':type',$type, PDO::PARAM_INT);
         $statement->bindParam(':email',$email, PDO::PARAM_STR);
         $statement->bindParam(':password',$password, PDO::PARAM_STR);
@@ -474,5 +475,24 @@ class DBConnection {
         $statement->execute();
 
         return $statement->fetchColumn();
+    }
+
+    public function deleteAccount($userID, $groupID){
+        $sql = "DELETE FROM user WHERE groupID = ? AND userID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID, $userID]);
+
+        $sql = "UPDATE userGroup SET numMembers = numMembers - 1 WHERE groupID = ?";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
+    }
+
+    public function disbandGroup($groupID){
+        $sql = "call DisbandGroup(:groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+        $statement->execute();
     }
 }

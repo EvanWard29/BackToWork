@@ -20,6 +20,8 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <!-- Font Families -->
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
 
         <!-- Custom CSS Files -->
@@ -40,7 +42,7 @@
             <li id><a href="/BackToWork/public/chores/chores.php" id="linkChores">Chores</a></li>
             <li id><a href="/BackToWork/public/calendar/calendar.php" id="linkCalendar">Calendar</a></li>
             <li id><a href="/BackToWork/public/rewards/rewards.php" id="linkRewards">Rewards</a></li>
-            <li id><a href="/BackToWork/public/account/account.php" id="linkAccount">My Account</a></li>
+            <li id><a href="/BackToWork/public/account/userAccount/account.php" id="linkAccount">My Account</a></li>
             <li id><a href="/BackToWork/public/account/login/login.php" id="logout">Logout</a></li>
         </ul>
 

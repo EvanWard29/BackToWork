@@ -20,27 +20,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f908f9c5-12cb-4a36-a501-655df63e9d9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/cookiePopup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/cookiePopup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/afe313ee-fec0-4465-8bb3-6c8d31fb63cb.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/afe313ee-fec0-4465-8bb3-6c8d31fb63cb/storage_v2/_src_/schema/familyplanner.7q3gEg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/afe313ee-fec0-4465-8bb3-6c8d31fb63cb/storage_v2/_src_/schema/familyplanner.7q3gEg.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/afe313ee-fec0-4465-8bb3-6c8d31fb63cb/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/chores.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/rewards.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/account/details/deleteGroup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/group/deleteMember.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/account/userAccount/modalDisbandGroup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/account/details/deleteAccount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/account/disbandGroup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/calendar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/myGroup.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/myGroup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/account/checkLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/checkLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/account/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/navbar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/account/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/registration/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/registration/registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/group/myGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/group/myGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/account/registration/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/registration/registration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/calendar/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/calendar/calendar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/chores/chores.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/chores.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/group/myGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/myGroup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/rewards/rewards.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/rewards/rewards.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Calendar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +58,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -75,22 +80,22 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/js/group" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/account/userAccount" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\group" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\rewards" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\rewards" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\account\details" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\account\details" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\css" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\model" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\public\account\userAccount" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\group" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\rewards" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\rewards" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\account\details" />
     </key>
   </component>
   <component name="RunManager">
@@ -149,6 +154,7 @@
       <workItem from="1618490469607" duration="15494000" />
       <workItem from="1618583462258" duration="15731000" />
       <workItem from="1618918820499" duration="10914000" />
+      <workItem from="1619007578994" duration="18166000" />
     </task>
     <servers />
   </component>
@@ -171,14 +177,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="432" y="163" key="#Deployment" timestamp="1616696948596">
+    <state x="432" y="163" key="#Deployment" timestamp="1619012153746">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="163" key="#Deployment/0.0.1680.1010@0.0.1680.1010" timestamp="1616696948596" />
-    <state x="294" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618584844955">
+    <state x="432" y="163" key="#Deployment/0.0.1680.1010@0.0.1680.1010" timestamp="1619012153746" />
+    <state x="294" y="160" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619012155521">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="294" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618584844955" />
+    <state x="294" y="160" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619012155521" />
     <state x="645" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1617811671656">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -187,22 +193,26 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="529" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618585881556" />
-    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1618596991769">
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619017482260">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1618596991769" />
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619017482260" />
+    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1619023757650">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1619023757650" />
     <state x="496" y="228" key="NewPhpClassDialog" timestamp="1618328977659">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="496" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618328977659" />
-    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1618919761750">
+    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1619025160096">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618919761750" />
-    <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1616696950242">
+    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619025160096" />
+    <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1619012155002">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1616696950242" />
+    <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619012155002" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1613586822719">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

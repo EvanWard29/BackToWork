@@ -13,6 +13,7 @@ $events = $db->getEvents($_COOKIE['groupID']);
 <head>
     <link href="../../assets/css/calendar.css" type="text/css" rel="stylesheet" />
     <script src="../../assets/js/calendar/calendarEvents.js"></script>
+    <script src="../../assets/js/calendar/mobile.js"></script>
 </head>
     <body>
     <div class="container-fluid main">

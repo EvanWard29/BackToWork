@@ -1,4 +1,4 @@
-<?php include_once "../header.php";
+<?php include_once "../../header.php";
     $db = new DBConnection();
     $user = $db->getUserDetails($_COOKIE['userID']);
     $rewards = $db->getRewards($_COOKIE['groupID']);
@@ -6,8 +6,8 @@
 ?>
 <html lang="en">
     <head>
-        <script src="../../assets/js/account/details/accountOptions.js"></script>
-        <script src="../../assets/js/rewards/pastRewards.js"></script>
+        <script src="../../../assets/js/account/details/accountOptions.js"></script>
+        <script src="../../../assets/js/rewards/pastRewards.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -23,8 +23,11 @@
                 <button type="button" id="btnChangeEmail" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalChangeEmail">Change Email</button>
                 <button type="button" id="btnChangePassword" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalChangePassword">Change Password</button>
                 <button type="button" id="btnPastRewards" class="btn btn-primary btn-block">View Past Reward Claims</button>
-                <button type="button" id="btnNotifications" class="btn btn-primary btn-block" disabled>Notifications</button>
-                <a href="#" class="delete">Delete Account</a>
+                <?php if($_COOKIE['accountType'] == 0){ ?>
+                    <button type="button" id="btnDeleteGroup" class="btn btn-danger btn-block">Disband Group</button>
+                <?php
+                }
+                ?>
             </div>
         </div>
 
@@ -157,8 +160,9 @@
                 </div>
             </div>
         </div>
+        <?php include "modalDisbandGroup.php" ?>
     </body>
 </html>
 
 <?php
-include_once "../footer.php";
+include_once "../../footer.php";
