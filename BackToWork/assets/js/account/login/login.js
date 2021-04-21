@@ -1,13 +1,4 @@
 $(function(){
-    $('#lgnAgree').click(function(){
-       if($('#lgnAgree').prop('checked') === true){
-           $('#lgnRemember').attr('disabled', false);
-       } else{
-           $('#lgnRemember').attr('disabled', true);
-           $('#lgnRemember').prop('checked', false);
-       }
-    });
-
    $('#btnLogin').click(async function(){
        let emailErr = false;
        let passwordErr = false;
@@ -79,29 +70,26 @@ $(function(){
        }
 
        if(emailErr !== true && passwordErr !== true){
-           //Correct Details - Get UserID
+           //Correct Details - Get User Details
            $.post("/BackToWork/src/controller/account/login/loginUser.php",{
                inpLgnEmail: email
            }, function(data){
-               if($('#lgnAgree').prop('checked') === true){
-                   //User Agrees
-                   $('#invAgree').attr('hidden', true);
-
-                   data = JSON.parse(data)[0];
-                   //If remember me checked, save cookie for longer period
-                   if($('#lgnRemember').prop('checked') === true){
-                       //User checked remember me - save extended period cookie
+               data = JSON.parse(data)[0];
+               if(getCookie('userID') !== data.userID) {
+                   //If no cookies for current user saved
+                   if ($('#lgnRemember').prop('checked') === true) {
+                       //User checked remember me - save extended period cookie (2 weeks)
                        let today = new Date();
                        let expire = new Date();
-                       expire.setTime(today.getTime() + 3600000*24*14);
+                       expire.setTime(today.getTime() + 3600000 * 24 * 14);
                        document.cookie = "userID=" + data.userID + "; path=/; expires=" + expire.toUTCString();
                        document.cookie = "groupID=" + data.groupID + "; path=/; expires=" + expire.toUTCString();
                        document.cookie = "accountType=" + data.type + "; path=/; expires=" + expire.toUTCString();
                        document.cookie = "points=" + data.points + "; path=/; expires=" + expire.toUTCString();
 
-                       location.replace('/BackToWork/public/myGroup.php');
-                   }else{
-                       //User has NOT checked remember me - save short period cookie
+                       location.replace('/BackToWork/public/group/myGroup.php');
+                   } else {
+                       //User has NOT checked remember me - cookie will be destroyed when session closed
                        document.cookie = "userID=" + data.userID + ";path=/";
                        document.cookie = "groupID=" + data.groupID + ";path=/";
                        document.cookie = "accountType=" + data.type + ";path=/";
@@ -110,11 +98,9 @@ $(function(){
                        location.replace('/BackToWork/public/group/myGroup.php');
                    }
                }else{
-                   //User does NOT agree
-                   $('#invAgree').attr('hidden', false);
+                   //Log user in
+                   location.replace('/BackToWork/public/group/myGroup.php');
                }
-
-
            });
        }
    }) ;

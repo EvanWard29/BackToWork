@@ -7,8 +7,8 @@
     </head>
     <body>
         <div class="container-fluid main">
-            <h1>My Family</h1>
-            <div class="container background">
+            <h1>My Group</h1>
+            <div id="myGroup-content" class="container containerBackground">
                 <table id="family" class="table-bordered" style="height: 60%">
                     <thead>
                         <tr><th>Name</th><th>Chores Completed</th><th>Points</th></tr>
@@ -141,3 +141,6 @@
         </div>
     </body>
 </html>
+
+<?php
+include_once "../footer.php";

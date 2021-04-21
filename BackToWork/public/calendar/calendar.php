@@ -93,6 +93,9 @@ foreach($events as $event){
 }
 
 
+include_once "../footer.php";
+
+
 
 
 

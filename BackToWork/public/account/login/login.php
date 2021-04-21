@@ -10,7 +10,7 @@
             <h1>Welcome</h1>
             <div class="container">
                 <p>Please Login/Register to Continue</p>
-                <div class="container background text-center" id="loginForm">
+                <div class="container text-center" id="loginForm">
                     <form class="form-signin">
                         <label id="invLogin" class="text-danger" hidden>Invalid Email or Password</label>
                         <div class="form-group">
@@ -22,11 +22,7 @@
                             <input class="form-control inpPadding" type="password" placeholder="Password" id="inpLgnPassword" name="inpLgnPassword">
                         </div>
                         <div class="checkbox mb-3 text-left">
-                            <label class="text-danger" id="invAgree" hidden>You Must Agree to the use of Cookies before proceeding</label><br>
-                            <label><input type="checkbox" value="agree" id="lgnAgree"> I AGREE to the use of cookies</label>
-                        </div>
-                        <div class="checkbox mb-3 text-left">
-                            <label><input type="checkbox" value="remember-me" id="lgnRemember" disabled> Remember Me</label>
+                            <label><input type="checkbox" value="remember-me" id="lgnRemember"> Remember Me</label>
                         </div>
                     </form>
                     <div class="text-center">
@@ -38,3 +34,6 @@
         </div>
     </body>
 </html>
+
+<?php
+include_once "../../footer.php";

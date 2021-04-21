@@ -1,0 +1,27 @@
+#cookieBarBox {
+    opacity: 0;
+    position: fixed;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+    z-index: 200;
+    margin: 15px;
+    padding: 10px;
+    border: grey solid;
+    border-radius: 15px;
+    background-color: #F3F3F3;
+    animation: initial-hide 1s ease-out 1.5s forwards;
+}
+
+/* removes banner when clicked */
+#cookieBarBox.cookie-fade {opacity: 0; animation-fill-mode: none}
+
+/* stops banner re-appearing */
+#cookieBarBox.hidden {display: none;}
+
+
+/* animation keyframes that animates the banner in onload */
+@keyframes initial-hide {
+    0%   {opacity:0;}
+    100% {opacity:1;}
+}

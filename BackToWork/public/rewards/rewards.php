@@ -13,7 +13,7 @@ $users = $db->getUsers($_COOKIE['groupID']);
     <body>
         <div class="container-fluid main">
             <h1>Rewards</h1>
-            <div class="container text-left background details">
+            <div class="container text-left containerBackground details">
                 <?php if($rewards != null){ ?>
                 <table class="table-bordered">
                     <thead>
@@ -159,3 +159,6 @@ $users = $db->getUsers($_COOKIE['groupID']);
         </div>
     </body>
 </html>
+
+<?php
+include_once "../footer.php";

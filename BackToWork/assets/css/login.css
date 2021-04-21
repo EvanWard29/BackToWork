@@ -1,3 +1,10 @@
 .inpPadding{
     margin-bottom: 5px;
 }
+
+#loginForm{
+    background-color: white;
+    padding: 10px;
+    border: grey solid;
+    border-radius: 15px;
+}

@@ -35,8 +35,8 @@
     </head>
     <body>
 
-        <ul>
-            <li id><a class="active" href="/BackToWork/public/group/myGroup.php" id="linkFamily">Back To Work</a></li>
+        <ul id="header">
+            <li id><a class="active" href="/BackToWork/public/group/myGroup.php" id="linkFamily">My Group</a></li>
             <li id><a href="/BackToWork/public/chores/chores.php" id="linkChores">Chores</a></li>
             <li id><a href="/BackToWork/public/calendar/calendar.php" id="linkCalendar">Calendar</a></li>
             <li id><a href="/BackToWork/public/rewards/rewards.php" id="linkRewards">Rewards</a></li>
@@ -53,18 +53,19 @@
     </body>
 </html>
 <script>
+
     let page = window.location.pathname;
 
     if(page === "/BackToWork/public/account/login/login.php" || page === "/BackToWork/public/account/registration/registration.php") {
-        $('#linkFamily').addClass("linkDisabled");
-        $('#linkChores').addClass("linkDisabled");
-        $('#linkCalendar').addClass("linkDisabled");
-        $('#linkRewards').addClass("linkDisabled");
-        $('#linkAccount').addClass("linkDisabled");
-        $('#logout').attr('hidden', true);
-        $('#linkMain').addClass("linkDisabled");
-
+        //If user is already logged in - redirect to main page
+        if(getCookie('userID') !== ""){
+            location.replace("/BackToWork/public/group/myGroup.php");
+        }else{
+            $('#header').attr('hidden', true);
+            $('#linkMain').addClass("linkDisabled");
+        }
     }
+
 </script>
 
 

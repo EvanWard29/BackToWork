@@ -45,7 +45,7 @@
     <body>
         <div class="container-fluid main">
             <h1>Chores</h1>
-            <div class="container background">
+            <div class="container containerBackground">
                 <div class="row">
                     <?php
                     if($_COOKIE['accountType'] == 0){?>
@@ -395,3 +395,6 @@
         </div>
     </body>
 </html>
+
+<?php
+include_once "../footer.php";
