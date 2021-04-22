@@ -2,7 +2,7 @@
 include_once "Chore.php";
 include_once "User.php";
 include_once "AssignedChore.php";
-include_once "Family.php";
+include_once "Group.php";
 include_once "Reward.php";
 include_once "RewardRequest.php";
 include_once "CalendarEvent.php";
@@ -15,6 +15,7 @@ class DBConnection {
     private $dataSourceName;
     private $connection;
 
+    /** Constructor */
     public function __construct(PDO $connection = null) {
         $this->connection = $connection;
         try {
@@ -32,11 +33,14 @@ class DBConnection {
         }
     }
 
-    public function getAllChores($familyID){
-        $sql = "SELECT * FROM chore WHERE familyID = ?";
+    /** Methods **/
+
+    //region Chores
+    public function getAllChores($groupID){
+        $sql = "SELECT * FROM chore WHERE groupID = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->execute([$groupID]);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $chores = [];
@@ -45,18 +49,18 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points'], $row['penalty'], $row['familyID']);
+                $chore = new Chore($row['choreID'], $row['choreName'], $row['choreDescription'], $row['points'], $row['penalty'], $row['groupID']);
                 $chores[] = $chore;
             }
         }
         return $chores;
     }
 
-    public function getAssignedChores($familyID){
-        $sql = "SELECT * FROM assigned_chore WHERE familyID = ?";
+    public function getAssignedChores($groupID){
+        $sql = "SELECT * FROM assigned_chore WHERE groupID = ? AND status = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->execute([$groupID, 'INCOMPLETE']);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $assignedChores = [];
@@ -65,18 +69,18 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['deadline'], $row['status']);
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['groupID'], $row['deadline'], $row['status']);
                 $assignedChores[] = $assignedChore;
             }
         }
         return $assignedChores;
     }
 
-    public function getUserChores($userID, $familyID){
-        $sql = "SELECT * FROM assigned_chore WHERE userID = ? AND familyID = ?";
+    public function getUserChores($userID, $groupID){
+        $sql = "SELECT * FROM assigned_chore WHERE userID = ? AND groupID = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$userID, $familyID]);
+        $statement->execute([$userID, $groupID]);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $assignedChores = [];
@@ -85,7 +89,7 @@ class DBConnection {
         {
             foreach($resultSet as $row)
             {
-                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['familyID'], $row['deadline'], $row['status']);
+                $assignedChore = new AssignedChore($row['userChoreID'], $row['userID'], $row['choreID'], $row['groupID'], $row['deadline'], $row['status']);
                 $assignedChores[] = $assignedChore;
             }
         }
@@ -93,25 +97,25 @@ class DBConnection {
     }
 
     public function assignChore($chore, $user){
-        $sql = "call AssignChore(:choreID, :user, :familyID, :deadline)";
+        $sql = "call AssignChore(:choreID, :user, :groupID, :deadline)";
 
         $statement = $this->connection->prepare($sql);
 
         $choreID = $chore->getChoreID();
-        $familyID = $chore->getFamilyID();
+        $groupID = $chore->getgroupID();
         $deadline = $chore->getDeadline();
 
         $statement->bindParam(':choreID',$choreID, PDO::PARAM_INT);
         $statement->bindParam(':user',$user, PDO::PARAM_STR);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
         $statement->bindParam(':deadline',$deadline, PDO::PARAM_STR);
 
         $statement->execute();
     }
 
-    public function editChore($choreID, $choreName, $choreDescription, $chorePoints){
+    public function editChore($choreID, $choreName, $choreDescription, $chorePoints, $groupID){
 
-        $sql = "call EditChore(:choreID, :choreName, :choreDescription, :points)";
+        $sql = "call EditChore(:choreID, :choreName, :choreDescription, :points, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
@@ -119,18 +123,19 @@ class DBConnection {
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription',$choreDescription, PDO::PARAM_STR);
         $statement->bindParam(':points',$chorePoints, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
 
     public function addChore($chore){
-        $sql = "call AddChore(:choreName, :choreDescription, :points, :penalty, :familyID)";
+        $sql = "call AddChore(:choreName, :choreDescription, :points, :penalty, :groupID)";
 
         $choreName = $chore->getChoreName();
         $choreDescription = $chore->getChoreDescription();
         $chorePoints = $chore->getPoints();
         $chorePenalty = $chore->getPenalty();
-        $familyID = $chore->getFamilyID();
+        $groupID = $chore->getgroupID();
 
         $statement = $this->connection->prepare($sql);
 
@@ -138,26 +143,93 @@ class DBConnection {
         $statement->bindParam(':choreDescription', $choreDescription, PDO::PARAM_STR);
         $statement->bindParam(':points', $chorePoints, PDO::PARAM_INT);
         $statement->bindParam(':penalty', $chorePenalty, PDO::PARAM_INT);
-        $statement->bindParam(':familyID', $familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID', $groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
 
-    public function deleteChore($choreID){
-        $sql = "call DeleteChore(:choreID)";
+    public function deleteChore($choreID, $groupID){
+        $sql = "call DeleteChore(:choreID, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':choreID',$choreID, PDO::PARAM_STR);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
 
-    public function getUsers($familyID){
-        $sql = "SELECT * FROM user WHERE familyID = ? ORDER BY points DESC";
+    public function completeChore($assignedChoreID, $groupID){
+        $sql = "call CompleteChore(:userChoreID, :groupID)";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function reassignChore($assignedChoreID, $user, $groupID){
+        $sql = "call ReassignChore(:userChoreID, :user, :groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':user',$user, PDO::PARAM_STR);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getUserChore($groupID, $assignedChoreID){
+        $sql = "call GetUserChore(:groupID, :assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function getPenalty($assignedChoreID){
+        $sql = "call GetPenalty(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function incompleteChore($assignedChoreID, $groupID){
+        $sql = "call IncompleteChore(:assignedChoreID, :groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getChoreValue($assignedChoreID){
+        $sql = "call GetChoreValue(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+    //endregion
+
+    //region Users
+    public function getUsers($groupID){
+        $sql = "SELECT * FROM user WHERE groupID = ? ORDER BY points DESC";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $users = [];
@@ -165,14 +237,14 @@ class DBConnection {
         if($resultSet){
             foreach($resultSet as $result){
                 $user = new User($result['userID'], $result['firstName'], $result['lastName'], $result['type'],
-                    $result['email'], $result['password'], $result['points'], $result['choresCompleted'], $result['familyID']);
+                    $result['email'], $result['password'], $result['points'], $result['choresCompleted'], $result['groupID']);
                 $users[] = $user;
             }
         }
         return $users;
     }
 
-    public function addUser($user){
+    public function addUser($user, $groupName){
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
         $type = $user->getAccountType();
@@ -180,20 +252,21 @@ class DBConnection {
         $password = $user->getPassword();
         $points = $user->getPoints();
         $choresCompleted = $user->getChoresCompleted();
-        $familyID = $user->getFamilyID();
+        $groupID = $user->getgroupID();
 
-        $sql = "call AddUser(:firstName, :lastName, :type, :email, :password, :points, :choresCompleted, :familyID)";
+        $sql = "call AddUser(:firstName, :lastName, :groupName, :type, :email, :password, :points, :choresCompleted, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
         $statement->bindParam(':firstName',$firstName, PDO::PARAM_STR);
         $statement->bindParam(':lastName',$lastName, PDO::PARAM_STR);
+        $statement->bindParam(':groupName', $groupName, PDO::PARAM_STR);
         $statement->bindParam(':type',$type, PDO::PARAM_INT);
         $statement->bindParam(':email',$email, PDO::PARAM_STR);
         $statement->bindParam(':password',$password, PDO::PARAM_STR);
         $statement->bindParam(':points',$points, PDO::PARAM_INT);
         $statement->bindParam(':choresCompleted',$choresCompleted, PDO::PARAM_INT);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
@@ -212,34 +285,13 @@ class DBConnection {
     }
 
     public function getPassword($email){
-        $sql = "SELECT password, userID, familyID, type, points FROM user WHERE email = ?";
+        $sql = "SELECT password, userID, groupID, type, points FROM user WHERE email = ?";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([$email]);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultSet;
-    }
-
-    public function completeChore($assignedChoreID, $familyID){
-        $sql = "call CompleteChore(:userChoreID, :familyID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function reassignChore($assignedChoreID, $user, $familyID){
-        $sql = "call ReassignChore(:userChoreID, :user, :familyID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':user',$user, PDO::PARAM_STR);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
-
-        $statement->execute();
     }
 
     public function getUserDetails($userID){
@@ -278,10 +330,61 @@ class DBConnection {
         $statement->execute();
     }
 
-    public function getRewards($familyID){
-        $sql = "SELECT * FROM rewards WHERE familyID = ?";
+    public function getUserPoints($assignedChoreID){
+        $sql = "call GetUserPoints(:assignedChoreID)";
+
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function updatePoints($assignedChoreID, $points){
+        $sql = "call UpdatePoints(:assignedChoreID, :points)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':points',$points, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function checkEmail($email){
+        $sql = "SELECT email FROM user WHERE email = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$email]);
+
+        return $statement->fetchColumn();
+    }
+
+    public function deleteAccount($userID, $groupID){
+        $sql = "DELETE FROM user WHERE groupID = ? AND userID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID, $userID]);
+
+        $sql = "UPDATE userGroup SET numMembers = numMembers - 1 WHERE groupID = ?";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
+    }
+
+    public function disbandGroup($groupID){
+        $sql = "call DisbandGroup(:groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+        $statement->execute();
+    }
+    //endregion
+
+    //region Rewards
+    public function getRewards($groupID){
+        $sql = "SELECT * FROM rewards WHERE groupID = ?";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -295,29 +398,29 @@ class DBConnection {
         return $rewards;
     }
 
-    public function requestReward($rewardID, $familyID, $userID){
-        $sql = "call RequestReward(:rewardID, :familyID, :userID)";
+    public function requestReward($rewardID, $groupID, $userID){
+        $sql = "call RequestReward(:rewardID, :groupID, :userID)";
 
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':rewardID',$rewardID, PDO::PARAM_INT);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
         $statement->bindParam(':userID',$userID, PDO::PARAM_INT);
 
         $statement->execute();
     }
 
-    public function getRewardRequests($familyID){
-        $sql = "SELECT * FROM reward_request WHERE familyID = ? AND requestStatus = 'PROCESSING'";
+    public function getRewardRequests($groupID){
+        $sql = "SELECT * FROM reward_request WHERE groupID = ? AND requestStatus = 'PROCESSING'";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->execute([$groupID]);
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $requests = [];
 
         foreach($results as $request){
-            $newRequest = new RewardRequest($request['requestID'], $request['rewardID'], $request['familyID'], $request['userID'], $request['requestStatus'], $request['date']);
+            $newRequest = new RewardRequest($request['requestID'], $request['rewardID'], $request['groupID'], $request['userID'], $request['requestStatus'], $request['date']);
             $requests[] = $newRequest;
         }
 
@@ -340,55 +443,57 @@ class DBConnection {
         $statement->execute([$requestID]);
     }
 
-    public function getPastRewards($familyID, $userID){
-        $sql = "SELECT * FROM reward_request WHERE familyID = ? AND userID = ?";
+    public function getPastRewards($groupID, $userID){
+        $sql = "SELECT * FROM reward_request WHERE groupID = ? AND userID = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID, $userID]);
+        $statement->execute([$groupID, $userID]);
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $requests = [];
 
         foreach($results as $request){
-            $newRequest = new RewardRequest($request['requestID'], $request['rewardID'], $request['familyID'], $request['userID'], $request['requestStatus'], $request['date']);
+            $newRequest = new RewardRequest($request['requestID'], $request['rewardID'], $request['groupID'], $request['userID'], $request['requestStatus'], $request['date']);
             $requests[] = $newRequest;
         }
 
         return $requests;
     }
 
-    public function addNewReward($rewardName, $pointsCost, $familyID){
-        $sql = "call AddReward(:rewardName, :pointsCost, :familyID)";
+    public function addNewReward($rewardName, $pointsCost, $groupID){
+        $sql = "call AddReward(:rewardName, :pointsCost, :groupID)";
 
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':rewardName',$rewardName, PDO::PARAM_STR);
         $statement->bindParam(':pointsCost',$pointsCost, PDO::PARAM_INT);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
+    //endregion
 
-    public function getEvents($familyID){
-        $sql = "SELECT * FROM event WHERE familyID = ?";
+    //region Calendar
+    public function getEvents($groupID){
+        $sql = "SELECT * FROM event WHERE groupID = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$familyID]);
+        $statement->execute([$groupID]);
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $events = [];
         foreach($results as $event){
             $newEvent = new CalendarEvent($event['eventID'], $event['eventName'], $event['eventDescription'],
-                $event['eventType'], $event['eventDate'], $event['familyID'], $event['assignedChoreID']);
+                $event['eventType'], $event['eventDate'], $event['groupID'], $event['assignedChoreID']);
             $events[] = $newEvent;
         }
 
         return $events;
     }
 
-    public function addEvent($eventName, $eventDescription, $eventDate, $familyID){
-        $sql = "call AddEvent(:eventName, :eventDescription, :eventType, :eventDate, :familyID)";
+    public function addEvent($eventName, $eventDescription, $eventDate, $groupID){
+        $sql = "call AddEvent(:eventName, :eventDescription, :eventType, :eventDate, :groupID)";
         $eventType = 'EVENT';
 
         $statement = $this->connection->prepare($sql);
@@ -396,71 +501,9 @@ class DBConnection {
         $statement->bindParam(':eventDescription',$eventDescription, PDO::PARAM_STR);
         $statement->bindParam(':eventType',$eventType, PDO::PARAM_STR);
         $statement->bindParam(':eventDate',$eventDate, PDO::PARAM_STR);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
     }
-
-    public function getUserChore($familyID, $assignedChoreID){
-        $sql = "call GetUserChore(:familyID, :assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function getPenalty($assignedChoreID){
-        $sql = "call GetPenalty(:assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function getUserPoints($assignedChoreID){
-        $sql = "call GetUserPoints(:assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function updatePoints($assignedChoreID, $points){
-        $sql = "call UpdatePoints(:assignedChoreID, :points)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':points',$points, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function incompleteChore($assignedChoreID, $familyID){
-        $sql = "call IncompleteChore(:assignedChoreID, :familyID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':familyID',$familyID, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function checkEmail($email){
-        $sql = "SELECT email FROM user WHERE email = ?";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([$email]);
-
-        return $statement->fetchColumn();
-    }
+    //endregion
 }

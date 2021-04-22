@@ -1,9 +1,9 @@
 <?php include_once '../../model/DBConnection.php';
 
-if(isset($_POST['familyID'])){
+if(isset($_POST['groupID'])){
     $db = new DBConnection();
 
-    $data = $db->getEvents($_POST['familyID']);
+    $data = $db->getEvents($_POST['groupID']);
 
     $events = [];
 
@@ -13,7 +13,7 @@ if(isset($_POST['familyID'])){
         $eventDescription = $item->getEventDescription();
         $eventType = $item->getEventType();
         $eventDate = $item->getEventDate();
-        $familyID = $item->getFamilyID();
+        $groupID = $item->getGroupID();
         $assignedChoreID = $item->getAssignedChoreID();
 
         $events[] = array(
@@ -22,7 +22,7 @@ if(isset($_POST['familyID'])){
             "eventDescription" => $eventDescription,
             "eventType" => $eventType,
             "eventDate" => $eventDate,
-            "familyID" => $familyID,
+            "groupID" => $groupID,
             "assignedChoreID" => $assignedChoreID);
     }
 

@@ -1,4 +1,7 @@
-<?php include_once $_SERVER['DOCUMENT_ROOT']."/BackToWork/src/model/DBConnection.php";?>
+<?php
+//Main Database Connection File
+include_once $_SERVER['DOCUMENT_ROOT']."/BackToWork/src/model/DBConnection.php";
+?>
 
 <html lang="en">
     <head>
@@ -20,51 +23,42 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <!-- Font Families -->
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
 
         <!-- Custom CSS Files -->
         <link href="/BackToWork/assets/css/navbar.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/header.css" type="text/css" rel="stylesheet">
-        <link href="/BackToWork/assets/css/family.css" type="text/css" rel="stylesheet">
+        <link href="/BackToWork/assets/css/myGroup.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/account.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/login.css" type="text/css" rel="stylesheet">
 
+        <!-- Custom JS Code -->
         <script src="/BackToWork/assets/js/getCookie.js"></script>
-        <script async src="/BackToWork/assets/js/checkLogin.js"></script>
-        <script src="/BackToWork/assets/js/logout.js"></script>
+        <script src="/BackToWork/assets/js/account/checkLogin.js"></script>
+        <script src="/BackToWork/assets/js/account/logout.js"></script>
     </head>
     <body>
-
-        <ul>
-            <li id><a class="active" href="/BackToWork/public/myGroup.php" id="linkFamily">Back To Work</a></li>
+        <!-- Navbar -->
+        <ul id="header">
+            <li id><a class="active" href="/BackToWork/public/group/myGroup.php" id="linkFamily">My Group</a></li>
             <li id><a href="/BackToWork/public/chores/chores.php" id="linkChores">Chores</a></li>
-            <li id><a href="/BackToWork/public/calendar.php" id="linkCalendar">Calendar</a></li>
-            <li id><a href="/BackToWork/public/rewards.php" id="linkRewards">Rewards</a></li>
-            <li id><a href="/BackToWork/public/account.php" id="linkAccount">My Account</a></li>
-            <li id><a href="/BackToWork/public/login/login.php" id="logout">Logout</a></li>
+            <li id><a href="/BackToWork/public/calendar/calendar.php" id="linkCalendar">Calendar</a></li>
+            <li id><a href="/BackToWork/public/rewards/rewards.php" id="linkRewards">Rewards</a></li>
+            <li id><a href="/BackToWork/public/account/userAccount/account.php" id="linkAccount">My Account</a></li>
+            <li id><a href="/BackToWork/public/account/login/login.php" id="logout">Logout</a></li>
         </ul>
 
+        <!-- Main Banner -->
         <div class="container-fluid" style="background-color: #DAE8FC;">
             <div class="container-fluid header">
-                <a class="headerLink" href="/BackToWork/public/myGroup.php" id="linkMain"><h1>Back To Work</h1></a>
+                <label class="headerLink" id="linkMain"><h1>Back To Work</h1></label>
             </div>
         </div>
 
     </body>
 </html>
-<script>
-    let page = window.location.pathname;
-
-    if(page === "/BackToWork/public/login/login.php" || page === "/BackToWork/public/registration/registration.php") {
-        $('#linkFamily').addClass("linkDisabled");
-        $('#linkChores').addClass("linkDisabled");
-        $('#linkCalendar').addClass("linkDisabled");
-        $('#linkRewards').addClass("linkDisabled");
-        $('#linkAccount').addClass("linkDisabled");
-        $('#logout').attr('hidden', true);
-        $('#linkMain').addClass("linkDisabled");
-
-    }
-</script>
+<script async src="/BackToWork/assets/js/checkPage.js"></script>
 
 

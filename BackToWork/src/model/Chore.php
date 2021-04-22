@@ -7,16 +7,16 @@ class Chore
     private $choreDescription;
     private $points;
     private $penalty;
-    private $familyID;
+    private $groupID;
 
-    public function __construct($choreID, $choreName, $choreDescription, $points, $penalty, $familyID)
+    public function __construct($choreID, $choreName, $choreDescription, $points, $penalty, $groupID)
     {
         $this->choreID = $choreID;
         $this->choreName = $choreName;
         $this->choreDescription = $choreDescription;
         $this->points = $points;
         $this->penalty = $penalty;
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 
     /** ChoreID **/
@@ -74,14 +74,14 @@ class Chore
         $this->penalty = $penalty;
     }
 
-    /** Family ID **/
-    public function getFamilyID()
+    /** Group ID **/
+    public function getGroupID()
     {
-        return $this->familyID;
+        return $this->groupID;
     }
 
-    public function setFamilyID($familyID)
+    public function setGroupID($groupID)
     {
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 }

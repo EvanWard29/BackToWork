@@ -1,9 +1,9 @@
 <?php include '../../model/DBConnection.php';
 
-if(isset($_POST['familyID'])){
+if(isset($_POST['groupID'])){
     $db = new DBConnection();
 
-    $data = $db->getAllChores($_POST['familyID']);
+    $data = $db->getAllChores($_POST['groupID']);
 
     $chores = [];
 
@@ -13,7 +13,7 @@ if(isset($_POST['familyID'])){
         $choreDescription = $item->getChoreDescription();
         $chorePoints = $item->getPoints();
         $chorePenalty = $item->getPenalty();
-        $familyID = $item->getFamilyID();
+        $groupID = $item->getGroupID();
 
         $chores[] = array(
             "choreID" => $choreID,
@@ -21,7 +21,7 @@ if(isset($_POST['familyID'])){
             "choreDescription" => $choreDescription,
             "chorePoints" => $chorePoints,
             "chorePenalty" => $chorePenalty,
-            "familyID" => $familyID
+            "groupID" => $groupID
         );
     }
 

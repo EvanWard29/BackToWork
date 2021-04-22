@@ -7,17 +7,17 @@ class CalendarEvent
     private $eventDescription;
     private $eventType;
     private $eventDate;
-    private $familyID;
+    private $groupID;
     private $assignedChoreID;
 
-    public function __construct($eventID, $eventName, $eventDescription, $eventType, $eventDate, $familyID, $assignedChoreID)
+    public function __construct($eventID, $eventName, $eventDescription, $eventType, $eventDate, $groupID, $assignedChoreID)
     {
         $this->eventID = $eventID;
         $this->eventName = $eventName;
         $this->eventDescription = $eventDescription;
         $this->eventType = $eventType;
         $this->eventDate = $eventDate;
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
         $this->assignedChoreID = $assignedChoreID;
     }
 
@@ -76,15 +76,15 @@ class CalendarEvent
         $this->eventDate = $eventDate;
     }
 
-    /** Family ID **/
-    public function getFamilyID()
+    /** Group ID **/
+    public function getGroupID()
     {
-        return $this->familyID;
+        return $this->groupID;
     }
 
-    public function setFamilyID($familyID)
+    public function setGroupID($groupID)
     {
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 
     /** Assigned Chore ID **/

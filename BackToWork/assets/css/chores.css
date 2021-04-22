@@ -1,0 +1,10 @@
+/* Styles For Chores Page */
+.newChoreArea{
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 500px){
+    .smallChores{
+        margin-top: 10px;
+    }
+}

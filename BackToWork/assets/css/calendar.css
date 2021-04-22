@@ -1,3 +1,4 @@
+/* Styles For Calendar Page */
 .calendarHeader{
     background-color: #6399ca;
     border: black solid;
@@ -45,4 +46,10 @@
 
 div.clear{
     clear:both;
+}
+
+@media only screen and (max-width: 500px){
+    .list-group-item{
+        padding: 10px;
+    }
 }

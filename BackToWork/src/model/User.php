@@ -10,9 +10,9 @@ class User
     private $password;
     private $points;
     private $choresCompleted;
-    private $familyID;
+    private $groupID;
 
-    public function __construct($userID, $firstName, $lastName, $type, $email, $password, $points, $choresCompleted, $familyID)
+    public function __construct($userID, $firstName, $lastName, $type, $email, $password, $points, $choresCompleted, $groupID)
     {
         $this->userID = $userID;
         $this->firstName = $firstName;
@@ -22,7 +22,7 @@ class User
         $this->password = $password;
         $this->points = $points;
         $this->choresCompleted = $choresCompleted;
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 
     /** User ID **/
@@ -113,15 +113,15 @@ class User
         $this->choresCompleted = $choresCompleted;
     }
 
-    /** Family ID **/
-    public function getFamilyID()
+    /** Group ID **/
+    public function getGroupID()
     {
-        return $this->familyID;
+        return $this->groupID;
     }
 
-    public function setFamilyID($familyID)
+    public function setGroupID($groupID)
     {
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 
 

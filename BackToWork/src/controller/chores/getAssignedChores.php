@@ -1,8 +1,8 @@
-<?php include '../../model/DBConnection.php'; //include "../controller/Chore.php";
+<?php include '../../model/DBConnection.php';
 
 $db = new DBConnection();
 
-$data = $db->getAssignedChores($_POST['familyID']);
+$data = $db->getAssignedChores($_POST['groupID']);
 
 $assignedChores = [];
 

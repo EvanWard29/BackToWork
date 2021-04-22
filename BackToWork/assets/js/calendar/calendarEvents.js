@@ -1,23 +1,26 @@
 $(async function(){
     let events = null;
 
-    //Get All Calendar Events
+    //Get All Calendar Events For User's Group
     await $.post("/BackToWork/src/controller/calendar/getEvents.php", {
-        familyID: getCookie('familyID')
+        groupID: getCookie('groupID')
     }, function(response){
         events = JSON.parse(response);
     })
 
+    /** Calendar Events **/
     $('li').click(async function(){
        if($(this).attr('id') !== ""){
-           //User has clicked on a date
-
+           //User has clicked on a date in the calendar
            let date = $(this).attr('id');
            $('#lblEventDate').html(date);
 
+           //Go through all events
            for(let i = 0; i < events.length; i++){
+               //If the selected date has events already, display their details.
                if(events[i].eventDate.split(' ')[0] === $(this).attr('id')){
                    if(events[i].eventType === "CHORE"){
+                       //Event is an Assigned Chore - Get details
                        let choreName = events[i].eventName;
                        let choreDescription = events[i].eventDescription;
 
@@ -26,8 +29,9 @@ $(async function(){
                        let assignedChoreID = events[i].assignedChoreID;
                        let assignedTo = null;
 
+                       //Get name of assigned user
                        await $.post("/BackToWork/src/controller/calendar/getUserChore.php",{
-                           familyID: getCookie('familyID'),
+                           groupID: getCookie('groupID'),
                            assignedChoreID: assignedChoreID
                        }, function(response){
                             assignedTo = response;
@@ -37,6 +41,7 @@ $(async function(){
                        //Add CHORE to chores table
                        $('#chores').append("<tr><td>"+ choreName +"</td><td>"+ choreDescription +"</td><td>"+ deadline +"</td><td>"+ assignedTo +"</td></tr>");
                    }else{
+                       //Event is a user added event.
                        let eventName = events[i].eventName;
                        let eventDescription = events[i].eventDescription;
 
@@ -46,6 +51,7 @@ $(async function(){
                }
            }
 
+           //If there are no CHORES for selected date, display a warning
            if($('#choresData').children().length === 0){
                $('#chores').attr('hidden', true);
                $('#noChores').attr('hidden', false);
@@ -54,6 +60,7 @@ $(async function(){
                $('#noChores').attr('hidden', true);
            }
 
+           //If there are no EVENTS for selected date, display a warning
            if($('#eventsData').children().length === 0){
                $('#events').attr('hidden', true);
                $('#noEvents').attr('hidden', false);
@@ -66,17 +73,7 @@ $(async function(){
        }
     });
 
-    $('#btnNewEvent').click(function(){
-        $('#viewData').attr('hidden', true);
-        $('#newEvent').attr('hidden', false);
-
-        $('#btnCancel').attr('hidden', false);
-        $('#btnClose').attr('hidden', true);
-
-        $('#btnAddEvent').attr('hidden', false);
-        $('#btnNewEvent').attr('hidden', true);
-    });
-
+    //Cancel new event and revert back to view event layout
     $('#btnCancel').click(function(){
         $('#btnClose').attr('hidden', false);
         $('#btnCancel').attr('hidden', true);
@@ -91,6 +88,7 @@ $(async function(){
         $('#invEventName').attr('hidden', true);
     });
 
+    //Tidy up modal when closed
     $('#modalCalendarEvent').on('hide.bs.modal', function(){
         $('#viewData').attr('hidden', false);
         $('#newEvent').attr('hidden', true);
@@ -107,76 +105,4 @@ $(async function(){
         $('#invEventDescription').attr('hidden', true);
         $('#invEventName').attr('hidden', true);
     });
-
-    $('#btnAddEvent').click(function(){
-        let eventName = $('#inpEventName').val();
-        let eventDescription = $('#inpEventDescription').val();
-
-        let nameErr = false;
-        let descriptionErr = false;
-
-        //Event Name
-        if(eventName === ""){
-            //Name is Empty
-            nameErr = true;
-
-            $('#invEventName').attr('hidden', false);
-        }else{
-            if(eventName.length > 45){
-                //Name has more than 45 characters
-                nameErr = true;
-
-                $('#invEventName').attr('hidden', false);
-            }else{
-                nameErr = false;
-                $('#invEventName').attr('hidden', true);
-            }
-        }
-
-        //Event Description
-        if(eventDescription === ""){
-            //Description is Empty
-            descriptionErr = true;
-
-            $('#invEventDescription').attr('hidden', false);
-        }else{
-            if(eventDescription.length > 100){
-                //Description has more than 100 characters
-                descriptionErr = true;
-
-                $('#invEventDescription').attr('hidden', false);
-            }else{
-                descriptionErr = false;
-                $('#invEventDescription').attr('hidden', true);
-            }
-        }
-
-        if(nameErr !== true && descriptionErr !== true){
-            //No Errors
-            $.post("/BackToWork/src/controller/calendar/addEvent.php", {
-                name: eventName,
-                description: eventDescription,
-                date: $('#lblEventDate').html(),
-                familyID: getCookie('familyID')
-            }, function(response){
-                location.reload();
-            });
-        }
-    });
 });
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}

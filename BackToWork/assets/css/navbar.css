@@ -1,4 +1,5 @@
-ul {
+/* Styles For The Navbar */
+#header {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,9 +13,17 @@ li {
     font-family: 'Merriweather', serif;
 }
 
-@media (max-width: 575.98px) {
+@media only screen and (max-width: 500px) {
+    #header{
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
     li{
         font-size: 12px;
+        width: 16%;
     }
 }
 

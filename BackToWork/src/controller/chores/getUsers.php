@@ -1,8 +1,8 @@
-<?php include '../../model/DBConnection.php'; //include "../controller/Chore.php";
+<?php include '../../model/DBConnection.php';
 
 $db = new DBConnection();
 
-$data = $db->getUsers($_POST['familyID']);
+$data = $db->getUsers($_POST['groupID']);
 
 $users = [];
 

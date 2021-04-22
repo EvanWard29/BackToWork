@@ -5,16 +5,16 @@ class RewardRequest
 {
     private $requestID;
     private $rewardID;
-    private $familyID;
+    private $groupID;
     private $userID;
     private $status;
     private $date;
 
-    public function __construct($requestID, $rewardID, $familyID, $userID, $status, $date)
+    public function __construct($requestID, $rewardID, $groupID, $userID, $status, $date)
     {
         $this->requestID = $requestID;
         $this->rewardID = $rewardID;
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
         $this->userID = $userID;
         $this->status = $status;
         $this->date = $date;
@@ -42,15 +42,15 @@ class RewardRequest
         $this->rewardID = $rewardID;
     }
 
-    /** Family ID **/
-    public function getFamilyID()
+    /** Group ID **/
+    public function getGroupID()
     {
-        return $this->familyID;
+        return $this->groupID;
     }
 
-    public function setFamilyID($familyID)
+    public function setGroupID($groupID)
     {
-        $this->familyID = $familyID;
+        $this->groupID = $groupID;
     }
 
     /** User ID  **/
