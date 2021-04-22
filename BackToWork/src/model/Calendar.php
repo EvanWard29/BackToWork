@@ -1,38 +1,26 @@
 <?php
 class Calendar {
+    private $dayLabels = array("Mon","Tues","Wed","Thur","Fri","Sat","Sun");
+    private $currentYear = 0;
+    private $currentMonth = 0;
+    private $currentDay = 0;
+    private $currentDate = null;
+    private $daysInMonth = 0;
+    private $naviHref = null;
 
-    /**
-     * Constructor
-     */
+    /** Constructor **/
     public function __construct(){
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
     }
 
-    /********************* PROPERTY ********************/
-    private $dayLabels = array("Mon","Tues","Wed","Thur","Fri","Sat","Sun");
 
-    private $currentYear=0;
-
-    private $currentMonth=0;
-
-    private $currentDay=0;
-
-    private $currentDate=null;
-
-    private $daysInMonth=0;
-
-    private $naviHref= null;
-
-    /********************* PUBLIC **********************/
-
-    /**
-     * print out the calendar
-     */
+    /** Methods **/
+    //Function for building and presenting the calendar
     public function show() {
         $year  = null;
-
         $month = null;
 
+        //Get Current Year
         if(null==$year&&isset($_GET['year'])){
 
             $year = $_GET['year'];
@@ -43,6 +31,7 @@ class Calendar {
 
         }
 
+        //Get Current Month
         if(null==$month&&isset($_GET['month'])){
 
             $month = $_GET['month'];
@@ -54,9 +43,9 @@ class Calendar {
         }
 
         $this->currentYear=$year;
-
         $this->currentMonth=$month;
 
+        //Get the number of days in current month
         $this->daysInMonth=$this->_daysInMonth($month,$year);
 
         $content='<div id="calendar" class="container">'.
@@ -90,12 +79,8 @@ class Calendar {
         return $content;
     }
 
-    /********************* PRIVATE **********************/
-    /**
-     * create the li element for ul
-     */
+    //Function for showing the dates of the month
     private function _showDay($cellNumber){
-
         if($this->currentDay==0){
 
             $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
@@ -134,22 +119,13 @@ class Calendar {
         }else{
             return '<li id="'.$this->currentDate.'" class="list-group-item day">'.$cellContent.'</li>';
         }
-
-        /*return '<li id="'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':$cellNumber%7==0?' end ':' ').
-            ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';*/
     }
 
-    /**
-     * create navigation
-     */
+    //Function for creating the calendar header for navigation
     private function _createNavi(){
-
         $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;
-
         $nextYear = $this->currentMonth==12?intval($this->currentYear)+1:$this->currentYear;
-
         $preMonth = $this->currentMonth==1?12:intval($this->currentMonth)-1;
-
         $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
 
         return
@@ -166,9 +142,7 @@ class Calendar {
             '</div>';
     }
 
-    /**
-     * create calendar week labels
-     */
+    //Function for creating the labels of the calendar (days)
     private function _createLabels(){
 
         $content='';
@@ -182,13 +156,8 @@ class Calendar {
         return $content;
     }
 
-
-
-    /**
-     * calculate number of weeks in a particular month
-     */
+    //Function for calculating the number of weeks in the currently selected month
     private function _weeksInMonth($month=null,$year=null){
-
         if( null==($year) ) {
             $year =  date("Y",time());
         }
@@ -201,9 +170,7 @@ class Calendar {
         $daysInMonths = $this->_daysInMonth($month,$year);
 
         $numOfweeks = ($daysInMonths%7==0?0:1) + intval($daysInMonths/7);
-
         $monthEndingDay= date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
-
         $monthStartDay = date('N',strtotime($year.'-'.$month.'-01'));
 
         if($monthEndingDay<$monthStartDay){
@@ -215,11 +182,8 @@ class Calendar {
         return $numOfweeks;
     }
 
-    /**
-     * calculate number of days in a particular month
-     */
+    //Function for calculating the number of days in the currently selected month
     private function _daysInMonth($month=null,$year=null){
-
         if(null==($year))
             $year =  date("Y",time());
 

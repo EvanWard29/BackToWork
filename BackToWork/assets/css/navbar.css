@@ -1,3 +1,4 @@
+/* Styles For The Navbar */
 #header {
     list-style-type: none;
     margin: 0;
@@ -25,20 +26,6 @@ li {
         width: 16%;
     }
 }
-
-/*@media only screen and (max-width: 600px){
-    #header{
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-    }
-
-    li{
-        font-size: 14px;
-        width: 16%;
-    }
-}*/
 
 li a {
     display: block;

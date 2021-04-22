@@ -15,6 +15,7 @@ class DBConnection {
     private $dataSourceName;
     private $connection;
 
+    /** Constructor */
     public function __construct(PDO $connection = null) {
         $this->connection = $connection;
         try {
@@ -32,6 +33,9 @@ class DBConnection {
         }
     }
 
+    /** Methods **/
+
+    //region Chores
     public function getAllChores($groupID){
         $sql = "SELECT * FROM chore WHERE groupID = ?";
 
@@ -53,10 +57,10 @@ class DBConnection {
     }
 
     public function getAssignedChores($groupID){
-        $sql = "SELECT * FROM assigned_chore WHERE groupID = ?";
+        $sql = "SELECT * FROM assigned_chore WHERE groupID = ? AND status = ?";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$groupID]);
+        $statement->execute([$groupID, 'INCOMPLETE']);
         $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $assignedChores = [];
@@ -155,6 +159,72 @@ class DBConnection {
         $statement->execute();
     }
 
+    public function completeChore($assignedChoreID, $groupID){
+        $sql = "call CompleteChore(:userChoreID, :groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function reassignChore($assignedChoreID, $user, $groupID){
+        $sql = "call ReassignChore(:userChoreID, :user, :groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':user',$user, PDO::PARAM_STR);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getUserChore($groupID, $assignedChoreID){
+        $sql = "call GetUserChore(:groupID, :assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function getPenalty($assignedChoreID){
+        $sql = "call GetPenalty(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function incompleteChore($assignedChoreID, $groupID){
+        $sql = "call IncompleteChore(:assignedChoreID, :groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getChoreValue($assignedChoreID){
+        $sql = "call GetChoreValue(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+    //endregion
+
+    //region Users
     public function getUsers($groupID){
         $sql = "SELECT * FROM user WHERE groupID = ? ORDER BY points DESC";
 
@@ -224,27 +294,6 @@ class DBConnection {
         return $resultSet;
     }
 
-    public function completeChore($assignedChoreID, $groupID){
-        $sql = "call CompleteChore(:userChoreID, :groupID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function reassignChore($assignedChoreID, $user, $groupID){
-        $sql = "call ReassignChore(:userChoreID, :user, :groupID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':userChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':user',$user, PDO::PARAM_STR);
-        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
     public function getUserDetails($userID){
         $sql = "SELECT firstName, lastName, email, points, choresCompleted FROM user WHERE userID = ?";
 
@@ -281,6 +330,57 @@ class DBConnection {
         $statement->execute();
     }
 
+    public function getUserPoints($assignedChoreID){
+        $sql = "call GetUserPoints(:assignedChoreID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public function updatePoints($assignedChoreID, $points){
+        $sql = "call UpdatePoints(:assignedChoreID, :points)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
+        $statement->bindParam(':points',$points, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function checkEmail($email){
+        $sql = "SELECT email FROM user WHERE email = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$email]);
+
+        return $statement->fetchColumn();
+    }
+
+    public function deleteAccount($userID, $groupID){
+        $sql = "DELETE FROM user WHERE groupID = ? AND userID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID, $userID]);
+
+        $sql = "UPDATE userGroup SET numMembers = numMembers - 1 WHERE groupID = ?";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
+    }
+
+    public function disbandGroup($groupID){
+        $sql = "call DisbandGroup(:groupID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+        $statement->execute();
+    }
+    //endregion
+
+    //region Rewards
     public function getRewards($groupID){
         $sql = "SELECT * FROM rewards WHERE groupID = ?";
         $statement = $this->connection->prepare($sql);
@@ -371,7 +471,9 @@ class DBConnection {
 
         $statement->execute();
     }
+    //endregion
 
+    //region Calendar
     public function getEvents($groupID){
         $sql = "SELECT * FROM event WHERE groupID = ?";
 
@@ -403,96 +505,5 @@ class DBConnection {
 
         $statement->execute();
     }
-
-    public function getUserChore($groupID, $assignedChoreID){
-        $sql = "call GetUserChore(:groupID, :assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function getPenalty($assignedChoreID){
-        $sql = "call GetPenalty(:assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function getUserPoints($assignedChoreID){
-        $sql = "call GetUserPoints(:assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function updatePoints($assignedChoreID, $points){
-        $sql = "call UpdatePoints(:assignedChoreID, :points)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':points',$points, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function incompleteChore($assignedChoreID, $groupID){
-        $sql = "call IncompleteChore(:assignedChoreID, :groupID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
-
-        $statement->execute();
-    }
-
-    public function checkEmail($email){
-        $sql = "SELECT email FROM user WHERE email = ?";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([$email]);
-
-        return $statement->fetchColumn();
-    }
-
-    public function getChoreValue($assignedChoreID){
-        $sql = "call GetChoreValue(:assignedChoreID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':assignedChoreID',$assignedChoreID, PDO::PARAM_INT);
-        $statement->execute();
-
-        return $statement->fetchColumn();
-    }
-
-    public function deleteAccount($userID, $groupID){
-        $sql = "DELETE FROM user WHERE groupID = ? AND userID = ?";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([$groupID, $userID]);
-
-        $sql = "UPDATE userGroup SET numMembers = numMembers - 1 WHERE groupID = ?";
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([$groupID]);
-    }
-
-    public function disbandGroup($groupID){
-        $sql = "call DisbandGroup(:groupID)";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
-        $statement->execute();
-    }
+    //endregion
 }

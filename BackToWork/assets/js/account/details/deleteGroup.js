@@ -1,4 +1,5 @@
 $(function(){
+    //Open & Close Modal When Buttons Clicked
     $('#btnDeleteGroup').click(function(){
         $('#modalDisbandGroup').modal('show');
     });
@@ -7,12 +8,15 @@ $(function(){
         $('#modalDisbandGroup').modal('hide');
     });
 
+    //Modal Confirm Disband
     $('#btnDisbandGroup').click(function(){
         $('#modalDisbandGroup').modal('hide');
         $('#modalConfirmDisband').modal('show');
     });
 
+    /** Disband Group **/
     $('#btnConfirmDisband').click(function(){
+        //Delete all data relating to group and redirect to login
         $.post("/BackToWork/src/controller/account/disbandGroup.php",{
             groupID: getCookie('groupID')
         }, function(response){

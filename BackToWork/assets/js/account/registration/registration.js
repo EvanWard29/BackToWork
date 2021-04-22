@@ -1,4 +1,5 @@
 $(function(){
+    /** Registration **/
     $('#btnRegister').click(async function(){
         let firstErr = false;
         let lastErr = false;
@@ -17,6 +18,7 @@ $(function(){
 
         let type = $('#inpType').val();
 
+        //Perform validation techniques on user inputs
         if(firstName === ""){
             //First Name Field Empty
             $('#inpFirstName').addClass("is-invalid");
@@ -61,6 +63,7 @@ $(function(){
             }
         }
 
+        //If current page is registration page
         if(location.pathname !== "/BackToWork/public/group/myGroup.php"){
             if(groupName === ""){
                 //Group Name empty
@@ -108,7 +111,7 @@ $(function(){
 
                     emailErr = true;
                 }else{
-                    //Check if Email already exists
+                    //Check if Email already exists in DB
                     await $.post("/BackToWork/src/controller/account/registration/checkEmail.php",{
                         email: email
                     }, function(response){
@@ -188,16 +191,19 @@ $(function(){
             typeErr = false;
         }
 
+        //If all checks pass - save new user in DB
         if(firstErr !== true && lastErr !== true && groupErr !== true && emailErr !== true && passwordErr !== true && typeErr !== true){
             let groupID = getCookie('groupID');
 
             if(groupID === ""){
+                //If current page is registration page / adding new user to new group
                 groupID = 0;
             }else{
+                //If current page is My Group page / adding new user to existing group
                 groupName = 'null';
             }
 
-            //Validation Complete
+            //Send data to server and redirect to login or reload
             password = password.toString();
             $.post("/BackToWork/src/controller/account/registration/newMember.php", {
                 firstName: firstName,
@@ -226,6 +232,7 @@ $(function(){
         }
     });
 
+    //Tidy modal when closed
     $('#modalNewMember').on('hide.bs.modal', function(){
         $('#invType').attr('hidden', true);
     });

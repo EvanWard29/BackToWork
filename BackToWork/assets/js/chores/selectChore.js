@@ -31,27 +31,7 @@ $(function(){
         }
     );
 
-    //Tidy modal when closed
-    $('#modalEditChore').on('hide.bs.modal', function(){
-        $('#editChoreName').val("").attr('readonly', true).removeClass('is-invalid');
-        $('#editChoreDescription').val("").attr('readonly', true).removeClass('is-invalid');
-        $('#editChorePoints').val("").attr('readonly', true).removeClass('is-invalid');
-
-        $('#invEditChoreName').attr('hidden', true);
-        $('#invEditChoreDescription').attr('hidden', true);
-        $('#invEditChorePoints').attr('hidden', true);
-
-        $('#assignChore').val("Select User").attr('disabled', false);
-
-        $('#btnSaveChore').attr('hidden', true);
-        $('#btnEditChore').css('display', 'block');
-
-        $('#choreDeadline').val(new Date().toString()).attr('disabled', false);
-
-        $('#btnDeleteChore').attr('hidden', true);
-    })
-
-    //User has selected an assigned or unassigned chore to view the details of
+    /** Select Chore **/
     $("td").click(function(){
         //Get ID and type of selected item
         let suffix = this.id;
@@ -70,14 +50,6 @@ $(function(){
 
     });
 
-    //Tidy up modal when closed
-    $('#btnCloseChore').click(function(){
-        $('#assignedChoreName').val("");
-        $('#assignedChoreDescription').val("");
-        $('#assignedChoreUser').val("");
-        $('#assignedChoreStatus').val("");
-    });
-
     //Switch to Edit Chore mode
     $('#btnEditChore').click(function(){
         $('#editChoreName').attr('readonly', false);
@@ -92,13 +64,42 @@ $(function(){
 
         $('#btnDeleteChore').attr('hidden', false);
     });
+
+    //Tidy up modals when closed
+    $('#btnCloseChore').click(function(){
+        $('#assignedChoreName').val("");
+        $('#assignedChoreDescription').val("");
+        $('#assignedChoreUser').val("");
+        $('#assignedChoreStatus').val("");
+    });
+
+
+    $('#modalEditChore').on('hide.bs.modal', function(){
+        $('#editChoreName').val("").attr('readonly', true).removeClass('is-invalid');
+        $('#editChoreDescription').val("").attr('readonly', true).removeClass('is-invalid');
+        $('#editChorePoints').val("").attr('readonly', true).removeClass('is-invalid');
+
+        $('#invEditChoreName').attr('hidden', true);
+        $('#invEditChoreDescription').attr('hidden', true);
+        $('#invEditChorePoints').attr('hidden', true);
+
+        $('#assignChore').val("Select User").attr('disabled', false);
+
+        $('#btnSaveChore').attr('hidden', true);
+        $('#btnEditChore').css('display', 'block');
+
+        $('#choreDeadline').val(new Date().toString()).attr('disabled', false);
+
+        $('#btnDeleteChore').attr('hidden', true);
+    })
 });
 
+//Function for getting the details of the selected Unassigned Chore
 function getChoreDetails(choreID){
-    //Go through the group's chore and present the details of selected chore
     for(let i = 0; i < chores.length; i++){
         let id = chores[i].choreID;
         if(choreID === id){
+            //Present details of selected chore
             let name = chores[i].choreName;
             let description = chores[i].choreDescription;
             let points = chores[i].chorePoints;
@@ -114,20 +115,22 @@ function getChoreDetails(choreID){
     }
 }
 
+//Function for getting the details of the selected Assigned Chore
 function getAssignedChores(assignedChoreID){
-    //Go through the group's assigned chores and present selected assigned chore's details
     for(let i = 0; i < assignedChores.length; i++){
         if(assignedChoreID === assignedChores[i].assignedChoreID){
+            //Get chore details of selected assigned chore
             for(let j = 0; j < chores.length; j++){
                 if(chores[j].choreID === assignedChores[i].choreID){
+                    //Present assigned chore details
                     $('#assignedChoreID').html(assignedChoreID);
                     $('#assignedChoreName').val(chores[j].choreName);
                     $('#assignedChoreDescription').val(chores[j].choreDescription);
                     $('#assignedChoreDeadline').val(assignedChores[i].deadline)
                     $('#assignedChoreStatus').val(assignedChores[i].status);
 
-                    //Function to get the name of the assigned user
                     getUser(assignedChores[i].userID);
+
                     break;
                 }
             }
@@ -136,17 +139,12 @@ function getAssignedChores(assignedChoreID){
     }
 }
 
+//Function for getting the name of the assigned user
 function getUser(userID){
-    //Go through group's users and present assigned user's name
     for(let i = 0; i < users.length; i++){
         if(userID === users[i].userID){
+            //Present name of assigned user
             $('#assignedChoreUser').val(users[i].userName);
-
-            if($('#assignedChoreStatus').val() !== "COMPLETE"){
-                $('#btnComplete').attr('hidden', false);
-            }else{
-                $('#btnComplete').attr('hidden', true);
-            }
             break;
         }
     }

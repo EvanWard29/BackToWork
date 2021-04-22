@@ -1,4 +1,5 @@
 $(function(){
+    /** Login **/
    $('#btnLogin').click(async function(){
        let emailErr = false;
        let passwordErr = false;
@@ -28,7 +29,7 @@ $(function(){
            }
        }
 
-       //Check passwords match stored password in DB
+       //Verify passwords match stored password in DB
        if(CryptoJS.AES.decrypt(password, "CHEESEBURGER").toString(CryptoJS.enc.Utf8) === ""){
            //Email is blank
            passwordErr = true;

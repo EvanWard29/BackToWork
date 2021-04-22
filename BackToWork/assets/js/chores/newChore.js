@@ -1,27 +1,12 @@
 $(function (){
-   //Tidy up modal when closed
-   $('#modalNewChore').on('hide.bs.modal', function(){
-      $("#inpChoreName").val("");
-      $("#inpChoreDescription").val("");
-      $("#inpChorePoints").val("");
-
-      $('#inpChoreName').removeClass('is-invalid');
-      $('#invChoreName').attr('hidden', true);
-
-      $('#inpChoreDescription').removeClass('is-invalid');
-      $('#invChoreDescription').attr('hidden', true);
-
-      $('#inpChorePoints').removeClass('is-invalid');
-      $('#invChorePoints').attr('hidden', true);
-   });
-
-   //Function for adding new chore to DB
+   /** New Chore **/
    $("#btnAddChore").click(function(){
       let nameErr = false;
       let descriptionErr = false;
       let pointsErr = false;
       let penaltyErr = false;
 
+      //Get details of new chore
       let choreName = $("#inpChoreName").val();
       let choreDescription = $("#inpChoreDescription").val();
       let chorePoints = $("#inpChorePoints").val();
@@ -130,5 +115,21 @@ $(function (){
             location.reload();
          });
       }
+   });
+
+   //Tidy up modal when closed
+   $('#modalNewChore').on('hide.bs.modal', function(){
+      $("#inpChoreName").val("");
+      $("#inpChoreDescription").val("");
+      $("#inpChorePoints").val("");
+
+      $('#inpChoreName').removeClass('is-invalid');
+      $('#invChoreName').attr('hidden', true);
+
+      $('#inpChoreDescription').removeClass('is-invalid');
+      $('#invChoreDescription').attr('hidden', true);
+
+      $('#inpChorePoints').removeClass('is-invalid');
+      $('#invChorePoints').attr('hidden', true);
    });
 });

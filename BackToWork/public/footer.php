@@ -1,6 +1,7 @@
 <script src="/BackToWork/assets/js/cookiePopup.js"></script>
 <link type="text/css" rel="stylesheet" href="/BackToWork/assets/css/cookiePopup.css">
 
+<!-- Cookie Popup -->
 <div id="cookieBarBox">
     <h5>Cookie Consent</h5>
     <div class="row">

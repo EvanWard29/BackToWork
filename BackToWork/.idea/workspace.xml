@@ -20,30 +20,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f908f9c5-12cb-4a36-a501-655df63e9d9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/chores.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/rewards.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/account/details/deleteGroup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/group/deleteMember.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/account/userAccount/modalDisbandGroup.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/account/details/deleteAccount.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/account/disbandGroup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/account/details/changeEmail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/account/details/changePassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/calendar/newEvent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/checkPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/group/selectUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/group/updateUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/rewards/newReward.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/rewards/redeemReward.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/rewards/rewardRequests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangeEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangePassword.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/account/userAccount/modalPastRewards.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/calendar/modalCalendarEvent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/assignedChores.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/availableChores.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/modalAssignedChore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/modalEditChore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/modalNewChore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/chores/myChores.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/group/modalAddMember.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/group/modalConfirmDelete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/group/modalViewMember.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/rewards/modalNewReward.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/rewards/modalRewardRequests.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/account.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/calendar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/chores.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/chores.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/cookiePopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/cookiePopup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/myGroup.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/myGroup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/rewards.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/rewards.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/checkLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/checkLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/details/accountOptions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/details/deleteGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/details/deleteGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/login/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/account/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/logout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/account/registration/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/registration/registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/group/myGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/group/myGroup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/calendar/calendarEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/calendar/calendarEvents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/assignChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/assignChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/choreDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/selectChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/completeChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/completeChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/newChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/newChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/saveChoreDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/editChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cookiePopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cookiePopup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/getCookie.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/getCookie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/group/deleteMember.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/group/deleteMember.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/group/myGroup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/pastRewards.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/rewards.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/rewards/rewards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/login/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/account/registration/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/registration/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/userAccount/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/calendar/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/calendar/calendar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/chores/chores.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/chores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/group/myGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/myGroup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/rewards/rewards.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/rewards/rewards.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Calendar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
     </list>
@@ -80,22 +118,22 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/account/userAccount" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/js/account/details/options" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\css" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\model" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\account\details\options" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\public\account\userAccount" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\group" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\rewards" />
       <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\js\rewards" />
-      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller\account\details" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\assets\css" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\model" />
+      <recent name="C:\Users\LoL-1\OneDrive - University of Plymouth\Year 3\COMP3000\BackToWork\src\controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -154,7 +192,8 @@
       <workItem from="1618490469607" duration="15494000" />
       <workItem from="1618583462258" duration="15731000" />
       <workItem from="1618918820499" duration="10914000" />
-      <workItem from="1619007578994" duration="18166000" />
+      <workItem from="1619007578994" duration="19726000" />
+      <workItem from="1619090926558" duration="14687000" />
     </task>
     <servers />
   </component>
@@ -193,22 +232,22 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="529" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618585881556" />
-    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619017482260">
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619095951762">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619017482260" />
-    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1619023757650">
+    <state x="570" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619095951762" />
+    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1619026513041">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1619023757650" />
+    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1619026513041" />
     <state x="496" y="228" key="NewPhpClassDialog" timestamp="1618328977659">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="496" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618328977659" />
-    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1619025160096">
+    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1619102176803">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619025160096" />
+    <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619102176803" />
     <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1619012155002">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

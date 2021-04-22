@@ -1,4 +1,7 @@
-<?php include_once $_SERVER['DOCUMENT_ROOT']."/BackToWork/src/model/DBConnection.php";?>
+<?php
+//Main Database Connection File
+include_once $_SERVER['DOCUMENT_ROOT']."/BackToWork/src/model/DBConnection.php";
+?>
 
 <html lang="en">
     <head>
@@ -31,12 +34,13 @@
         <link href="/BackToWork/assets/css/account.css" type="text/css" rel="stylesheet">
         <link href="/BackToWork/assets/css/login.css" type="text/css" rel="stylesheet">
 
+        <!-- Custom JS Code -->
         <script src="/BackToWork/assets/js/getCookie.js"></script>
-        <script async src="/BackToWork/assets/js/account/checkLogin.js"></script>
+        <script src="/BackToWork/assets/js/account/checkLogin.js"></script>
         <script src="/BackToWork/assets/js/account/logout.js"></script>
     </head>
     <body>
-
+        <!-- Navbar -->
         <ul id="header">
             <li id><a class="active" href="/BackToWork/public/group/myGroup.php" id="linkFamily">My Group</a></li>
             <li id><a href="/BackToWork/public/chores/chores.php" id="linkChores">Chores</a></li>
@@ -46,28 +50,15 @@
             <li id><a href="/BackToWork/public/account/login/login.php" id="logout">Logout</a></li>
         </ul>
 
+        <!-- Main Banner -->
         <div class="container-fluid" style="background-color: #DAE8FC;">
             <div class="container-fluid header">
-                <a class="headerLink" href="/BackToWork/public/group/myGroup.php" id="linkMain"><h1>Back To Work</h1></a>
+                <label class="headerLink" id="linkMain"><h1>Back To Work</h1></label>
             </div>
         </div>
 
     </body>
 </html>
-<script>
-
-    let page = window.location.pathname;
-
-    if(page === "/BackToWork/public/account/login/login.php" || page === "/BackToWork/public/account/registration/registration.php") {
-        //If user is already logged in - redirect to main page
-        if(getCookie('userID') !== ""){
-            location.replace("/BackToWork/public/group/myGroup.php");
-        }else{
-            $('#header').attr('hidden', true);
-            $('#linkMain').addClass("linkDisabled");
-        }
-    }
-
-</script>
+<script async src="/BackToWork/assets/js/checkPage.js"></script>
 
 

@@ -1,9 +1,11 @@
 $(function(){
+    /** Edit Chore **/
     $('#btnSaveChore').click(function(){
         let nameErr = false;
         let descriptionErr = false;
         let pointsErr = false;
 
+        //Get edited details of selected chore
         let choreName = $('#editChoreName').val();
         let choreDescription = $('#editChoreDescription').val();
         let chorePoints = $('#editChorePoints').val();
