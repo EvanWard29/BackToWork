@@ -4,3 +4,9 @@
 #### Product Vision:
 This application is designed for any size family who is looking to be more organised around the house. The Mobile Family Planner is a Responsive Full-Stack Application that will allow families to add members of their family to a family group within the application. This will then allow them to set up and assign chores to each member of the family. The application also offers other features such as a calendar for planning events in a week and a reward system for completing chores.
 
+#### Licences
+The following is third-party content that has been used in this project:
+- jQuery - https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js
+- Bootstrap - https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css
+- Merriweather Font Family - https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap
+- CryptoJS - https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js
