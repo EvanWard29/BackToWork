@@ -1,3 +1,4 @@
+<html>
 <!-- Modal Add Member -->
 <div class="modal fade" id="modalNewMember" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -55,3 +56,4 @@
         </div>
     </div>
 </div>
+</html>
