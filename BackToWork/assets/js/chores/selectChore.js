@@ -59,10 +59,15 @@ $(function(){
         $('#btnEditChore').hide();
         $('#btnSaveChore').attr('hidden', false);
 
-        $('#assignChore').val("Select User").attr('disabled', true);
-        $('#choreDeadline').attr('disabled', true);
+        $('#lblAssignTo').attr('hidden', true);
+        $('#assignChore').val("Select User").attr('hidden', true);
+
+        $('#lblDeadline').attr('hidden', true);
+        $('#choreDeadline').attr('hidden', true);
 
         $('#btnDeleteChore').attr('hidden', false);
+
+        $('#btnAssignChore').attr('hidden', true);
     });
 
     //Tidy up modals when closed
@@ -83,14 +88,17 @@ $(function(){
         $('#invEditChoreDescription').attr('hidden', true);
         $('#invEditChorePoints').attr('hidden', true);
 
-        $('#assignChore').val("Select User").attr('disabled', false);
+        $('#lblAssignTo').attr('hidden', false);
+        $('#assignChore').val("Select User").attr('hidden', false);
 
         $('#btnSaveChore').attr('hidden', true);
         $('#btnEditChore').css('display', 'block');
 
-        $('#choreDeadline').val(new Date().toString()).attr('disabled', false);
+        $('#lblDeadline').attr('hidden', false);
+        $('#choreDeadline').val(new Date().toString()).attr('hidden', false);
 
         $('#btnDeleteChore').attr('hidden', true);
+        $('#btnAssignChore').attr('hidden', false);
     })
 });
 

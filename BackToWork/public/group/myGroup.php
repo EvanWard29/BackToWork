@@ -1,4 +1,4 @@
-<?php include_once "../header.php"?>
+<?php include_once "../header.php"; $db = new DBConnection();?>
 
 <html>
     <head>
@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container-fluid main">
-            <h1>My Group</h1>
+            <h1><?php echo $db->getGroupName($_COOKIE['groupID']) ?></h1>
             <div id="myGroup-content" class="container containerBackground">
                 <!-- Table For Viewing Group Members -->
                 <table id="family" class="table-bordered" style="height: 60%">
@@ -18,7 +18,6 @@
                     </thead>
                     <tbody>
                     <?php
-                        $db = new DBConnection();
                         $members = $db->getUsers($_COOKIE['groupID']);
                         foreach($members as $member){
                             $userID = $member->getUserID();

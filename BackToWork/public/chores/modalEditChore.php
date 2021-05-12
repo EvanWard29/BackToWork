@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="lblEditChore">Edit Chore</h5>
+                <h5 class="modal-title" id="lblEditChore">Assign Chore</h5>
                 <button id="btnCloseChore" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -32,7 +32,7 @@
                     <?php if($_COOKIE['accountType'] == 0){?>
                         <!-- User Assignment Selection -->
                         <div>
-                            <label class="font-weight-bold" for="assignChore">Assign To</label>
+                            <label id="lblAssignTo" class="font-weight-bold" for="assignChore">Assign To</label>
                             <select class="form-control" type="text" id="assignChore">
                                 <option selected>Select User</option>
                                 <?php
@@ -47,7 +47,7 @@
                         </div>
                         <div>
                             <label id="invDeadline" class="text-danger" hidden>Please Select A Deadline!</label><br>
-                            <label class="font-weight-bold" for="choreDeadline">Deadline</label>
+                            <label id="lblDeadline" class="font-weight-bold" for="choreDeadline">Deadline</label>
                             <input id="choreDeadline" class="form-control" type="datetime-local"/>
                         </div>
                         <?php
@@ -64,6 +64,27 @@
                     <?php
                 } ?>
                 <button id="btnCloseChore" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete Chore -->
+<div class="modal fade" id="modalConfirmChoreDelete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lblEditChore">Delete Chore</h5>
+                <button id="btnCloseChore" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are You Sure You Want To Delete This Chore?</p>
+                <div class="text-center">
+                    <button id="btnConfirmChoreDelete" class="btn btn-danger btnMargin-Right">Confirm</button>
+                    <button id="btnCancelChoreDelete" class="btn btn-primary btnMargin-Left">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
