@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label id="invChoreDescription" class="text-danger" hidden>Chore Description Cannot Be Empty And Longer Than 150 Characters!</label><br>
                         <label class="font-weight-bold" for="inpChoreDescription">Description</label>
-                        <input class="form-control" type="text" id="inpChoreDescription"/>
+                        <textarea class="form-control" type="text" id="inpChoreDescription"></textarea>
                     </div>
                     <div class="form-group">
                         <label id="invChorePoints" class="text-danger" hidden>Points Value Cannot Be Empty And Must Be A Number!</label><br>

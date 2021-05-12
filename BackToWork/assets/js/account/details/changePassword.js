@@ -1,13 +1,18 @@
 $(function(){
+    let email = null;
+    let oldPassword = null;
+    let newPassword = null;
+    let confirm = null;
+
     /** Change Password **/
     $('#btnSavePassword').click(async function(){
         let emailErr = false;
         let passwordErr = false;
 
-        let email = $('#inpConfirmEmail').val();
-        let oldPassword = CryptoJS.AES.encrypt($('#inpOldPassword').val(), "CHEESEBURGER");
-        let newPassword = CryptoJS.AES.encrypt($('#inpChangePassword').val(), "CHEESEBURGER");
-        let confirm = CryptoJS.AES.encrypt($('#inpConfirmPasswordChange').val(), "CHEESEBURGER");;
+        email = $('#inpConfirmEmail').val();
+        oldPassword = CryptoJS.AES.encrypt($('#inpOldPassword').val(), "CHEESEBURGER");
+        newPassword = CryptoJS.AES.encrypt($('#inpChangePassword').val(), "CHEESEBURGER");
+        confirm = CryptoJS.AES.encrypt($('#inpConfirmPasswordChange').val(), "CHEESEBURGER");
 
         //Perform validation techniques on user inputs
         if(email === ""){
@@ -132,14 +137,23 @@ $(function(){
         }
 
         if(emailErr !== true && passwordErr !== true){
-            //Correct Details - Save Password
-            $.post("/BackToWork/src/controller/account/details/changePassword.php",{
-                email: email,
-                password: newPassword.toString()
-            }, function(response){
-                location.reload();
-            });
+            $('#modalChangePassword').modal('hide');
+            $('#modalConfirmChangePassword').modal('show');
         }
+    });
+
+    $('#btnConfirmPasswordChange').click(function(){
+        //Correct Details - Save Password
+        $.post("/BackToWork/src/controller/account/details/changePassword.php",{
+            email: email,
+            password: newPassword.toString()
+        }, function(response){
+            location.reload();
+        });
+    });
+
+    $('#btnCancelChangePassword').click(function(){
+       $('#modalConfirmChangePassword').modal('hide');
     });
 
     //Tidy up modal when closed

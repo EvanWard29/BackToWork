@@ -236,7 +236,7 @@ class DBConnection {
 
         if($resultSet){
             foreach($resultSet as $result){
-                $user = new User($result['userID'], $result['firstName'], $result['lastName'], $result['type'],
+                $user = new User($result['userID'], $result['firstName'], $result['lastName'], $result['type'], $result['DOB'],
                     $result['email'], $result['password'], $result['points'], $result['choresCompleted'], $result['groupID']);
                 $users[] = $user;
             }
@@ -248,13 +248,14 @@ class DBConnection {
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
         $type = $user->getAccountType();
+        $DOB = $user->getDOB();
         $email = $user->getEmail();
         $password = $user->getPassword();
         $points = $user->getPoints();
         $choresCompleted = $user->getChoresCompleted();
         $groupID = $user->getgroupID();
 
-        $sql = "call AddUser(:firstName, :lastName, :groupName, :type, :email, :password, :points, :choresCompleted, :groupID)";
+        $sql = "call AddUser(:firstName, :lastName, :groupName, :type, :DOB, :email, :password, :points, :choresCompleted, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
@@ -262,6 +263,7 @@ class DBConnection {
         $statement->bindParam(':lastName',$lastName, PDO::PARAM_STR);
         $statement->bindParam(':groupName', $groupName, PDO::PARAM_STR);
         $statement->bindParam(':type',$type, PDO::PARAM_INT);
+        $statement->bindParam(':DOB',$DOB, PDO::PARAM_STR);
         $statement->bindParam(':email',$email, PDO::PARAM_STR);
         $statement->bindParam(':password',$password, PDO::PARAM_STR);
         $statement->bindParam(':points',$points, PDO::PARAM_INT);
@@ -295,7 +297,7 @@ class DBConnection {
     }
 
     public function getUserDetails($userID){
-        $sql = "SELECT firstName, lastName, email, points, choresCompleted FROM user WHERE userID = ?";
+        $sql = "SELECT firstName, lastName, DOB, email, points, choresCompleted FROM user WHERE userID = ?";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([$userID]);
@@ -303,7 +305,7 @@ class DBConnection {
 
         $user = null;
         foreach($results as $detail){
-            $user = new User(null, $detail['firstName'], $detail['lastName'], null,$detail['email'],
+            $user = new User(null, $detail['firstName'], $detail['lastName'], null, $detail['DOB'], $detail['email'],
                 null, $detail['points'], $detail['choresCompleted'], null);
         }
 
@@ -377,6 +379,15 @@ class DBConnection {
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
         $statement->execute();
+    }
+
+    public function getGroupName($groupID){
+        $sql = "SELECT groupName FROM userGroup WHERE groupID = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$groupID]);
+
+        return $statement->fetchColumn();
     }
     //endregion
 

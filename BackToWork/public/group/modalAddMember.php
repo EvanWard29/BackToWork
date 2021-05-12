@@ -23,6 +23,11 @@
                         <input class="form-control" type="text" id="inpLastName"/>
                     </div>
                     <div class="form-group">
+                        <label for="inpDOB" class="text-danger" id="invDOB" hidden>Date is Invalid!</label><br>
+                        <labeL for="inpDOB" class="font-weight-bold">Date of Birth</labeL>
+                        <input class="form-control" type="date" id="inpDOB">
+                    </div>
+                    <div class="form-group">
                         <label class="text-danger" id="invEmail" hidden>Email Cannot Be Empty And Must Contain '@'</label>
                         <label for="inpEmail" id="invEmailExists" class="text-danger" hidden>Email Already Exists! Please Login Or Use An Alternative Email.</label><br>
                         <label class="font-weight-bold" for="inpEmail">Email</label>

@@ -9,9 +9,27 @@
             <!-- User Details -->
             <div class="container text-left containerBackground details">
                 <h3>My Details</h3>
-                <p>Name: <strong><span id="userName"><?php echo $user->getFirstName() . " " . $user->getLastName() ?></span></strong></p>
-                <p>Email: <strong><span id="userEmail"><?php echo $user->getEmail() ?></span></strong></p>
-                <p>Points: <strong><span id="userPoints"><?php echo $user->getPoints() ?></span></strong></p>
+                <div class="row">
+                    <div class="col">
+                        <p>Name: <strong><span id="userName"><?php echo $user->getFirstName() . " " . $user->getLastName() ?></span></strong></p>
+                    </div>
+                    <div class="col">
+                        <p>Email: <strong><span id="userEmail"><?php echo $user->getEmail() ?></span></strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>DOB: <strong><span id="userDOB"><?php echo $user->getDOB() ?></span></strong></p>
+                    </div>
+                    <div class="col">
+                        <p>Group Name: <strong><span id="userGroup"><?php echo $db->getGroupname($_COOKIE['groupID'])?></span></strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Points: <strong><span id="userPoints"><?php echo $user->getPoints() ?></span></strong></p>
+                    </div>
+                </div>
             </div>
             <!-- User Options -->
             <div class="container containerBackground options">

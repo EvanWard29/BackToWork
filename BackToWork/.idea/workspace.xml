@@ -21,9 +21,22 @@
   <component name="ChangeListManager">
     <list default="true" id="f908f9c5-12cb-4a36-a501-655df63e9d9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documents/Report Draft 1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/details/changeEmail.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/details/changeEmail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/details/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/details/changePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/account/registration/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/registration/registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/selectChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/selectChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/registration/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/registration/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/userAccount/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/userAccount/modalChangeEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangeEmail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/account/userAccount/modalChangePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangePassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/chores/modalEditChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/modalEditChore.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/chores/modalNewChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/modalNewChore.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/group/modalAddMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/modalAddMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/group/myGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/myGroup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +148,7 @@
       <workItem from="1619007578994" duration="19726000" />
       <workItem from="1619090926558" duration="15065000" />
       <workItem from="1620221008244" duration="661000" />
+      <workItem from="1620819563318" duration="13994000" />
     </task>
     <servers />
   </component>

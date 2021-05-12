@@ -37,3 +37,24 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Confirm Change Email -->
+<div class="modal fade" id="modalConfirmChangeEmail" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Are You Sure You Want To Change Your Email?</p>
+                <div class="text-center">
+                    <button id="btnConfirmEmailChange" class="btn btn-danger btnMargin-Right">Confirm</button>
+                    <button id="btnCancelChangeEmail" class="btn btn-primary btnMargin-Left">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

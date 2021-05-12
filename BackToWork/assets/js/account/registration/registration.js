@@ -1,6 +1,7 @@
 $(function(){
     /** Registration **/
     $('#btnRegister').click(async function(){
+        let dobErr = false;
         let firstErr = false;
         let lastErr = false;
         let groupErr = false;
@@ -11,12 +12,32 @@ $(function(){
         let firstName = $('#inpFirstName').val();
         let lastName = $('#inpLastName').val();
         let groupName = $('#inpGroupName').val();
+        let DOB = new Date($('#inpDOB').val());
         let email = $('#inpEmail').val();
+        let type = $('#inpType').val();
 
         let password = CryptoJS.AES.encrypt($('#inpPassword').val(), "CHEESEBURGER");
         let confirm = CryptoJS.AES.encrypt($('#inpConfirmPassword').val(), "CHEESEBURGER");
 
-        let type = $('#inpType').val();
+        if(DOB < new Date()){
+            $('#invDOB').attr('hidden', true);
+        }else{
+            //Invalid Date
+            $('#invDOB').attr('hidden', false);
+            dobErr = true;
+        }
+
+        if(dobErr !== true && location.pathname === "/BackToWork/public/account/registration/registration.php"){
+            if(_calculateAge(DOB) < 14){
+                //User too young to register
+                dobErr = true;
+                $('#youngDOB').attr('hidden', false);
+            }else{
+                //Age is 14 or older
+                $('#youngDOB').attr('hidden', true);
+                dobErr = false;
+            }
+        }
 
         //Perform validation techniques on user inputs
         if(firstName === ""){
@@ -192,7 +213,7 @@ $(function(){
         }
 
         //If all checks pass - save new user in DB
-        if(firstErr !== true && lastErr !== true && groupErr !== true && emailErr !== true && passwordErr !== true && typeErr !== true){
+        if(firstErr !== true && lastErr !== true && groupErr !== true && dobErr !== true && emailErr !== true && passwordErr !== true && typeErr !== true){
             let groupID = getCookie('groupID');
 
             if(groupID === ""){
@@ -210,6 +231,7 @@ $(function(){
                 lastName: lastName,
                 groupName: groupName,
                 type: type,
+                dob: $('#inpDOB').val(),
                 email: email,
                 password: password,
                 groupID: groupID
@@ -218,6 +240,7 @@ $(function(){
                 $('#inpFirstName').val("");
                 $('#inpLastName').val("");
                 $('#inpGroupName').val("");
+                $('#inpDOB').val("");
                 $('#inpEmail').val("");
                 $('#inpPassword').val("");
                 $('#inpConfirmPassword').val("");
@@ -232,13 +255,37 @@ $(function(){
         }
     });
 
+    $('#inpDOB').on('change', function(){
+        if(_calculateAge(new Date($('#inpDOB').val())) < 14){
+            //User too young to be admin
+            $('#inpType').attr('disabled', true).get(0).selectedIndex = 2;
+        }else{
+            //Age is 14 or older
+            $('#inpType').attr('disabled', false).get(0).selectedIndex = 0;
+        }
+    })
+
     //Tidy modal when closed
     $('#modalNewMember').on('hide.bs.modal', function(){
+        $('#inpFirstName').val('');
+        $('#inpLastName').val('');
+        $('#inpDOB').val('');
+        $('#inpEmail').val('');
+        $('#inpPassword').val('');
+        $('#inpConfirmPassword').val('');
         $('#invType').attr('hidden', true);
+        $('#invDOB').attr('hidden', true);
+        $('#inpType').attr('disabled', false).get(0).selectedIndex = 0;
     });
 });
 
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+function _calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
 }

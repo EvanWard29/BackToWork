@@ -21,6 +21,11 @@
                             <input class="form-control inpPadding" type="text" placeholder="Group Name" id="inpGroupName">
                         </div>
                         <div class="form-group">
+                            <label for="inpDOB" id="invDOB" class="text-danger" hidden>Date of Birth is Invalid!</label>
+                            <label for="inpDOB" id="youngDOB" class="text-danger" hidden>You MUST be 14 Years or Older to Register!</label>
+                            <input class="form-control inpPadding" type="date" placeholder="Date of Birth" id="inpDOB">
+                        </div>
+                        <div class="form-group">
                             <label for="inpEmail" id="invEmail" class="text-danger" hidden>Email Cannot Be Empty, Container More Than 45 Characters And Must Contain '@'</label>
                             <label for="inpEmail" id="invEmailExists" class="text-danger" hidden>Email Already Exists! Please Login Or Use An Alternative Email.</label>
                             <input class="form-control inpPadding" type="text" placeholder="Email" id="inpEmail">

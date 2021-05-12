@@ -1,12 +1,14 @@
 $(function(){
+    let currentEmail, newEmail, password = null;
+
     /** Change Email **/
     $('#btnSaveEmail').click(async function(){
+        currentEmail = $('#currentEmail').val();
+        newEmail = $('#inpChangeEmail').val();
+        password = CryptoJS.AES.encrypt($('#inpConfirmPassword').val(), "CHEESEBURGER");
+
         let emailErr = false;
         let passwordErr = false;
-
-        let currentEmail = $('#currentEmail').val();
-        let newEmail = $('#inpChangeEmail').val();
-        let password = CryptoJS.AES.encrypt($('#inpConfirmPassword').val(), "CHEESEBURGER");
 
         //Perform validation techniques on user inputs
         $('#invChangeEmailExists').attr('hidden', true);
@@ -108,14 +110,23 @@ $(function(){
         }
 
         if(emailErr !== true && passwordErr !== true){
-            //Save new email to DB and logout
-            $.post("/BackToWork/src/controller/account/details/changeEmail.php",{
-                currentEmail: currentEmail,
-                newEmail: newEmail
-            }, function(response){
-                location.reload();
-            });
+            $('#modalChangeEmail').modal('hide');
+            $('#modalConfirmChangeEmail').modal('show');
         }
+    });
+
+    $('#btnConfirmEmailChange').click(function(){
+        //Save new email to DB and logout
+        $.post("/BackToWork/src/controller/account/details/changeEmail.php",{
+            currentEmail: currentEmail,
+            newEmail: newEmail
+        }, function(response){
+            location.reload();
+        });
+    });
+
+    $('#btnCancelChangeEmail').click(function(){
+        $('#modalConfirmChangeEmail').modal('hide');
     });
 
     //Tidy up modal when closed
