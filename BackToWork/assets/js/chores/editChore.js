@@ -4,11 +4,13 @@ $(function(){
         let nameErr = false;
         let descriptionErr = false;
         let pointsErr = false;
+        let penaltyErr = false;
 
         //Get edited details of selected chore
         let choreName = $('#editChoreName').val();
         let choreDescription = $('#editChoreDescription').val();
         let chorePoints = $('#editChorePoints').val();
+        let chorePenalty = $('#editChorePenalty').val();
 
         //Perform validation techniques on User Inputs
         if(choreName === ""){
@@ -61,8 +63,31 @@ $(function(){
             }
         }
 
+        if(chorePenalty === ""){
+            //Chore Penalty is blank
+            penaltyErr = true;
+
+            $('#editChorePenalty').addClass('is-invalid');
+            $('#invEditChorePenalty').attr('hidden', false);
+        }else{
+            //Chore Points is NOT blank
+
+            if(isNaN(chorePenalty) === true){
+                //Chore Penalty is NOT a valid number
+                penaltyErr = true;
+
+                $('#editChorePenalty').addClass('is-invalid');
+                $('#invEditChorePenalty').attr('hidden', false);
+            }else{
+                penaltyErr = false;
+
+                $('#editChorePenalty').removeClass('is-invalid');
+                $('#invEditChorePenalty').attr('hidden', true);
+            }
+        }
+
         //If there are no errors, POST chore details to server to be saved to DB
-        if(nameErr !== true && descriptionErr !== true && pointsErr !== true) {
+        if(nameErr !== true && descriptionErr !== true && pointsErr !== true && penaltyErr !== true) {
             if (choreID != null) {
                 $.post("/BackToWork/src/controller/chores/editChore.php",
                     {
@@ -70,6 +95,7 @@ $(function(){
                         name: choreName,
                         description: choreDescription,
                         points: chorePoints,
+                        penalty: chorePenalty,
                         groupID: getCookie('groupID')
                     },
                     function (data, status) {

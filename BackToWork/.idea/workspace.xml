@@ -20,23 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f908f9c5-12cb-4a36-a501-655df63e9d9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/js/rewards/editReward.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/rewards/modalEditReward.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/rewards/deleteReward.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/rewards/updateReward.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/account/details/changeEmail.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/details/changeEmail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/account/details/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/details/changePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/account/registration/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/account/registration/registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/deleteChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/assignChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/assignChore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chores/editChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/editChore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/chores/selectChore.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chores/selectChore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/registration/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/registration/registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/userAccount/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/userAccount/modalChangeEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangeEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/account/userAccount/modalChangePassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/account/userAccount/modalChangePassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/group/updateUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/group/updateUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/newReward.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/rewards/newReward.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/redeemReward.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/rewards/redeemReward.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/rewardRequests.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/rewards/rewardRequests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/rewards/rewards.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/rewards/rewards.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/chores/modalEditChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/modalEditChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/chores/modalNewChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/chores/modalNewChore.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/group/modalAddMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/modalAddMember.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/group/myGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/group/myGroup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/account/registration/newMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/rewards/rewards.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/rewards/rewards.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/chores/editChore.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/chores/editChore.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DBConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +150,7 @@
       <workItem from="1619090926558" duration="15065000" />
       <workItem from="1620221008244" duration="661000" />
       <workItem from="1620819563318" duration="13994000" />
+      <workItem from="1620907231588" duration="11986000" />
     </task>
     <servers />
   </component>
@@ -199,10 +201,11 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="496" y="228" key="NewPhpClassDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1618328977659" />
-    <state x="674" y="428" key="NewPhpFileDialog" timestamp="1619102176803">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state x="770" y="441" key="NewPhpFileDialog" timestamp="1620919820118">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="674" y="428" key="NewPhpFileDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1619102176803" />
+    <state x="770" y="441" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1620919820118" />
     <state x="669" y="375" width="744" height="259" key="com.jetbrains.plugins.webDeployment.ui.UploadBeforeRunTaskDialog" timestamp="1619012155002">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

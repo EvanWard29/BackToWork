@@ -1,6 +1,7 @@
 <?php include_once "../header.php";
 $db = new DBConnection();
 $user = $db->getUserDetails($_COOKIE['userID']);
+setcookie('points', $user->getPoints(), 0, "/");
 $rewards = $db->getRewards($_COOKIE['groupID']);
 $rewardRequests = $db->getRewardRequests($_COOKIE['groupID']);
 $users = $db->getUsers($_COOKIE['groupID']);
@@ -15,6 +16,7 @@ $users = $db->getUsers($_COOKIE['groupID']);
         <script src="../../assets/js/rewards/rewardRequests.js"></script>
         <script src="../../assets/js/rewards/redeemReward.js"></script>
         <script src="../../assets/js/rewards/newReward.js"></script>
+        <script src="../../assets/js/rewards/editReward.js"></script>
     </head>
     <body>
         <div class="container-fluid main">
@@ -46,7 +48,7 @@ $users = $db->getUsers($_COOKIE['groupID']);
                 ?>
             </div>
             <div class="container containerBackground" id="containerRewardSelect">
-                <h3>My Points: <span id="myPoints"></span></h3><br>
+                <h3>My Points: <span><?php echo $user->getPoints() ?></span></h3><br>
                 <label for="selectedReward"><strong>Selected Reward:</strong></label>
                 <label for="selectedReward" class="text-danger" style="font-size: 15px" id="rewardErr" hidden>You Do Not Have Enough Points For That! Select A Different Reward.</label>
                 <input id="selectedReward" class="form-control" type="text" placeholder="Select A Reward" readonly/>
@@ -55,15 +57,20 @@ $users = $db->getUsers($_COOKIE['groupID']);
                 <label id="selectedRewardPoints" hidden></label>
 
                 <button type="button" class="btn btn-primary btn-block btnTop" id="btnRedeemReward" disabled>Redeem</button>
-                <?php
-                if($_COOKIE['accountType'] == 0){?>
+            </div>
+            <?php
+            if($_COOKIE['accountType'] == 0){?>
+                <div class="container containerBackground" style="margin-bottom: 15px">
+                    <h3>Admin Options</h3>
                     <!-- Admin Options -->
+                    <button class="btn btn-primary btn-block btnTop" id="btnEditReward" disabled>Edit Reward</button>
                     <button class="btn btn-block btnTop btn-primary" id="btnRewardRequests">Reward Requests</button>
                     <button class="btn btn-block btnTop btn-primary" id="btnNewReward">New Reward</button>
-                    <?php
-                }
-                ?>
-            </div>
+                    <button class="btn btn-block btnTop btn-danger" id="btnDeleteReward" disabled>Delete Reward</button>
+                </div>
+                <?php
+            }
+            ?>
         </div>
 
         <?php
@@ -71,6 +78,7 @@ $users = $db->getUsers($_COOKIE['groupID']);
             if($_COOKIE['accountType'] == 0){
                 include "modalRewardRequests.php";
                 include "modalNewReward.php";
+                include "modalEditReward.php";
             }
         ?>
     </body>

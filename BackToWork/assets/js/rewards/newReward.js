@@ -59,9 +59,8 @@ $(function(){
                 pointsCost: pointsCost,
                 groupID: getCookie('groupID')
             }, function(response){
-
+                location.reload();
             });
-            location.reload();
         }
     });
 });

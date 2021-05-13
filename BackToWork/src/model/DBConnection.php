@@ -113,9 +113,16 @@ class DBConnection {
         $statement->execute();
     }
 
-    public function editChore($choreID, $choreName, $choreDescription, $chorePoints, $groupID){
+    public function editChore($chore){
 
-        $sql = "call EditChore(:choreID, :choreName, :choreDescription, :points, :groupID)";
+        $choreID = $chore->getChoreID();
+        $choreName = $chore->getChoreName();
+        $choreDescription = $chore->getChoreDescription();
+        $chorePoints = $chore->getPoints();
+        $chorePenalty = $chore->getPenalty();
+        $groupID = $chore->getGroupID();
+
+        $sql = "call EditChore(:choreID, :choreName, :choreDescription, :points, :penalty, :groupID)";
 
         $statement = $this->connection->prepare($sql);
 
@@ -123,6 +130,7 @@ class DBConnection {
         $statement->bindParam(':choreName',$choreName, PDO::PARAM_STR);
         $statement->bindParam(':choreDescription',$choreDescription, PDO::PARAM_STR);
         $statement->bindParam(':points',$chorePoints, PDO::PARAM_INT);
+        $statement->bindParam(':penalty',$chorePenalty, PDO::PARAM_INT);
         $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
 
         $statement->execute();
@@ -448,10 +456,11 @@ class DBConnection {
     }
 
     public function declineRequest($requestID){
-        $sql = "UPDATE reward_request SET requestStatus = 'DECLINED' WHERE requestID = ?";
+        $sql = "call DeclineRequest(:requestID)";
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$requestID]);
+        $statement->bindParam(':requestID',$requestID, PDO::PARAM_INT);
+        $statement->execute();
     }
 
     public function getPastRewards($groupID, $userID){
@@ -479,6 +488,29 @@ class DBConnection {
         $statement->bindParam(':rewardName',$rewardName, PDO::PARAM_STR);
         $statement->bindParam(':pointsCost',$pointsCost, PDO::PARAM_INT);
         $statement->bindParam(':groupID',$groupID, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function deleteReward($rewardID){
+        $sql = "call DeleteReward(:rewardID)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(":rewardID", $rewardID, PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    public function updateReward($reward){
+        $rewardID = $reward->getRewardID();
+        $rewardName = $reward->getRewardName();
+        $rewardPoints = $reward->getPoints();
+
+        $sql = "call UpdateReward(:rewardID, :rewardName, :points)";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':rewardID', $rewardID, PDO::PARAM_INT);
+        $statement->bindParam(':rewardName', $rewardName, PDO::PARAM_STR);
+        $statement->bindParam(':points', $rewardPoints, PDO::PARAM_INT);
 
         $statement->execute();
     }
