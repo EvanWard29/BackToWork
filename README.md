@@ -1,11 +1,11 @@
-# Mobile Family Planner
+# Back To Work
 #### Supervisor - **Vasilios Kelefouras**
 #### Website - https://ec2-52-56-217-123.eu-west-2.compute.amazonaws.com/
 #### Backlog - https://tasks.office.com/live.plymouth.ac.uk/Home/PlanViews/pqzmBFL2ZEK9Pic2CDjgSZYAEeat?Type=PlanLink&Channel=Link&CreatedTime=637382789375750000 
 #### Video Demonstration - https://youtu.be/fJ-Kdh1ITcc
 
 #### Product Vision:
-This application is designed for any size family who is looking to be more organised around the house. The Mobile Family Planner is a Responsive Full-Stack Application that will allow families to add members of their family to a family group within the application. This will then allow them to set up and assign chores to each member of the family. The application also offers other features such as a calendar for planning events in a week and a reward system for completing chores.
+My product vision for Back to Work is to build an interactive website that allows users to create household groups where they can assign chores to the different members of the group. Points can then be earned by users for completing chores which they can redeem for physical rewards. An interactive group calendar allows users to stay organised with events and keep track of chore deadlines for the group.
 
 #### Licences
 The following is third-party content that has been used in this project:
