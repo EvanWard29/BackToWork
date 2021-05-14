@@ -25,7 +25,6 @@ $(function(){
             $.post("/BackToWork/src/controller/rewards/declineRequest.php",{
                 requestID: requestID
             }, function(response){
-                console.log(response);
                 row.remove();
                 if($('#requests >tbody >tr').length === 0){
                     $('#requests').attr('hidden', true);

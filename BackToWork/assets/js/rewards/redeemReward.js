@@ -21,7 +21,7 @@ $(function(){
                 groupID: getCookie('groupID'),
                 userID: getCookie('userID')
             }, function(response){
-                document.cookie = "points=" + newPoints;
+                document.cookie = "points=" + newPoints + ";path=/";
                 location.reload();
             });
         }else{

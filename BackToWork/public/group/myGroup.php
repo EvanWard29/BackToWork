@@ -22,7 +22,11 @@
                         foreach($members as $member){
                             $userID = $member->getUserID();
                             $name = $member->getFirstName();
-                            $points = $member->getPoints();
+                            if($userID == $_COOKIE['userID']){
+                                $points = $_COOKIE['points'];
+                            }else{
+                                $points = $member->getPoints();
+                            }
                             $choresCompleted = $member->getChoresCompleted();
                             ?>
                             <tr>

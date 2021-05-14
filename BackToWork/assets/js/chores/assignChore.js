@@ -16,12 +16,13 @@ $(function(){
 
             //Post data to server to save to DB
             $.post("/BackToWork/src/controller/chores/assignChore.php",{
-                user: user,
+                user: user.trim(),
                 groupID: groupID,
                 choreID: choreID,
                 deadline: deadline.replace('T', ' ')
             },function(response){
-                location.reload();
+                //location.reload();
+                console.log(response);
             });
         }
     });

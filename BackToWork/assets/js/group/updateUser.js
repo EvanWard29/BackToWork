@@ -86,10 +86,11 @@ $(function(){
             //Post new details to server for saving to DB
             $.post("/BackToWork/src/controller/account/details/updateMember.php",{
                 userID: userID,
-                firstName: name,
+                firstName: name.trim(),
                 choresCompleted: choresCompleted,
                 points: points
             }, function(){
+                document.cookie = "points=" + points + ";path=/";
                 location.reload();
             })
         }

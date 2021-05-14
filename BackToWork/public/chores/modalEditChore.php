@@ -29,6 +29,11 @@
                         <label class="font-weight-bold" for="editChorePoints">Points Value</label>
                         <input class="form-control" type="text" id="editChorePoints" readonly/>
                     </div>
+                    <div class="form-group">
+                        <label id="invEditChorePenalty" class="text-danger" hidden>Penalty Value Cannot Be Empty And Must Be A Number!</label><br>
+                        <label class="font-weight-bold" for="editChorePenalty">Penalty Value</label>
+                        <input class="form-control" type="text" id="editChorePenalty" readonly/>
+                    </div>
                     <?php if($_COOKIE['accountType'] == 0){?>
                         <!-- User Assignment Selection -->
                         <div>

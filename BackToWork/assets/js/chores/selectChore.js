@@ -55,6 +55,7 @@ $(function(){
         $('#editChoreName').attr('readonly', false);
         $('#editChoreDescription').attr('readonly', false);
         $('#editChorePoints').attr('readonly', false);
+        $('#editChorePenalty').attr('readonly', false);
 
         $('#btnEditChore').hide();
         $('#btnSaveChore').attr('hidden', false);
@@ -111,11 +112,13 @@ function getChoreDetails(choreID){
             let name = chores[i].choreName;
             let description = chores[i].choreDescription;
             let points = chores[i].chorePoints;
+            let penalty = chores[i].chorePenalty;
 
             $('#editChoreID').html(choreID);
             $('#editChoreName').val(name);
             $('#editChoreDescription').val(description);
             $('#editChorePoints').val(points);
+            $('#editChorePenalty').val(penalty);
 
             $('#btnEditChore').attr('hidden', false);
             break;
