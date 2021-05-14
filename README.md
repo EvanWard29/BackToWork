@@ -14,7 +14,7 @@ The following is third-party content that has been used in this project:
 - Merriweather Font Family - https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap
 - CryptoJS - https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js
 
-<div style="text-align: center">
+<div>
   <br><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0"     src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br>
   This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
  </div>
